@@ -1,0 +1,27 @@
+@import 'normalize.css';
+@import 'basscss';
+
+.b2 {
+    border-width: 2px;
+}
+
+.github-ribbon,
+.github-ribbon:hover {
+    display: block;
+    font-size: 13px;
+    padding: 8px 50px;
+    position: fixed;
+    top: 35px;
+    right: -45px;
+    text-decoration: none;
+    text-transform: uppercase;
+    user-select: none;
+    transform: rotate(45deg);
+    z-index: 1;
+}
+
+:root {
+    --font-family: 'Akkurat', 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, sans-serif;;
+    --container-width: 960px;
+    --body-color: #222;
+}

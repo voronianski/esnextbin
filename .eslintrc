@@ -1,0 +1,40 @@
+// http://eslint.org/docs/rules
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "strict": 0,
+    "quotes": [2, "single"],
+    "indent": [2, 4, {SwitchCase: 1}],
+    "no-underscore-dangle": 0,
+    "no-unused-vars": 1,
+    "no-unused-expressions": 0,
+    "react/jsx-no-undef": 2,
+    "new-cap": 0,
+    "no-extra-boolean-cast": 0,
+    "yoda": 0,
+    "no-empty": 0,
+    "no-use-before-define": 0,
+    "camelcase": 0
+  },
+  "globals": {
+    "expect": true,
+    "should": true,
+    "FB": true,
+    "gapi": true,
+    "google": true,
+    "customGoogleUtils": true,
+    "encodeURIComonent": true,
+    "decodeURIComonent": true
+  },
+  "ecmaFeatures": {
+    "jsx": true
+  }
+}
