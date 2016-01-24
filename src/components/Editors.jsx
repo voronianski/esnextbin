@@ -25,8 +25,8 @@ const welcomeHTMLText =
 </body>
 </html>`;
 const defaultPackage = `{
-    "name": "esnextbin-sketch",
-    "version": "0.0.0"
+  "name": "esnextbin-sketch",
+  "version": "0.0.0"
 }`;
 const tabSize = 2;
 
@@ -57,6 +57,8 @@ class Editors extends React.Component {
 
     componentDidMount() {
         window.addEventListener('resize', ::this.handleResize, false);
+        // console.log(this.refs.packageEditor);
+        // this.refs.packageEditor.editor.session.setOption("useWorker", false);
     }
 
     componentWillUnmount() {
@@ -70,8 +72,10 @@ class Editors extends React.Component {
     handleCodeChange(value) {
         try {
             const transformedCode = Babel.transform(value, babelOptions).code;
+            console.log(transformedCode, Babel.transform(value, babelOptions));
             this.setState({code: value, error: '', transformedCode});
         } catch (error) {
+            console.log(error);
             error._babel && this.setState({code: value, error});
         }
     }
@@ -107,9 +111,15 @@ class Editors extends React.Component {
         };
     }
 
+    updatePackage(updatedPackage) {
+        this.setState({package: JSON.stringify(updatedPackage, null, 2)});
+    }
+
     render() {
         const { active } = this.props;
         const { width, height, code, html, error } = this.state;
+
+        console.log('RENDER EDITOR');
 
         return (
             <div className="editorbox">
@@ -129,7 +139,7 @@ class Editors extends React.Component {
                 </div>
                 <div className={cx('edit-html', {hide: active !== 'html'})}>
                     <Ace
-                        name="headEditor"
+                        name="htmlEditor"
                         mode="html"
                         theme="tomorrow"
                         value={html}
@@ -143,7 +153,8 @@ class Editors extends React.Component {
                 </div>
                 <div className={cx('edit-package', {hide: active !== 'package'})}>
                     <Ace
-                        name="bodyEditor"
+                        ref="packageEditor"
+                        name="packageEditor"
                         mode="json"
                         theme="tomorrow"
                         value={this.state.package}

@@ -1,4 +1,5 @@
 import React from 'react';
+import Progress from 'react-progress-2';
 
 import Header from '../components/Header';
 import Editors from '../components/Editors';
@@ -11,6 +12,7 @@ class Main extends React.Component {
         super();
         this.state = {
             bundle: {},
+            bundling: false,
             activeEditor: 'code'
         };
     }
@@ -24,11 +26,33 @@ class Main extends React.Component {
         this.setState({ activeEditor });
     }
 
+    handleStartBundle() {
+        this.progressDelay = setTimeout(() => Progress.show(), 100);
+    }
+
+    handleEndBundle() {
+        clearTimeout(this.progressDelay);
+        Progress.hide();
+    }
+
+    updateDependencies(modules) {
+        const { bundle } = this.state;
+        const updatedPackage = Object.assign({}, bundle.package, {
+            dependencies: modules.reduce((memo, mod) => {
+                memo[mod.name] = mod.version;
+                return memo;
+            }, {})
+        });
+        this.refs.editors.updatePackage(updatedPackage);
+    }
+
     render() {
         const { bundle, activeEditor } = this.state;
 
         return (
             <div className="main">
+                <Progress.Component />
+
                 <Header
                     height={HEADER_HEIGHT}
                     activeEditor={activeEditor}
@@ -41,12 +65,16 @@ class Main extends React.Component {
                         ref="editors"
                         active={activeEditor}
                         headerHeight={HEADER_HEIGHT}
+                        onCodeChange={""}
+                        onHTMLChange={""}
+                        onPackageChange={""}
                     />
 
                     <Sandbox
                         bundle={bundle}
-                        onStartBundle=""
-                        onEndBundle=""
+                        onModules={::this.updateDependencies}
+                        onStartBundle={::this.handleStartBundle}
+                        onEndBundle={::this.handleEndBundle}
                     />
                 </div>
             </div>

@@ -56,7 +56,8 @@ class Header extends React.Component {
                                         'bg-yellow': !isActive,
                                         'rounded-left': i === 0,
                                         'not-rounded': i === 1,
-                                        'rounded-right': i === 2
+                                        'rounded-right': i === 2,
+                                        'border-left-0': i !== 0
                                     })}
                                     onClick={this.onChangeEditorTo(b.id)}
                                 >
@@ -68,7 +69,7 @@ class Header extends React.Component {
                 </div>
 
                 <div className="right">
-                    <button type="button" className="left btn btn-primary btn-small h6 caps regular rounded bg-fuchsia run-btn" onClick={onRunClick}>▶ Play Code</button>
+                    <button type="button" className="left btn btn-primary btn-small h6 caps regular rounded bg-fuchsia run-btn" onClick={onRunClick}>▶ Execute</button>
                 </div>
             </header>
         );
