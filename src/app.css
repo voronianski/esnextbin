@@ -1,8 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,600,700,300|Inconsolata:400,700');
 @import 'normalize.css';
+@import 'basscss-utility-headings';
+@import 'basscss-background-images';
+@import 'basscss-btn-outline';
 @import 'basscss';
+@import 'basscss-btn-sizes';
+@import 'basscss-button-transparent';
+
+html {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
 
 .b2 {
     border-width: 2px;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
 }
 
 .github-ribbon,
@@ -20,8 +41,69 @@
     z-index: 1;
 }
 
+.ace_editor {
+    font: .95em/normal var(--font-code) !important;
+}
+
+header {
+    z-index: 1000;
+}
+header .editor-buttons-group {
+    margin-top: 5px;
+    z-index: -1;
+}
+header .run-btn {
+    margin-top: 4.5px;
+    margin-right: 5px;
+}
+header .logo sup {
+    text-transform: lowercase;
+    letter-spacing: .1em;
+}
+header .logo img {
+    margin-right: 5px;
+}
+header .logo .text {
+    line-height: 1;
+    margin-top: 3px;
+}
+
+.editorbox {
+    position: absolute;
+    top: 37px;
+    bottom: 0;
+    width: 50%;
+    left: 0;
+}
+.code-error {
+    position: absolute;
+    z-index: 4;
+    bottom: 0;
+    min-height: 30px;
+    max-height: 30%;
+    overflow: auto;
+    width: 100%;
+    padding: 6px 12px;
+    border-top: 1px solid #e2e2e2;
+    background: #f1f1f1;
+    white-space: pre;
+    border-radius: 0;
+    font-size: 0.95em;
+    font-family: var(--font-code);
+    color: #c7254e;
+}
+
+.sandbox {
+    position: absolute;
+    top: 37px;
+    left: 50%;
+    right: 0;
+    bottom: 0;
+}
+
 :root {
-    --font-family: 'Akkurat', 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, sans-serif;;
+    --font-family: 'Roboto', 'Akkurat', 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, sans-serif;
+    --font-code: 'Inconsolata', 'menlo', 'Consolas', 'Monaco', 'source-code-pro', monospace;
     --container-width: 960px;
-    --body-color: #222;
+    --body-color: #333;
 }

@@ -4,10 +4,21 @@
   "description": "Prototype JavaScript programs in the browser with ESNext (a.k.a ES2015) syntax and features, using modules from NPM.",
   "main": "index.js",
   "dependencies": {
+    "babel-standalone": "^6.4.4",
     "basscss": "^7.1.0",
+    "basscss-background-images": "0.0.9",
+    "basscss-btn-outline": "^1.0.0",
+    "basscss-btn-sizes": "^1.1.0",
+    "basscss-button-transparent": "^1.1.1",
+    "basscss-defaults": "^2.1.2",
+    "basscss-utility-headings": "0.0.6",
+    "brace": "^0.7.0",
+    "browser-module-sandbox": "^1.4.0",
+    "classnames": "^2.2.3",
     "codemirror": "^5.11.0",
     "normalize.css": "^3.0.3",
     "react": "^0.14.6",
+    "react-ace": "^3.1.0",
     "react-codemirror": "^0.2.5",
     "react-dom": "^0.14.6"
   },
@@ -33,10 +44,10 @@
     "webpack-dev-server": "^1.14.1"
   },
   "scripts": {
-    "build": "webpack --config webpack.config --progress --colors",
-    "watch": "webpack-dev-server --config webpack.config.dev --colors",
-    "start-dev": "npm run watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "NODE_ENV=production webpack --config webpack.config --progress --colors",
+    "watch": "webpack --config webpack.config.dev --colors --watch",
+    "start": "npm run watch",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
