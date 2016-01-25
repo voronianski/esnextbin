@@ -18,6 +18,10 @@ class Header extends React.Component {
             {id: 'html', text: 'html'},
             {id: 'package', text: 'package.json'}
         ];
+
+        this.state = {
+            dropdownVisible: false
+        };
     }
 
     onChangeEditorTo(editor) {
@@ -28,8 +32,31 @@ class Header extends React.Component {
         };
     }
 
+    showDropdown() {
+        this.setState({dropdownVisible: true});
+    }
+
+    hideDropdown() {
+        this.setState({dropdownVisible: false});
+    }
+
+    saveGist(status) {
+        const { onSaveGistClick } = this.props;
+        return e => {
+            e.preventDefault();
+            onSaveGistClick && onSaveGistClick(status);
+        };
+    }
+
+    shareSketch(e) {
+        e.preventDefault();
+        const { onShareClick } = this.props;
+        onShareClick && onShareClick();
+    }
+
     render() {
         const { height, activeEditor, onRunClick } = this.props;
+        const { dropdownVisible } = this.state;
 
         return (
             <header className="clearfix bg-yellow relative" style={{ height }}>
@@ -69,7 +96,31 @@ class Header extends React.Component {
                 </div>
 
                 <div className="right">
-                    <button type="button" className="left btn btn-primary btn-small h6 caps regular rounded bg-fuchsia run-btn" onClick={onRunClick}>▶ Execute</button>
+                    <button
+                        type="button"
+                        className="left btn btn-primary btn-small h6 caps regular rounded bg-fuchsia run-btn"
+                        onClick={onRunClick}
+                    >
+                        ▶ Execute
+                    </button>
+
+                    <div className="relative inline-block actions-dropdown">
+                        <button
+                            type="button"
+                            className="btn btn-outline black btn-small h6 caps regular"
+                            onClick={::this.showDropdown}
+                        >
+                            Actions
+                        </button>
+                        <div className={cx('fixed top-0 right-0 bottom-0 left-0', {hide: !dropdownVisible})} onClick={::this.hideDropdown} />
+                        <div className="absolute right-0 mt1 nowrap white bg-black rounded h6 caps actions-dropdown-items" style={{visibility: dropdownVisible ? 'visible' : 'hidden'}}>
+                            <a href="#!" className="btn block" onClick={this.saveGist('public')}>Save Gist</a>
+                            <a href="#!" className="btn block" onClick={this.saveGist('private')}>Save Private Gist</a>
+                            <a href="#!" className="btn block" onClick={::this.shareSketch}>Share Sketch</a>
+                            <a href="https://github.com/voronianski/esnextbin" target="_blank" className="btn block">Star on Github</a>
+                            <a href="https://github.com/voronianski/esnextbin/issues/new" target="_blank" className="btn block">Report an Issue</a>
+                        </div>
+                    </div>
                 </div>
             </header>
         );

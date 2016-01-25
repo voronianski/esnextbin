@@ -10,6 +10,7 @@ const HEADER_HEIGHT = 38;
 class Main extends React.Component {
     constructor() {
         super();
+
         this.state = {
             bundle: {},
             bundling: false,
@@ -17,8 +18,12 @@ class Main extends React.Component {
         };
     }
 
+    componentDidMount() {
+        this._editors = this.refs.editors;
+    }
+
     handleRunClick() {
-        const bundle = this.refs.editors.getBundle();
+        const bundle = this._editors.getBundle();
         this.setState({ bundle });
     }
 
@@ -35,6 +40,14 @@ class Main extends React.Component {
         Progress.hide();
     }
 
+    handleSaveGist(status) {
+        console.log(status);
+    }
+
+    handleShare() {
+
+    }
+
     updateDependencies(modules) {
         const { bundle } = this.state;
         const updatedPackage = Object.assign({}, bundle.package, {
@@ -43,7 +56,7 @@ class Main extends React.Component {
                 return memo;
             }, {})
         });
-        this.refs.editors.updatePackage(updatedPackage);
+        this._editors.updatePackage(updatedPackage);
     }
 
     render() {
@@ -58,6 +71,8 @@ class Main extends React.Component {
                     activeEditor={activeEditor}
                     onRunClick={::this.handleRunClick}
                     onEditorClick={::this.handleChangeEditor}
+                    onSaveGistClick={::this.handleSaveGist}
+                    onShareClick={::this.handleShare}
                 />
 
                 <div className="content">
@@ -65,9 +80,6 @@ class Main extends React.Component {
                         ref="editors"
                         active={activeEditor}
                         headerHeight={HEADER_HEIGHT}
-                        onCodeChange={""}
-                        onHTMLChange={""}
-                        onPackageChange={""}
                     />
 
                     <Sandbox
