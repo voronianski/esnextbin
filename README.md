@@ -7,7 +7,9 @@
 <!-- 
 - buy domain
 - setup github pages
-- catch js errors in iframe and render them
+- catch js errors in iframe and render them (?)
+- actions dropdown [x]
+- github oauth 
 - save/get with gists
 - save session in localstorage
  -->

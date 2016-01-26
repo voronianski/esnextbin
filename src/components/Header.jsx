@@ -118,7 +118,7 @@ class Header extends React.Component {
                             <a href="#!" className="btn block" onClick={this.saveGist('private')}>Save Private Gist</a>
                             <a href="#!" className="btn block" onClick={::this.shareSketch}>Share Sketch</a>
                             <a href="https://github.com/voronianski/esnextbin" target="_blank" className="btn block">Star on Github</a>
-                            <a href="https://github.com/voronianski/esnextbin/issues/new" target="_blank" className="btn block">Report an Issue</a>
+                            <a href="https://github.com/voronianski/esnextbin/issues/new" target="_blank" className="btn block">Report Issue</a>
                         </div>
                     </div>
                 </div>
