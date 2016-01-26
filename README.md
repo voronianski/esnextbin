@@ -11,5 +11,5 @@
 - actions dropdown [x]
 - github oauth 
 - save/get with gists
-- save session in localstorage
+- save session in localstorage [x]
  -->

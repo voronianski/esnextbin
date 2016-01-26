@@ -3,11 +3,18 @@ import cx from 'classnames';
 
 class Header extends React.Component {
     static propTypes = {
+        height: PropTypes.number,
+        activeEditor: PropTypes.string,
         onRunClick: PropTypes.func.isRequired,
-        onEditorClick: PropTypes.func
+        onEditorClick: PropTypes.func,
+        onShareClick: PropTypes.func,
+        onSaveGistClick: PropTypes.func,
+        onResetEditors: PropTypes.func
     };
 
     static defaultProps = {
+        height: 38,
+        activeEditor: 'code'
     };
 
     constructor() {
@@ -48,10 +55,12 @@ class Header extends React.Component {
         };
     }
 
-    shareSketch(e) {
-        e.preventDefault();
-        const { onShareClick } = this.props;
-        onShareClick && onShareClick();
+    click(handler) {
+        const fn = this.props[handler];
+        return e => {
+            e.preventDefault();
+            fn && fn();
+        }
     }
 
     render() {
@@ -116,7 +125,8 @@ class Header extends React.Component {
                         <div className="absolute right-0 mt1 nowrap white bg-black rounded h6 caps actions-dropdown-items" style={{visibility: dropdownVisible ? 'visible' : 'hidden'}}>
                             <a href="#!" className="btn block" onClick={this.saveGist('public')}>Save Gist</a>
                             <a href="#!" className="btn block" onClick={this.saveGist('private')}>Save Private Gist</a>
-                            <a href="#!" className="btn block" onClick={::this.shareSketch}>Share Sketch</a>
+                            <a href="#!" className="btn block" onClick={this.click('onShareClick')}>Share Sketch</a>
+                            <a href="#!" className="btn block" onClick={this.click('onResetEditors')}>Clean Session</a>
                             <a href="https://github.com/voronianski/esnextbin" target="_blank" className="btn block">Star on Github</a>
                             <a href="https://github.com/voronianski/esnextbin/issues/new" target="_blank" className="btn block">Report Issue</a>
                         </div>

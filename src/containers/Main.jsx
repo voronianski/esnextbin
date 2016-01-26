@@ -1,11 +1,14 @@
 import React from 'react';
 import Progress from 'react-progress-2';
+import * as Babel from 'babel-standalone';
 
 import Header from '../components/Header';
 import Editors from '../components/Editors';
 import Sandbox from '../components/Sandbox'
 
-const HEADER_HEIGHT = 38;
+import * as Defaults from '../utils/DefaultsUtil';
+import * as StorageUtils from '../utils/StorageUtils';
+import * as GistAPIUtils from '../utils/GistAPIUtils';
 
 class Main extends React.Component {
     constructor() {
@@ -14,17 +17,36 @@ class Main extends React.Component {
         this.state = {
             bundle: {},
             bundling: false,
-            activeEditor: 'code'
+            activeEditor: 'code',
+            editorsData: {
+                code: Defaults.CODE,
+                transpiledCode: this._transpileCode(Defaults.CODE),
+                html: Defaults.HTML,
+                json: Defaults.PACKAGE_JSON,
+                error: void 0
+            }
         };
     }
 
     componentDidMount() {
-        this._editors = this.refs.editors;
+        this.checkPreviousSession();
+    }
+
+    checkPreviousSession() {
+        const session = StorageUtils.getSession();
+        if (session) {
+            let transpiledCode;
+            if (session.code) {
+                transpiledCode = this._transpileCode(session.code);
+            }
+            const editorsData = this._updateEditorsData(Object.assign(session, { transpiledCode }));
+            this.setState({ editorsData });
+        }
     }
 
     handleRunClick() {
-        const bundle = this._editors.getBundle();
-        this.setState({ bundle });
+        const bundle = this._getBundle();
+        bundle && this.setState({ bundle });
     }
 
     handleChangeEditor(activeEditor) {
@@ -32,7 +54,9 @@ class Main extends React.Component {
     }
 
     handleStartBundle() {
-        this.progressDelay = setTimeout(() => Progress.show(), 100);
+        this.progressDelay = setTimeout(() => {
+            Progress.show()
+        }, 100);
     }
 
     handleEndBundle() {
@@ -45,10 +69,43 @@ class Main extends React.Component {
     }
 
     handleShare() {
-
+        console.log('todo sharing');
     }
 
-    updateDependencies(modules) {
+    handleReset() {
+        console.log('reset');
+    }
+
+    handleCodeChange(code) {
+        StorageUtils.saveToSession('code', code);
+
+        try {
+            const transpiledCode = this._transpileCode(code);
+            const editorsData = this._updateEditorsData({code, transpiledCode, error: ''});
+            this.setState({ editorsData });
+        } catch (error) {
+            if (error._babel) {
+                const editorsData = this._updateEditorsData({code, error});
+                this.setState({ editorsData });
+            }
+        }
+    }
+
+    handleHTMLChange(html) {
+        StorageUtils.saveToSession('html', html);
+
+        const editorsData = this._updateEditorsData({html, error: ''});
+        this.setState({ editorsData });
+    }
+
+    handlePackageChange(json) {
+        StorageUtils.saveToSession('json', json);
+
+        const editorsData = this._updateEditorsData({json, error: ''});
+        this.setState({ editorsData });
+    }
+
+    handleDependencies(modules) {
         const { bundle } = this.state;
         const updatedPackage = Object.assign({}, bundle.package, {
             dependencies: modules.reduce((memo, mod) => {
@@ -56,41 +113,78 @@ class Main extends React.Component {
                 return memo;
             }, {})
         });
-        this._editors.updatePackage(updatedPackage);
+        const editorsData = this._updateEditorsData({
+            json: JSON.stringify(updatedPackage, null, 2)
+        });
+        this.setState({ editorsData });
     }
 
     render() {
-        const { bundle, activeEditor } = this.state;
+        const { bundle, editorsData, activeEditor } = this.state;
 
         return (
             <div className="main">
                 <Progress.Component />
 
                 <Header
-                    height={HEADER_HEIGHT}
+                    height={Defaults.HEADER_HEIGHT}
                     activeEditor={activeEditor}
+                    onShareClick={::this.handleShare}
                     onRunClick={::this.handleRunClick}
                     onEditorClick={::this.handleChangeEditor}
                     onSaveGistClick={::this.handleSaveGist}
-                    onShareClick={::this.handleShare}
+                    onResetEditors={::this.handleReset}
                 />
 
                 <div className="content">
                     <Editors
-                        ref="editors"
                         active={activeEditor}
-                        headerHeight={HEADER_HEIGHT}
+                        code={editorsData.code}
+                        html={editorsData.html}
+                        json={editorsData.json}
+                        error={editorsData.error}
+                        headerHeight={Defaults.HEADER_HEIGHT}
+                        onCodeChange={::this.handleCodeChange}
+                        onHTMLChange={::this.handleHTMLChange}
+                        onPackageChange={::this.handlePackageChange}
                     />
 
                     <Sandbox
                         bundle={bundle}
-                        onModules={::this.updateDependencies}
-                        onStartBundle={::this.handleStartBundle}
                         onEndBundle={::this.handleEndBundle}
+                        onModules={::this.handleDependencies}
+                        onStartBundle={::this.handleStartBundle}
                     />
                 </div>
             </div>
         );
+    }
+
+    _updateEditorsData(newData) {
+        return Object.assign({}, this.state.editorsData, newData);
+    }
+
+    _getBundle() {
+        const { editorsData } = this.state;
+
+        let json;
+        try {
+            json = JSON.parse(editorsData.json);
+        } catch (error) {
+            const editorsData = this._updateEditorsData({ error });
+            this.setState({ editorsData });
+            return;
+        }
+
+        return {
+            code: editorsData.transpiledCode,
+            html: editorsData.html,
+            package: json
+        };
+    }
+
+    _transpileCode(code) {
+        return Babel.transform(code, Defaults.BABEL_OPTIONS).code
     }
 }
 

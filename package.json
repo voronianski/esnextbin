@@ -18,6 +18,7 @@
     "normalize.css": "^3.0.3",
     "react": "^0.14.6",
     "react-ace": "^3.1.0",
+    "react-addons-update": "^0.14.6",
     "react-dom": "^0.14.6",
     "react-progress-2": "^4.1.1",
     "superagent": "^1.7.1"
@@ -46,7 +47,7 @@
   "scripts": {
     "build": "NODE_ENV=production webpack --config webpack.config --progress --colors",
     "watch": "webpack --config webpack.config.dev --colors --watch",
-    "start": "npm run watch",
+    "start": "node server.js & npm run watch",
     "prepublish": "npm run build"
   },
   "repository": {

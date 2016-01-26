@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import cx from 'classnames';
-import * as Babel from 'babel-standalone';
 
 import 'brace';
 import 'brace/mode/jsx';
@@ -9,36 +8,21 @@ import 'brace/mode/html';
 import 'brace/theme/tomorrow';
 import Ace from 'react-ace';
 
-const welcomeCodeText =
-`// write ES2015 code and import some stuff from npm
-// and bin will run your program automagically`;
-const welcomeHTMLText =
-`<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>ESNext Bin Sketch</title>
-  <!-- put additional styles and scripts here -->
-</head>
-<body>
-  <!-- put markup and other contents here -->
-</body>
-</html>`;
-const defaultPackage = `{
-  "name": "esnextbin-sketch",
-  "version": "0.0.0"
-}`;
-const tabSize = 2;
-
-const babelOptions = { presets: ['es2015', 'react', 'stage-0'] };
-
 class Editors extends React.Component {
     static propTypes = {
         active: PropTypes.oneOf(['code', 'html', 'package']),
-        headerHeight: PropTypes.number
+        code: PropTypes.string.isRequired,
+        html: PropTypes.string.isRequired,
+        json: PropTypes.string.isRequired,
+        tabSize: PropTypes.number,
+        headerHeight: PropTypes.number,
+        onCodeChange: PropTypes.func,
+        onHTMLChange: PropTypes.func,
+        onPackageChange: PropTypes.func
     };
 
     static defaultProps = {
+        tabSize: 2,
         active: 'code',
         headerHeight: 30
     };
@@ -46,19 +30,11 @@ class Editors extends React.Component {
     constructor(props) {
         super();
 
-        this.state = Object.assign({
-            code: welcomeCodeText,
-            html: welcomeHTMLText,
-            package: defaultPackage,
-            transformedCode: '',
-            error: ''
-        }, this._getDimensions(props.headerHeight));
+        this.state = Object.assign({}, this._getDimensions(props.headerHeight));
     }
 
     componentDidMount() {
         window.addEventListener('resize', ::this.handleResize, false);
-        // console.log(this.refs.packageEditor);
-        // this.refs.packageEditor.editor.session.setOption("useWorker", false);
     }
 
     componentWillUnmount() {
@@ -69,57 +45,16 @@ class Editors extends React.Component {
         this.setState(this._getDimensions(this.props.headerHeight));
     }
 
-    handleCodeChange(value) {
-        try {
-            const transformedCode = Babel.transform(value, babelOptions).code;
-            console.log(transformedCode, Babel.transform(value, babelOptions));
-            this.setState({code: value, error: '', transformedCode});
-        } catch (error) {
-            console.log(error);
-            error._babel && this.setState({code: value, error});
-        }
-    }
-
-    handleHTMLChange(value) {
-        try {
-            this.setState({html: value, error: ''});
-        } catch (error) {
-            this.setState({ error });
-        }
-    }
-
-    handlePackageChange(value) {
-        try {
-            this.setState({package: value, error: ''});
-        } catch (error) {
-            this.setState({ error });
-        }
-    }
-
-    getBundle() {
-        let json = {};
-        try {
-            json = JSON.parse(this.state.package);
-        } catch (error) {
-            this.setState({ error });
-        }
-
-        return {
-            code: this.state.transformedCode,
-            html: this.state.html,
-            package: json
-        };
-    }
-
-    updatePackage(updatedPackage) {
-        this.setState({package: JSON.stringify(updatedPackage, null, 2)});
+    handleChange(handler) {
+        const fn = this.props[handler];
+        return value => fn && fn(value);
     }
 
     render() {
-        const { active } = this.props;
-        const { width, height, code, html, error } = this.state;
+        const { active, code, html, json, error, tabSize } = this.props;
+        const { width, height } = this.state;
 
-        console.log('RENDER EDITOR');
+        console.log('RENDER EDITOR', this.props);
 
         return (
             <div className="editorbox">
@@ -132,7 +67,7 @@ class Editors extends React.Component {
                         tabSize={tabSize}
                         width={width}
                         height={height}
-                        onChange={::this.handleCodeChange}
+                        onChange={this.handleChange('onCodeChange')}
                         showPrintMargin={false}
                         editorProps={{$blockScrolling: true}}
                     />
@@ -146,7 +81,7 @@ class Editors extends React.Component {
                         tabSize={tabSize}
                         width={width}
                         height={height}
-                        onChange={::this.handleHTMLChange}
+                        onChange={this.handleChange('onHTMLChange')}
                         showPrintMargin={false}
                         editorProps={{$blockScrolling: true}}
                     />
@@ -157,11 +92,11 @@ class Editors extends React.Component {
                         name="packageEditor"
                         mode="json"
                         theme="tomorrow"
-                        value={this.state.package}
+                        value={json}
                         tabSize={tabSize}
                         width={width}
                         height={height}
-                        onChange={::this.handlePackageChange}
+                        onChange={this.handleChange('onPackageChange')}
                         showPrintMargin={false}
                         editorProps={{$blockScrolling: true}}
                     />
