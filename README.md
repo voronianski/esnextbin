@@ -4,6 +4,12 @@
 
 ## How it works?
 
+## Features
+
+## References
+
+## Contributing
+
 <!-- 
 - buy domain
 - setup github pages
