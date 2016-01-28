@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import BrowserSandbox from 'browser-module-sandbox';
+import config from '../config';
 
 class Sandbox extends React.Component {
     static propTypes = {
@@ -11,11 +12,11 @@ class Sandbox extends React.Component {
     };
 
     componentDidMount() {
-        const { onModules, onStartBundle, onEndBundle } = this.props;
+        const { onModules, onStartBundle, onContentBundle, onEndBundle } = this.props;
 
         this.sandbox = new BrowserSandbox({
             name: 'sandbox',
-            cdn: 'https://wzrd.in',
+            cdn: config.BROWSERIFY_CDN,
             container: this.refs.sandbox,
             iframeStyle: 'body, html { height: 100%; width: 100%; overflow: auto }'
         });
@@ -27,7 +28,9 @@ class Sandbox extends React.Component {
         this.sandbox.on('bundleStart', () => {
             onStartBundle && onStartBundle();
         });
-        this.sandbox.on('bundleContent', () => console.log(3, arguments));
+        this.sandbox.on('bundleContent', () => {
+            onContentBundle && onContentBundle();
+        });
         this.sandbox.on('bundleEnd', html => {
             onEndBundle && onEndBundle(html);
         });

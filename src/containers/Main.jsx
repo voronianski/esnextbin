@@ -29,7 +29,12 @@ class Main extends React.Component {
     }
 
     componentDidMount() {
+        window.addEventListener('message', ::this.getAuthCode, false);
         this.checkPreviousSession();
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('message', ::this.getAuthCode);
     }
 
     checkPreviousSession() {
@@ -44,6 +49,18 @@ class Main extends React.Component {
         }
     }
 
+    getAuthCode(e) {
+        const code = e.data;
+
+        Progress.show();
+        GistAPIUtils.getAccessToken(code, (err) => {
+            if (err) {
+                // show special error on page
+            }
+            Progress.hide();
+        });
+    }
+
     handleRunClick() {
         const bundle = this._getBundle();
         bundle && this.setState({ bundle });
@@ -55,7 +72,7 @@ class Main extends React.Component {
 
     handleStartBundle() {
         this.progressDelay = setTimeout(() => {
-            Progress.show()
+            Progress.show();
         }, 100);
     }
 
@@ -66,6 +83,11 @@ class Main extends React.Component {
 
     handleSaveGist(status) {
         console.log(status);
+        if (!GistAPIUtils.isAuthorized()) {
+            GistAPIUtils.authorize();
+        } else {
+            GistAPIUtils.createGist();
+        }
     }
 
     handleShare() {
