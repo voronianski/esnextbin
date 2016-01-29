@@ -31,14 +31,21 @@ class Main extends React.Component {
 
     componentDidMount() {
         window.addEventListener('message', ::this.getAuthCode, false);
-        // if gist id present disable session
-        const query = window.location.search.slice(1);
-        const gistId = querystring.parse(query).gist;
+
+        const gistId = this._getGistIdFromQuery();
         if (gistId) {
             StorageUtils.turnOffSession();
-            GistAPIUtils.getGist(gistId, (err, res) => {
-                console.log('GG', err, res);
-            })
+            GistAPIUtils.getGist(gistId, (err, gistSession) => {
+                if (err) {
+                    // show special error on page
+                    console.log(err);
+                    return;
+                }
+                const { transpiledCode, error } = this._transpileCodeAndCatch(gistSession.code);
+                const editorsData = this._updateEditorsData(Object.assign(gistSession, { transpiledCode, error }));
+                this.setState({ editorsData });
+
+            });
         } else {
             this.checkPreviousSession();
         }
@@ -51,11 +58,8 @@ class Main extends React.Component {
     checkPreviousSession() {
         const session = StorageUtils.getSession();
         if (session) {
-            let transpiledCode;
-            if (session.code) {
-                transpiledCode = this._transpileCode(session.code);
-            }
-            const editorsData = this._updateEditorsData(Object.assign(session, { transpiledCode }));
+            const { transpiledCode, error } = this._transpileCodeAndCatch(session.code);
+            const editorsData = this._updateEditorsData(Object.assign(session, { transpiledCode, error }));
             this.setState({ editorsData });
         }
     }
@@ -66,8 +70,9 @@ class Main extends React.Component {
         Progress.show();
         GistAPIUtils.getAccessToken(code, (err) => {
             if (err) {
-                console.log(err);
                 // show special error on page
+                console.log(err);
+                return;
             }
             Progress.hide();
         });
@@ -107,7 +112,6 @@ class Main extends React.Component {
     }
 
     handleSaveGist(status) {
-        console.log(status);
         if (!GistAPIUtils.isAuthorized()) {
             GistAPIUtils.authorize();
         } else {
@@ -127,16 +131,9 @@ class Main extends React.Component {
     handleCodeChange(code) {
         StorageUtils.saveToSession('code', code);
 
-        try {
-            const transpiledCode = this._transpileCode(code);
-            const editorsData = this._updateEditorsData({code, transpiledCode, error: ''});
-            this.setState({ editorsData });
-        } catch (error) {
-            if (error._babel) {
-                const editorsData = this._updateEditorsData({code, error});
-                this.setState({ editorsData });
-            }
-        }
+        const { transpiledCode, error } = this._transpileCodeAndCatch(code);
+        const editorsData = this._updateEditorsData({code, transpiledCode, error});
+        this.setState({ editorsData });
     }
 
     handleHTMLChange(html) {
@@ -208,6 +205,11 @@ class Main extends React.Component {
         );
     }
 
+    _getGistIdFromQuery() {
+        const query = window.location.search.slice(1);
+        return querystring.parse(query).gist;
+    }
+
     _updateEditorsData(newData) {
         return Object.assign({}, this.state.editorsData, newData);
     }
@@ -234,6 +236,20 @@ class Main extends React.Component {
 
     _transpileCode(code) {
         return Babel.transform(code, Defaults.BABEL_OPTIONS).code
+    }
+
+    _transpileCodeAndCatch(code) {
+        let transpiledCode, error
+        if (code) {
+            try {
+                transpiledCode = this._transpileCode(code);
+            } catch (err) {
+                if (err._babel) {
+                    error = err;
+                }
+            }
+        }
+        return { transpiledCode, error };
     }
 }
 

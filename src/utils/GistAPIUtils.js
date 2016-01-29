@@ -1,6 +1,8 @@
 import request from 'superagent';
 import cookies from 'cookies-js';
+
 import config from '../config';
+import * as DefaultsUtil from './DefaultsUtil';
 
 const GITHUB_AUTH_URL = 'https://github.com/login/oauth/authorize';
 const GITHUB_GISTS_API = 'https://api.github.com/gists';
@@ -62,7 +64,14 @@ export function getGist (id, callback) {
         .get(`${GITHUB_GISTS_API}/${id}`)
         .query({ access_token })
         .end((err, res) => {
-            callback(err, res);
+            if (err) {
+                return callback(err);
+            }
+            const editorsData = getEditorsDataFromGist(res.body.files);
+            if (!editorsData) {
+                return callback(new Error('No index.js in the gist'));
+            }
+            callback(null, editorsData, res);
         });
 }
 
@@ -72,20 +81,31 @@ export function getGistDataFormat (data = {}, status = 'public') {
         'public': status === 'public',
         'files': {
             'index.js':  {
-                'content': data.code
+                'content': data.code.trim() || DefaultsUtil.CODE
             },
             'transpiled.js': {
-                'content': data.transpiledCode
+                'content': data.transpiledCode.trim() || DefaultsUtil.CODE
             },
             'index.html': {
-                'content': data.html
+                'content': data.html.trim() || DefaultsUtil.HTML
             },
             'package.json': {
-                'content': data.json
+                'content': data.json.trim() || DefaultsUtil.JSON
             },
             'esnextbin.md': {
                 'content': 'made with [esnextbin](http://esnextb.in)'
             }
         }
     }
+}
+
+export function getEditorsDataFromGist (files) {
+    if (!files || !files['index.js']) {
+        return;
+    }
+    return {
+        code: files['index.js'].content,
+        html: files['index.html'] && files['index.html'].content || DefaultsUtil.HTML,
+        json: files['package.json'] && files['package.json'].content || DefaultsUtil.JSON
+    };
 }
