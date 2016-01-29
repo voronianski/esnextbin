@@ -5,6 +5,8 @@ if (typeof window.localStorage !== 'undefined') {
     console.log('Browser does not support localStorage');
 }
 
+let disabled = false;
+
 export function getSession () {
     if (!storage) return;
     let session = {};
@@ -29,6 +31,14 @@ export function getSession () {
 }
 
 export function saveToSession (key, value) {
-    if (!storage) return;
+    if (!storage || disabled) return;
     storage.setItem(key, value);
+}
+
+export function turnOnSession () {
+    disabled = false;
+}
+
+export function turnOffSession () {
+    disabled = true;
 }

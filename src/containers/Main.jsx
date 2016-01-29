@@ -1,6 +1,7 @@
 import React from 'react';
 import Progress from 'react-progress-2';
 import * as Babel from 'babel-standalone';
+import querystring from 'querystring';
 
 import Header from '../components/Header';
 import Editors from '../components/Editors';
@@ -30,7 +31,17 @@ class Main extends React.Component {
 
     componentDidMount() {
         window.addEventListener('message', ::this.getAuthCode, false);
-        this.checkPreviousSession();
+        // if gist id present disable session
+        const query = window.location.search.slice(1);
+        const gistId = querystring.parse(query).gist;
+        if (gistId) {
+            StorageUtils.turnOffSession();
+            GistAPIUtils.getGist(gistId, (err, res) => {
+                console.log('GG', err, res);
+            })
+        } else {
+            this.checkPreviousSession();
+        }
     }
 
     componentWillUnmount() {
@@ -55,6 +66,7 @@ class Main extends React.Component {
         Progress.show();
         GistAPIUtils.getAccessToken(code, (err) => {
             if (err) {
+                console.log(err);
                 // show special error on page
             }
             Progress.hide();
@@ -78,7 +90,20 @@ class Main extends React.Component {
 
     handleEndBundle() {
         clearTimeout(this.progressDelay);
-        Progress.hide();
+        if (this.triggerGist) {
+            const status = this.triggerGist;
+            this.triggerGist = false;
+            GistAPIUtils.createGist(this.state.editorsData, status, (err, res) => {
+                console.log('SV', err, res);
+                Progress.hide();
+                if (err) {
+                    return;
+                }
+                document.location.search = `gist=${res.body.id}`;
+            });
+        } else {
+            Progress.hide();
+        }
     }
 
     handleSaveGist(status) {
@@ -86,7 +111,8 @@ class Main extends React.Component {
         if (!GistAPIUtils.isAuthorized()) {
             GistAPIUtils.authorize();
         } else {
-            GistAPIUtils.createGist();
+            this.triggerGist = status;
+            this.handleRunClick();
         }
     }
 
@@ -173,9 +199,9 @@ class Main extends React.Component {
 
                     <Sandbox
                         bundle={bundle}
-                        onEndBundle={::this.handleEndBundle}
                         onModules={::this.handleDependencies}
                         onStartBundle={::this.handleStartBundle}
+                        onEndBundle={::this.handleEndBundle}
                     />
                 </div>
             </div>
@@ -200,6 +226,7 @@ class Main extends React.Component {
 
         return {
             code: editorsData.transpiledCode,
+            raw: editorsData.code,
             html: editorsData.html,
             package: json
         };
