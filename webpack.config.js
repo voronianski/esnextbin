@@ -18,7 +18,8 @@ module.exports = {
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin({
-            // compress: { warnings: false },
+            mangle: false,
+            compress: { warnings: false }
             // output: { comments: false }
         }),
         new ExtractTextPlugin('app.min.css')
