@@ -1,6 +1,6 @@
 {
   "name": "esnextbin",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Prototype JavaScript programs in the browser with ESNext (a.k.a ES2015) syntax and features, using modules from NPM.",
   "main": "index.js",
   "dependencies": {
@@ -67,7 +67,7 @@
     "npm"
   ],
   "author": "Dmitri Voronianski <dmitri.voronianski@gmail.com>",
-  "license": "ISC",
+  "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/voronianski/esnextbin/issues"
   },
