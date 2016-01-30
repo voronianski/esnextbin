@@ -80,7 +80,7 @@ html {
 }
 
 header {
-    z-index: 1000;
+    z-index: 100;
 }
 header .editor-buttons-group {
     margin-top: 5px;

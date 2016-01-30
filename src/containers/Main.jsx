@@ -1,5 +1,6 @@
 import React from 'react';
 import Progress from 'react-progress-2';
+import Modal from 'react-modal';
 import * as Babel from 'babel-standalone';
 import querystring from 'querystring';
 
@@ -17,8 +18,8 @@ class Main extends React.Component {
 
         this.state = {
             bundle: {},
-            bundling: false,
             activeEditor: 'code',
+            shareModal: false,
             editorsData: {
                 code: Defaults.CODE,
                 transpiledCode: this._transpileCode(Defaults.CODE),
@@ -111,8 +112,12 @@ class Main extends React.Component {
         this.handleRunClick();
     }
 
-    handleShare() {
-        console.log('sharing');
+    openShareModal() {
+        this.setState({shareModal: true});
+    }
+
+    closeShareModal() {
+        this.setState({shareModal: false});
     }
 
     handleReset() {
@@ -158,7 +163,7 @@ class Main extends React.Component {
     }
 
     render() {
-        const { bundle, editorsData, activeEditor } = this.state;
+        const { bundle, editorsData, activeEditor, shareModal } = this.state;
 
         return (
             <div className="main">
@@ -167,7 +172,7 @@ class Main extends React.Component {
                 <Header
                     height={Defaults.HEADER_HEIGHT}
                     activeEditor={activeEditor}
-                    onShareClick={::this.handleShare}
+                    onShareClick={::this.openShareModal}
                     onRunClick={::this.handleRunClick}
                     onEditorClick={::this.handleChangeEditor}
                     onSaveGistClick={::this.handleSaveGist}
@@ -194,8 +199,6 @@ class Main extends React.Component {
                         onEndBundle={::this.handleEndBundle}
                     />
                 </div>
-
-
             </div>
         );
     }
