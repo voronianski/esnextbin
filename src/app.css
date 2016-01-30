@@ -30,21 +30,6 @@ html {
     height: 0;
 }
 
-.github-ribbon,
-.github-ribbon:hover {
-    display: block;
-    font-size: 13px;
-    padding: 8px 50px;
-    position: fixed;
-    top: 35px;
-    right: -45px;
-    text-decoration: none;
-    text-transform: uppercase;
-    user-select: none;
-    transform: rotate(45deg);
-    z-index: 1;
-}
-
 .ace_editor {
     font: .95em/normal var(--font-code) !important;
 }
