@@ -51,6 +51,7 @@ class Header extends React.Component {
         const { onSaveGistClick } = this.props;
         return e => {
             e.preventDefault();
+            this.hideDropdown();
             onSaveGistClick && onSaveGistClick(status);
         };
     }
@@ -59,6 +60,7 @@ class Header extends React.Component {
         const fn = this.props[handler];
         return e => {
             e.preventDefault();
+            this.hideDropdown();
             fn && fn();
         }
     }

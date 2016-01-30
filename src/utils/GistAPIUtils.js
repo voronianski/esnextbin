@@ -6,9 +6,18 @@ import * as DefaultsUtil from './DefaultsUtil';
 
 const GITHUB_AUTH_URL = 'https://github.com/login/oauth/authorize';
 const GITHUB_GISTS_API = 'https://api.github.com/gists';
-const COOKIE_TTL = 60 * 60 * 24 * 30 // 30 days
+const COOKIE_TTL = 60 * 60 * 24 * 30 * 6 // 6 months
 
-export function authorize () {
+let actionState = {};
+
+window.addEventListener('message', _getAuthCode, false);
+function _getAuthCode (e) {
+    const code = e.data;
+    getAccessToken(code, actionState.callback);
+}
+
+export function authorize (callback) {
+    actionState.callback = callback;
     window.open(`${GITHUB_AUTH_URL}?client_id=${config.GITHUB_CLIENT_ID}&scope=gist`);
 }
 
@@ -24,10 +33,9 @@ export function getAccessToken (code, callback) {
             if (err) {
                 callback(err);
             }
-
             const token = res.text;
             cookies.set('oauth_token', token, {expires: COOKIE_TTL});
-            callback(null);
+            callback(null, token);
         })
 }
 
@@ -37,35 +45,66 @@ export function isAuthorized () {
 
 export function createGist (editorsData, status, callback) {
     const data = getGistDataFormat(editorsData, status);
-    const access_token = cookies.get('oauth_token');
-    request
-        .post(GITHUB_GISTS_API)
-        .query({ access_token })
-        .send(data)
-        .end((err, res) => {
+    const makeRequest = () => {
+        const access_token = cookies.get('oauth_token');
+        const onEnd = (err, res) => {
+            if (err) {
+                if (err.status === 401) {
+                    return authorize(makeRequest);
+                }
+                return callback(err);
+            }
             callback(err, res);
-        });
+        };
+
+        if (!access_token) {
+            return authorize(makeRequest);
+        }
+
+        request
+            .post(GITHUB_GISTS_API)
+            .query({ access_token })
+            .send(data)
+            .end(onEnd);
+    };
+    makeRequest();
 }
 
 export function updateGist (id, editorsData, status, callback) {
     const data = getGistDataFormat(editorsData, status);
-    const access_token = cookies.get('oauth_token');
-    request
-        .patch(`${GITHUB_GISTS_API}/${id}`)
-        .query({ access_token })
-        .send(data)
-        .end((err, res) => {
+    const makeRequest = () => {
+        const access_token = cookies.get('oauth_token');
+        const onEnd = (err, res) => {
+            if (err) {
+                if (err.status === 401) {
+                    return authorize(makeRequest);
+                }
+                return callback(err);
+            }
             callback(err, res);
-        });
+        };
+
+        if (!access_token) {
+            return authorize(makeRequest);
+        }
+
+        request
+            .patch(`${GITHUB_GISTS_API}/${id}`)
+            .query({ access_token })
+            .send(data)
+            .end(onEnd);
+    };
+    makeRequest();
 }
 
 export function getGist (id, callback) {
-    const access_token = cookies.get('oauth_token');
-    request
-        .get(`${GITHUB_GISTS_API}/${id}`)
-        .query({ access_token })
-        .end((err, res) => {
+    const makeRequest = () => {
+        const access_token = cookies.get('oauth_token');
+        const onEnd = (err, res) => {
             if (err) {
+                if (err.status === 401) {
+                    return authorize(makeRequest);
+                }
                 return callback(err);
             }
             const editorsData = getEditorsDataFromGist(res.body.files);
@@ -73,7 +112,18 @@ export function getGist (id, callback) {
                 return callback(new Error('No index.js in the gist'));
             }
             callback(null, editorsData, res);
-        });
+        };
+
+        if (!access_token) {
+            return authorize(makeRequest);
+        }
+
+        request
+            .get(`${GITHUB_GISTS_API}/${id}`)
+            .query({ access_token })
+            .end(onEnd);
+    };
+    makeRequest();
 }
 
 export function getGistDataFormat (data = {}, status = 'public') {

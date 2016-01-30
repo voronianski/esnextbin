@@ -30,30 +30,23 @@ class Main extends React.Component {
     }
 
     componentDidMount() {
-        window.addEventListener('message', ::this.getAuthCode, false);
-
         const gistId = this._getGistIdFromQuery();
         if (gistId) {
             StorageUtils.turnOffSession();
             Progress.show();
             GistAPIUtils.getGist(gistId, (err, gistSession) => {
+                Progress.hide();
                 if (err) {
-                    // show special error on page
                     console.log(err);
                     return;
                 }
                 const { transpiledCode, error } = this._transpileCodeAndCatch(gistSession.code);
                 const editorsData = this._updateEditorsData(Object.assign(gistSession, { transpiledCode, error }));
                 this.setState({ editorsData });
-                Progress.hide();
             });
         } else {
             this.checkPreviousSession();
         }
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('message', ::this.getAuthCode);
     }
 
     checkPreviousSession() {
@@ -63,20 +56,6 @@ class Main extends React.Component {
             const editorsData = this._updateEditorsData(Object.assign(session, { transpiledCode, error }));
             this.setState({ editorsData });
         }
-    }
-
-    getAuthCode(e) {
-        const code = e.data;
-
-        Progress.show();
-        GistAPIUtils.getAccessToken(code, (err) => {
-            if (err) {
-                // show special error on page
-                console.log(err);
-                return;
-            }
-            Progress.hide();
-        });
     }
 
     handleRunClick() {
@@ -102,13 +81,13 @@ class Main extends React.Component {
             const gistId = this._getGistIdFromQuery();
             const { editorsData } = this.state;
             const fn = (err, res) => {
-                console.log('SV', err, res);
                 Progress.hide();
                 if (err) {
+                    // show special error on page
                     return;
                 }
                 if (!gistId) {
-                    document.location.search = `gist=${res.body.id}`;
+                    window.location.search = `gist=${res.body.id}`;
                 }
             };
 
@@ -125,17 +104,15 @@ class Main extends React.Component {
     }
 
     handleSaveGist(status) {
-        if (!GistAPIUtils.isAuthorized()) {
-            GistAPIUtils.authorize();
-        } else {
-            // talk with gist API on endBundle event of sandbox
-            this.triggerGist = status;
-            this.handleRunClick();
-        }
+        Progress.show();
+
+        // talk with gist API on endBundle event of sandbox
+        this.triggerGist = status;
+        this.handleRunClick();
     }
 
     handleShare() {
-        console.log('todo sharing');
+        console.log('sharing');
     }
 
     handleReset() {
@@ -215,6 +192,8 @@ class Main extends React.Component {
                         onEndBundle={::this.handleEndBundle}
                     />
                 </div>
+
+
             </div>
         );
     }
@@ -260,8 +239,8 @@ class Main extends React.Component {
             } catch (err) {
                 if (err._babel) {
                     transpiledCode = `/*
-                        ${err.message || 'Error while transpilation'}
-                    */`;
+${err.message || 'Error while transpilation'}
+*/`;
                     error = err;
                 }
             }

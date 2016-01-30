@@ -45,7 +45,7 @@ class Sandbox extends React.Component {
             this.sandbox.iframeBody = this._getTag(bundle.html, 'body') || '';
             this.sandbox.bundle(bundle.code, bundle.package.dependencies || {});
         }
-        console.log(nextProps);
+        console.log(this.props, nextProps, this.props.bundle !== bundle);
     }
 
     render() {
