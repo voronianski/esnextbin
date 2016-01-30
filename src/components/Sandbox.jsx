@@ -40,12 +40,10 @@ class Sandbox extends React.Component {
     componentWillReceiveProps(nextProps) {
         const { bundle } = nextProps;
         if (this.props.bundle !== bundle) {
-            console.log('BUNDLE?!!!???');
             this.sandbox.iframeHead = this._getTag(bundle.html, 'head') || '';
             this.sandbox.iframeBody = this._getTag(bundle.html, 'body') || '';
             this.sandbox.bundle(bundle.code, bundle.package.dependencies || {});
         }
-        console.log(this.props, nextProps, this.props.bundle !== bundle);
     }
 
     render() {

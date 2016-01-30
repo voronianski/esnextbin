@@ -54,8 +54,6 @@ class Editors extends React.Component {
         const { active, code, html, json, error, tabSize } = this.props;
         const { width, height } = this.state;
 
-        console.log('RENDER EDITOR', this.props);
-
         return (
             <div className="editorbox">
                 <div className={cx('edit-code', {hide: active !== 'code'})}>

@@ -85,6 +85,7 @@ class Main extends React.Component {
                 Progress.hide();
                 if (err) {
                     // show special error on page
+                    console.log(err);
                     return;
                 }
                 if (!gistId) {

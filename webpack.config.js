@@ -18,9 +18,8 @@ module.exports = {
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin({
-            mangle: false,
-            compress: { warnings: false }
-            // output: { comments: false }
+            compress: { warnings: false },
+            output: { comments: false }
         }),
         new ExtractTextPlugin('app.min.css')
     ],
@@ -40,9 +39,6 @@ module.exports = {
         }, {
             test: /\.css$/,
             loader: ExtractTextPlugin.extract('style-loader', 'css!postcss')
-        }],
-        postLoaders: [{
-            loader: 'transform?envify'
         }]
     },
 

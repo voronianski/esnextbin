@@ -8,8 +8,8 @@ export const BABEL_OPTIONS = {
 
 // editors
 export const CODE =
-`// write ES2015 code and import some stuff from npm
-// and bin will run your program automagically`;
+`// write ES2015 code and import modules from npm
+// and then press "Execute" to run your program`;
 export const HTML =
 `<!doctype html>
 <html>
