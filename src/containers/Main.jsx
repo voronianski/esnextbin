@@ -1,6 +1,5 @@
 import React from 'react';
 import Progress from 'react-progress-2';
-import Modal from 'react-modal';
 import * as Babel from 'babel-standalone';
 import querystring from 'querystring';
 
