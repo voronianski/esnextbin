@@ -47,7 +47,8 @@ export function createGist (editorsData, status, callback) {
         });
 }
 
-export function updateGist (id, editorsData, callback) {
+export function updateGist (id, editorsData, status, callback) {
+    const data = getGistDataFormat(editorsData, status);
     const access_token = cookies.get('oauth_token');
     request
         .patch(`${GITHUB_GISTS_API}/${id}`)

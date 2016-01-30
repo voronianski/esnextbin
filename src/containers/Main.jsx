@@ -35,6 +35,7 @@ class Main extends React.Component {
         const gistId = this._getGistIdFromQuery();
         if (gistId) {
             StorageUtils.turnOffSession();
+            Progress.show();
             GistAPIUtils.getGist(gistId, (err, gistSession) => {
                 if (err) {
                     // show special error on page
@@ -44,7 +45,7 @@ class Main extends React.Component {
                 const { transpiledCode, error } = this._transpileCodeAndCatch(gistSession.code);
                 const editorsData = this._updateEditorsData(Object.assign(gistSession, { transpiledCode, error }));
                 this.setState({ editorsData });
-
+                Progress.hide();
             });
         } else {
             this.checkPreviousSession();
@@ -95,17 +96,29 @@ class Main extends React.Component {
 
     handleEndBundle() {
         clearTimeout(this.progressDelay);
+
         if (this.triggerGist) {
             const status = this.triggerGist;
-            this.triggerGist = false;
-            GistAPIUtils.createGist(this.state.editorsData, status, (err, res) => {
+            const gistId = this._getGistIdFromQuery();
+            const { editorsData } = this.state;
+            const fn = (err, res) => {
                 console.log('SV', err, res);
                 Progress.hide();
                 if (err) {
                     return;
                 }
-                document.location.search = `gist=${res.body.id}`;
-            });
+                if (!gistId) {
+                    document.location.search = `gist=${res.body.id}`;
+                }
+            };
+
+            this.triggerGist = false;
+
+            if (gistId) {
+                GistAPIUtils.updateGist(gistId, editorsData, status, fn);
+            } else {
+                GistAPIUtils.createGist(editorsData, status, fn);
+            }
         } else {
             Progress.hide();
         }
@@ -115,6 +128,7 @@ class Main extends React.Component {
         if (!GistAPIUtils.isAuthorized()) {
             GistAPIUtils.authorize();
         } else {
+            // talk with gist API on endBundle event of sandbox
             this.triggerGist = status;
             this.handleRunClick();
         }
@@ -245,6 +259,9 @@ class Main extends React.Component {
                 transpiledCode = this._transpileCode(code);
             } catch (err) {
                 if (err._babel) {
+                    transpiledCode = `/*
+                        ${err.message || 'Error while transpilation'}
+                    */`;
                     error = err;
                 }
             }
