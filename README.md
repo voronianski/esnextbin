@@ -1,21 +1,28 @@
 # ESNextBin
 
-> Prototype browser programs with ESNext (a.k.a ES2015) syntax & latest features also using modules from NPM directly in your browser.
+> Create browser programs with [ES2015](https://babeljs.io/docs/learn-es2015/)'s latest features and using modules from [NPM](https://www.npmjs.com/) directly in your browser.
+
+[<img src="https://dl.dropboxusercontent.com/u/100463011/esnextbin-beta-demo.gif" width="500" />](http://esnextb.in)
 
 ## How it works?
 
+Under the hood it's pure client-side application which is hosted on [GitHub pages](https://pages.github.com/) and is built upon [React.js](https://facebook.github.io/react/).
+
 ## Features
+
+The use-cases are different however
+
+-
+- use latest 
+- importing modules from 
+- save and share your code sketches
 
 ## References
 
+Inspired by awesomeness of [Babel.js REPL](http://babeljs.io/repl/) and [Require Bin](http://requirebin.com/).
+
 ## Contributing
 
-<!-- 
-- buy domain
-- setup github pages
-- catch js errors in iframe and render them (?)
-- actions dropdown [x]
-- github oauth 
-- save/get with gists
-- save session in localstorage [x]
- -->
+## License
+
+BSD-2-Clause
