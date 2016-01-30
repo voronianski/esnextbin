@@ -12,7 +12,7 @@
 
 Under the hood it's pure client-side application which is hosted on [GitHub pages](https://pages.github.com/) and is built upon [React.js](https://facebook.github.io/react/).
 
-### Use
+## Usage
 
 You're free to use this tool as you wish. For example, explore latest JavaScript features with the help of several useful npm modules and when you're just save the result and share the link with your teammates or community.
 
