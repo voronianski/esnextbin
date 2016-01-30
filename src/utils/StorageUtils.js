@@ -42,3 +42,10 @@ export function turnOnSession () {
 export function turnOffSession () {
     disabled = true;
 }
+
+export function cleanSession () {
+    if (!storage) return;
+    storage.removeItem('code');
+    storage.removeItem('html');
+    storage.removeItem('json');
+}

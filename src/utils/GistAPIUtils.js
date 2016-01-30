@@ -17,8 +17,12 @@ function _getAuthCode (e) {
 }
 
 export function authorize (callback) {
-    actionState.callback = callback;
+    if (callback) actionState.callback = callback;
     window.open(`${GITHUB_AUTH_URL}?client_id=${config.GITHUB_CLIENT_ID}&scope=gist`);
+}
+
+export function unauthorize () {
+    cookies.expire('oauth_token');
 }
 
 export function getAccessToken (code, callback) {

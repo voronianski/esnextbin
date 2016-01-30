@@ -116,7 +116,9 @@ class Main extends React.Component {
     }
 
     handleReset() {
-        console.log('reset');
+        GistAPIUtils.unauthorize();
+        StorageUtils.cleanSession();
+        window.location.reload();
     }
 
     handleCodeChange(code) {
