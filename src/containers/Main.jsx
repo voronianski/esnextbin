@@ -15,6 +15,7 @@ class Main extends React.Component {
     constructor() {
         super();
 
+        this.query = {};
         this.state = {
             bundle: {},
             activeEditor: 'code',
@@ -30,7 +31,9 @@ class Main extends React.Component {
     }
 
     componentDidMount() {
-        const gistId = this._getGistIdFromQuery();
+        this.query = this._parseQuery();
+
+        const gistId = this.query.gist;
         if (gistId) {
             StorageUtils.turnOffSession();
             Progress.show();
@@ -43,6 +46,10 @@ class Main extends React.Component {
                 const { transpiledCode, error } = this._transpileCodeAndCatch(gistSession.code);
                 const editorsData = this._updateEditorsData(Object.assign(gistSession, { transpiledCode, error }));
                 this.setState({ editorsData });
+
+                if (this.query.execute) {
+                    setTimeout(() => this.handleRunClick(), 0);
+                }
             });
         } else {
             this.checkPreviousSession();
@@ -78,7 +85,7 @@ class Main extends React.Component {
 
         if (this.triggerGist) {
             const status = this.triggerGist;
-            const gistId = this._getGistIdFromQuery();
+            const gistId = this.query.gist;
             const { editorsData } = this.state;
             const fn = (err, res) => {
                 Progress.hide();
@@ -87,6 +94,7 @@ class Main extends React.Component {
                     console.log(err);
                     return;
                 }
+
                 if (!gistId) {
                     window.location.search = `gist=${res.body.id}`;
                 }
@@ -210,10 +218,14 @@ class Main extends React.Component {
         );
     }
 
-    _getGistIdFromQuery() {
-        const query = window.location.search.slice(1);
-        return querystring.parse(query).gist;
+    _parseQuery() {
+        return querystring.parse(window.location.search.slice(1));
     }
+
+    // _getGistIdFromQuery() {
+    //     const query = window.location.search.slice(1);
+    //     return querystring.parse(query).gist;
+    // }
 
     _updateEditorsData(newData) {
         return Object.assign({}, this.state.editorsData, newData);
