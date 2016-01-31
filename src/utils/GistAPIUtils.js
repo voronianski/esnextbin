@@ -118,10 +118,6 @@ export function getGist (id, callback) {
             callback(null, editorsData, res);
         };
 
-        if (!access_token) {
-            return authorize(makeRequest);
-        }
-
         request
             .get(`${GITHUB_GISTS_API}/${id}`)
             .query({ access_token })
