@@ -40,6 +40,7 @@ class Main extends React.Component {
             GistAPIUtils.getGist(gistId, (err, gistSession) => {
                 Progress.hide();
                 if (err) {
+                    // show special error on page
                     console.log(err);
                     return;
                 }
@@ -87,15 +88,18 @@ class Main extends React.Component {
             const status = this.triggerGist;
             const gistId = this.query.gist;
             const { editorsData } = this.state;
-            const fn = (err, res) => {
+            const fn = (err, res, isFork) => {
+                // debugger;
                 Progress.hide();
+                console.log("FUN", Progress);
                 if (err) {
                     // show special error on page
                     console.log(err);
                     return;
                 }
 
-                if (!gistId) {
+                Progress.hide();
+                if (!gistId || isFork) {
                     window.location.search = `gist=${res.body.id}`;
                 }
             };

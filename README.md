@@ -31,11 +31,14 @@ Explore latest JavaScript features with the help of several useful npm modules a
 
 There are several some examples for you to play with:
 
-- [React Starter App](http://esnextb.in/?gist=b7e541a42c7c1218cad6)
-<!-- - [React Soundplayer]()
+- [React Starter App](http://esnextb.in/?gist=b7e541a42c7c1218cad6&execute=true)
+
+<!-- 
+- [React Soundplayer]()
 - [Custom CSS]()
 - [WebGL]()
-- [Canvas]() -->
+- [Canvas]() 
+-->
 
 Please suggest what can be improved, report a bug or ask for a missed features while raising an [issue](https://github.com/voronianski/esnextbin/issues).
 

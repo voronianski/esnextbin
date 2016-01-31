@@ -47,7 +47,7 @@ export function isAuthorized () {
     return cookies.get('oauth_token') || false;
 }
 
-export function createGist (editorsData, status, callback) {
+export function createGist (editorsData, status, callback, isFork = false) {
     const data = getGistDataFormat(editorsData, status);
     const makeRequest = () => {
         const access_token = cookies.get('oauth_token');
@@ -58,7 +58,7 @@ export function createGist (editorsData, status, callback) {
                 }
                 return callback(err);
             }
-            callback(err, res);
+            callback(err, res, isFork);
         };
 
         if (!access_token) {
@@ -82,6 +82,9 @@ export function updateGist (id, editorsData, status, callback) {
             if (err) {
                 if (err.status === 401) {
                     return authorize(makeRequest);
+                }
+                if (err.status === 404) {
+                    return createGist(editorsData, status, callback, 'fork');
                 }
                 return callback(err);
             }
