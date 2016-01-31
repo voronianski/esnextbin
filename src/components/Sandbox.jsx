@@ -47,8 +47,13 @@ class Sandbox extends React.Component {
     }
 
     render() {
+        const { bundle } = this.props;
         return (
-            <div ref="sandbox" className="sandbox border-left" />
+            <div ref="sandbox" className="sandbox border-left">
+                {!bundle.html ? (
+                    <div className="center mt2 silver caps regular html-preview">HTML Preview</div>
+                ) : <span />}
+            </div>
         );
     }
 
