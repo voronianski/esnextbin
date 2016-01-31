@@ -125,6 +125,14 @@ header .actions-dropdown {
     bottom: 0;
 }
 
+.sandbox .html-preview {
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
 :root {
     --font-family: 'Roboto', 'Akkurat', 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, sans-serif;
     --font-code: 'Inconsolata', 'menlo', 'Consolas', 'Monaco', 'source-code-pro', monospace;
