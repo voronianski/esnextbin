@@ -14,7 +14,26 @@ Under the hood it's pure client-side application which is hosted on [GitHub page
 
 ## Usage
 
-You're free to use this tool as you wish. For example, explore latest JavaScript features with the help of several useful npm modules and when you're ready just save the result and share the link with your team mates or community.
+Explore latest JavaScript features with the help of several useful npm modules and when you're ready just save the result and share the link with your team mates or community.
+
+### Guide
+
+1. ESNextbin interface consists of 2 main sections - _"Editor"_ on the left side and _"HTML Preview"_ on the right side. 
+2. There are 3 editors - "Code" (for Javascript), "HTML" (for html layout) and "Package" (`package.json` that gets updated automatically when you're executing the code which imports library from npm). Switch editors to manage specific part of your program.
+3. Write program in `Code` tab and after you are ready hit `▶ Execute` button to see the result. 
+4. If you have HTML layout or you're manipulating the DOM in your code you'll see the result in _"HTML Preview"_. 
+5. But all logging, errors and warnings that appear in runtime could be seen ONLY in your browser console (maybe it's necessary to add "Console" tab?).
+6. `Actions` menu provides:
+    - saving your code as public and private [gists](https://gist.github.com/) which can be easily shared (please notice that these actions require GitHub account authorization)
+    - "Clean session" resets all editors and unauthorizes your GitHub account (if it was connected though)
+
+### Demos
+
+- [React Starter App](http://esnextb.in/?gist=b7e541a42c7c1218cad6)
+- [React Soundplayer]()
+- [Custom CSS]()
+- [WebGL]()
+- [Canvas]()
 
 Please suggest what can be improved, report a bug or ask for a missed features while raising an [issue](https://github.com/voronianski/esnextbin/issues).
 
