@@ -129,8 +129,15 @@ class Main extends React.Component {
     handleCodeChange(code) {
         StorageUtils.saveToSession('code', code);
 
+        clearTimeout(this.errorDelay);
         const { transpiledCode, error } = this._transpileCodeAndCatch(code);
-        const editorsData = this._updateEditorsData({code, transpiledCode, error});
+        if (error) {
+            this.errorDelay = setTimeout(() => {
+                const editorsData = this._updateEditorsData({error});
+                this.setState({ editorsData });
+            }, 1000);
+        }
+        const editorsData = this._updateEditorsData({code, transpiledCode, error: ''});
         this.setState({ editorsData });
     }
 
