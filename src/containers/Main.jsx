@@ -225,11 +225,6 @@ class Main extends React.Component {
         return querystring.parse(window.location.search.slice(1));
     }
 
-    // _getGistIdFromQuery() {
-    //     const query = window.location.search.slice(1);
-    //     return querystring.parse(query).gist;
-    // }
-
     _updateEditorsData(newData) {
         return Object.assign({}, this.state.editorsData, newData);
     }
