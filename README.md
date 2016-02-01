@@ -19,12 +19,12 @@ Explore latest JavaScript features with the help of several useful npm modules a
 ### Guide
 
 1. ESNextbin interface consists of 2 main sections - _"Editor"_ on the left side and _"HTML Preview"_ on the right side
-2. There are 3 editors - "Code" (for Javascript), "HTML" (for html layout) and "Package" (`package.json` that gets updated automatically when you're executing the code which imports library from npm). Switch editors to manage specific part of your program
-3. Write program in `Code` tab and after you are ready hit `▶ Execute` button to see the result
+2. There are 3 editor tabs - _"Code"_ (for Javascript), _"HTML"_ (for html layout) and _"Package"_ (`package.json` that gets updated automatically when you're executing the code which imports library from npm). Switch editors to manage specific part of your program
+3. Write program in _"Code"_ tab and after you are ready hit `▶ Execute` button to see the result
 4. If you have HTML layout or you're manipulating the DOM in your code you'll see the result in _"HTML Preview"_.
 5. But all logging, errors and warnings that appear in runtime could be seen ONLY in your browser's console (maybe it's necessary to add "Console" tab?)
 6. `Actions` menu provides:
-    - saving your code as public and private [gists](https://gist.github.com/) which can be easily shared (please notice that these actions require GitHub account authorization)
+    - saving your code as public and private [gists](https://gist.github.com/) which can be easily shared by copy/pasting link that contains gist id as query param, e.g. `http://esnextb.in?gist=<ID>` (please notice that these actions require GitHub account authorization)
     - _"Clean session"_ resets all editors and unauthorizes your GitHub account (if it was connected)
 
 ### Demos
