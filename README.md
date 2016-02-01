@@ -29,7 +29,7 @@ Explore latest JavaScript features with the help of several useful npm modules a
 
 ### Demos
 
-There are several some examples for you to play with:
+There are several examples for you to play with:
 
 - [React Starter App](http://esnextb.in/?gist=b7e541a42c7c1218cad6&execute=true)
 
@@ -39,6 +39,8 @@ There are several some examples for you to play with:
 - [WebGL]()
 - [Canvas]() 
 -->
+
+## Contributing
 
 Please suggest what can be improved, report a bug or ask for a missed features while raising an [issue](https://github.com/voronianski/esnextbin/issues).
 
