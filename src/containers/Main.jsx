@@ -89,15 +89,14 @@ class Main extends React.Component {
             const gistId = this.query.gist;
             const { editorsData } = this.state;
             const fn = (err, res, isFork) => {
-                // debugger;
                 Progress.hide();
-                console.log("FUN", Progress);
                 if (err) {
                     // show special error on page
                     console.log(err);
                     return;
                 }
 
+                // call hide twice for safety (investigate why once doesn't work sometimes)
                 Progress.hide();
                 if (!gistId || isFork) {
                     window.location.search = `gist=${res.body.id}`;
