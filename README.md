@@ -32,6 +32,7 @@ Explore latest JavaScript features with the help of several useful npm modules a
 There are several examples for you to play with:
 
 - [React Starter App](http://esnextb.in/?gist=b7e541a42c7c1218cad6&execute=true)
+- [Random Star Wars Names](http://esnextb.in/?gist=27fd38f51a4a9303e9c7&execute=true)
 
 <!-- 
 - [React Soundplayer]()

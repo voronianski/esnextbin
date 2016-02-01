@@ -3,7 +3,15 @@ export const HEADER_HEIGHT = 38;
 
 // transpiling
 export const BABEL_OPTIONS = {
-    presets: ['es2015', 'react', 'stage-0']
+    presets: [
+        'es2015',
+        'react',
+        'stage-0'
+    ],
+    plugins: [
+        'transform-object-assign',
+        'transform-runtime'
+    ]
 };
 
 // editors
@@ -15,7 +23,7 @@ export const HTML =
 <html>
 <head>
   <meta charset="utf-8">
-  <title>ESNext Bin Sketch</title>
+  <title>ESNextbin Sketch</title>
   <!-- put additional styles and scripts here -->
 </head>
 <body>
