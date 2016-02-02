@@ -4,7 +4,12 @@ import config from '../config';
 
 class Sandbox extends React.Component {
     static propTypes = {
-        bundle: PropTypes.object
+        bundle: PropTypes.object,
+        onModules: PropTypes.func,
+        onStartBundle: PropTypes.func,
+        onContentBundle: PropTypes.func,
+        onEndBundle: PropTypes.func,
+        onErrorBundle: PropTypes.func
     };
 
     static defaultProps = {
@@ -12,7 +17,13 @@ class Sandbox extends React.Component {
     };
 
     componentDidMount() {
-        const { onModules, onStartBundle, onContentBundle, onEndBundle } = this.props;
+        const {
+            onModules,
+            onStartBundle,
+            onContentBundle,
+            onEndBundle,
+            onErrorBundle
+        } = this.props;
 
         this.sandbox = new BrowserSandbox({
             name: 'sandbox',
@@ -33,6 +44,9 @@ class Sandbox extends React.Component {
         });
         this.sandbox.on('bundleEnd', html => {
             onEndBundle && onEndBundle(html);
+        });
+        this.sandbox.on('bundleError', () => {
+            onErrorBundle && onErrorBundle();
         });
 
     }
