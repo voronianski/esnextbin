@@ -112,7 +112,7 @@ class Header extends React.Component {
                         className="left btn btn-primary btn-small h6 caps regular rounded bg-fuchsia run-btn"
                         onClick={onRunClick}
                     >
-                        ▶ Execute
+                        &#9654; Execute
                     </button>
 
                     <div className="relative inline-block actions-dropdown">
