@@ -98,6 +98,7 @@ header .actions-dropdown {
     bottom: 0;
     width: 50%;
     left: 0;
+    overflow: hidden;
 }
 .code-error {
     position: absolute;
@@ -123,6 +124,7 @@ header .actions-dropdown {
     left: 50%;
     right: 0;
     bottom: 0;
+    overflow: hidden;
 }
 
 .sandbox .html-preview {
