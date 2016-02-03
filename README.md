@@ -42,6 +42,10 @@ There are several examples for you to play with:
 - [Canvas]() 
 -->
 
+### Keyboard Shortcuts
+
+_"Editor"_ section uses [default Ace shortcuts](https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts).
+
 ## Contributing
 
 Please suggest what can be improved, report a bug or ask for a missed features while raising an [issue](https://github.com/voronianski/esnextbin/issues).

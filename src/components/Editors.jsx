@@ -71,7 +71,7 @@ class Editors extends React.Component {
                         height={height}
                         onChange={this.handleChange('onCodeChange')}
                         showPrintMargin={false}
-                        editorProps={{$blockScrolling: true}}
+                        editorProps={{$blockScrolling: Infinity}}
                     />
                 </div>
                 <div className={cx('edit-html', {hide: active !== 'html'})}>
@@ -85,7 +85,7 @@ class Editors extends React.Component {
                         height={height}
                         onChange={this.handleChange('onHTMLChange')}
                         showPrintMargin={false}
-                        editorProps={{$blockScrolling: true}}
+                        editorProps={{$blockScrolling: Infinity}}
                     />
                 </div>
                 <div className={cx('edit-package', {hide: active !== 'package'})}>
@@ -100,7 +100,7 @@ class Editors extends React.Component {
                         height={height}
                         onChange={this.handleChange('onPackageChange')}
                         showPrintMargin={false}
-                        editorProps={{$blockScrolling: true}}
+                        editorProps={{$blockScrolling: Infinity}}
                     />
                 </div>
 
