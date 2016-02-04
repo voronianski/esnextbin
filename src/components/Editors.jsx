@@ -34,7 +34,6 @@ class Editors extends React.Component {
     }
 
     componentDidMount() {
-        this.windowWidth = window.innerWidth;
         window.addEventListener('resize', ::this.handleResize, false);
     }
 
@@ -43,10 +42,7 @@ class Editors extends React.Component {
     }
 
     handleResize() {
-        if (this.windowWidth !== window.innerWidth) {
-            this.windowWidth = window.innerWidth;
-            this.setState(this._getDimensions(this.props.headerHeight));
-        }
+        this.setState(this._getDimensions(this.props.headerHeight));
     }
 
     handleChange(handler) {
@@ -109,6 +105,11 @@ class Editors extends React.Component {
                 ) : <span />}
             </div>
         );
+    }
+
+    _saveWindowDimensions() {
+        this.windowWidth = window.innerWidth;
+        this.windowHeight = window.innerHeight;
     }
 
     _getDimensions(headerHeight) {

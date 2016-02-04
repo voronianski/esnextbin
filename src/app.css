@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,600,700,300|Inconsolata:400,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,600,700,300|Roboto+Mono:400,500,700&subset=latin,cyrillic');
 @import 'normalize.css';
 @import 'basscss-utility-headings';
 @import 'basscss-background-images';
@@ -31,7 +31,7 @@ html {
 }
 
 .ace_editor {
-    font: .95em/normal var(--font-code) !important;
+    font: .84em/normal var(--font-code) !important;
 }
 .ace_editor .ace_tooltip {
     font-size: 13px;
@@ -137,7 +137,7 @@ header .actions-dropdown {
 
 :root {
     --font-family: 'Roboto', 'Akkurat', 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, sans-serif;
-    --font-code: 'Inconsolata', 'menlo', 'Consolas', 'Monaco', 'source-code-pro', monospace;
+    --font-code: 'Roboto Mono', 'menlo', 'Consolas', 'Monaco', 'source-code-pro', monospace;
     --container-width: 960px;
     --body-color: #333;
 }

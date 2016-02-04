@@ -26,6 +26,7 @@ Explore latest JavaScript features with the help of several useful npm modules a
 6. `Actions` menu provides:
     - saving your code as public and private [gists](https://gist.github.com/) which can be easily shared by copy/pasting link that contains gist id as query param, e.g. `http://esnextb.in?gist=<ID>` (please notice that these actions require GitHub account authorization)
     - _"Clean session"_ resets all editors and unauthorizes your GitHub account (if it was connected)
+7. _"Editor"_ section uses [default Ace shortcuts](https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts)
 
 ### Demos
 
@@ -41,10 +42,6 @@ There are several examples for you to play with:
 - [WebGL]()
 - [Canvas]() 
 -->
-
-### Keyboard Shortcuts
-
-_"Editor"_ section uses [default Ace shortcuts](https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts).
 
 ## Contributing
 
