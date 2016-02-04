@@ -36,6 +36,7 @@ There are several examples for you to play with:
 - [Random Star Wars Names](http://esnextb.in/?gist=27fd38f51a4a9303e9c7&execute=true)
 - [React Soundcloud Player](http://esnextb.in/?gist=a649fc804a722e49fc71&execute=true)
 - [Preact FRP](http://esnextb.in/?gist=ba28702c94e22d26e3bc&execute=true)
+- [Async/await functions](http://esnextb.in/?gist=f7a6a4cf4c6bf4099fdc&execute=true)
 
 <!-- 
 - [Custom CSS]()
