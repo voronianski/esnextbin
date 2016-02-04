@@ -113,7 +113,7 @@ header .actions-dropdown {
     background: #f1f1f1;
     white-space: pre;
     border-radius: 0;
-    font-size: 0.95em;
+    font-size: .84em;
     font-family: var(--font-code);
     color: #c7254e;
 }
