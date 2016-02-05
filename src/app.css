@@ -92,6 +92,16 @@ header .actions-dropdown {
     margin-left: 5px;
 }
 
+#codeEditor,
+#htmlEditor,
+#packageEditor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
 .editorbox {
     position: absolute;
     top: 37px;
