@@ -32,20 +32,32 @@ class Editors extends React.Component {
         return value => fn && fn(value);
     }
 
+    componentDidUpdate(prevProps) {
+        const { error } = this.props;
+        const prevError = prevProps.error;
+
+        // recize ace editor after error
+        if (error !== prevError) {
+            window.dispatchEvent(new Event('resize'));
+        }
+    }
+
     render() {
         const { active, code, html, json, error, tabSize } = this.props;
 
+        console.log(error, !!error);
+
         return (
             <div className="editorbox">
-                <div className={cx('edit-code', {hide: active !== 'code'})}>
+                <div className={cx('edit-code', {hide: active !== 'code', 'has-error': !!error})}>
                     <Ace
                         name="codeEditor"
                         mode="jsx"
                         theme="tomorrow"
                         value={code}
                         tabSize={tabSize}
-                        width="100%"
-                        height="100%"
+                        width="auto"
+                        height="auto"
                         onChange={this.handleChange('onCodeChange')}
                         showPrintMargin={false}
                         editorProps={{$blockScrolling: Infinity}}
@@ -58,8 +70,8 @@ class Editors extends React.Component {
                         theme="tomorrow"
                         value={html}
                         tabSize={tabSize}
-                        width="100%"
-                        height="100%"
+                        width="auto"
+                        height="auto"
                         onChange={this.handleChange('onHTMLChange')}
                         showPrintMargin={false}
                         editorProps={{$blockScrolling: Infinity}}
@@ -72,8 +84,8 @@ class Editors extends React.Component {
                         theme="tomorrow"
                         value={json}
                         tabSize={tabSize}
-                        width="100%"
-                        height="100%"
+                        width="auto"
+                        height="auto"
                         onChange={this.handleChange('onPackageChange')}
                         showPrintMargin={false}
                         editorProps={{$blockScrolling: Infinity}}

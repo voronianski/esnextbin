@@ -28,12 +28,6 @@ html, body, #root {
     border-left: 0;
 }
 
-.hidden {
-    visibility: hidden;
-    opacity: 0;
-    height: 0;
-}
-
 .ace_editor {
     font: .84em/normal var(--font-code) !important;
 }
@@ -114,12 +108,14 @@ header .actions-dropdown {
     left: 0;
     overflow: hidden;
 }
+.editorbox .has-error #codeEditor {
+    bottom: 120px;
+}
 .code-error {
     position: absolute;
-    z-index: 4;
+    z-index: 1;
     bottom: 0;
-    min-height: 30px;
-    max-height: 30%;
+    height: 120px;
     overflow: auto;
     width: 100%;
     padding: 6px 12px;
