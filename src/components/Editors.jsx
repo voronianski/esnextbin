@@ -33,19 +33,18 @@ class Editors extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        const { error } = this.props;
+        const { error, active } = this.props;
         const prevError = prevProps.error;
+        const prevActive = prevProps.active;
 
         // recize ace editor after error
-        if (error !== prevError) {
+        if (error !== prevError || active !== prevActive) {
             window.dispatchEvent(new Event('resize'));
         }
     }
 
     render() {
         const { active, code, html, json, error, tabSize } = this.props;
-
-        console.log(error, !!error);
 
         return (
             <div className="editorbox">

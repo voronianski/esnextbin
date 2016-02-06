@@ -18,6 +18,7 @@ class Main extends React.Component {
         this.query = {};
         this.state = {
             bundle: {},
+            bundling: false,
             activeEditor: 'code',
             shareModal: false,
             editorsData: {
@@ -40,8 +41,7 @@ class Main extends React.Component {
             GistAPIUtils.getGist(gistId, (err, gistSession) => {
                 Progress.hide();
                 if (err) {
-                    // show special error on page
-                    console.log(err);
+                    console.log(err); // show special error on page
                     return;
                 }
                 const { transpiledCode, error } = this._transpileCodeAndCatch(gistSession.code);
@@ -67,6 +67,7 @@ class Main extends React.Component {
     }
 
     handleRunClick() {
+        if (this.state.bundling) return;
         const bundle = this._getBundle();
         bundle && this.setState({ bundle });
     }
@@ -76,7 +77,9 @@ class Main extends React.Component {
     }
 
     handleStartBundle() {
+        if (this.state.bundling) return;
         this.progressDelay = setTimeout(() => {
+            this.setState({bundling: true});
             Progress.show();
         }, 100);
     }
@@ -91,16 +94,14 @@ class Main extends React.Component {
             const fn = (err, res, isFork) => {
                 Progress.hide();
                 if (err) {
-                    // show special error on page
-                    console.log(err);
+                    console.log(err); // show special error on page
                     return;
                 }
 
-                // call hide twice for safety (investigate why once doesn't work sometimes)
-                Progress.hide();
                 if (!gistId || isFork) {
                     window.location.search = `gist=${res.body.id}`;
                 }
+                this.finishHandleEndBundle();
             };
 
             this.triggerGist = false;
@@ -111,8 +112,13 @@ class Main extends React.Component {
                 GistAPIUtils.createGist(editorsData, status, fn);
             }
         } else {
-            Progress.hide();
+            this.finishHandleEndBundle();
         }
+    }
+
+    finishHandleEndBundle() {
+        Progress.hide();
+        this.setState({bundling: false});
     }
 
     handleSaveGist(status) {
@@ -181,7 +187,7 @@ class Main extends React.Component {
     }
 
     render() {
-        const { bundle, editorsData, activeEditor, shareModal } = this.state;
+        const { bundle, editorsData, activeEditor, bundling } = this.state;
 
         return (
             <div className="main">
@@ -190,6 +196,7 @@ class Main extends React.Component {
                 <Header
                     height={Defaults.HEADER_HEIGHT}
                     activeEditor={activeEditor}
+                    isBundling={bundling}
                     onShareClick={::this.openShareModal}
                     onRunClick={::this.handleRunClick}
                     onEditorClick={::this.handleChangeEditor}

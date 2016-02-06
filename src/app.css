@@ -28,6 +28,10 @@ html, body, #root {
     border-left: 0;
 }
 
+.loader-60devs[data-state="running"]::before {
+    display: none;
+}
+
 .ace_editor {
     font: .84em/normal var(--font-code) !important;
 }
@@ -88,6 +92,10 @@ header .actions-dropdown {
     margin-top: 4.5px;
     margin-right: 10px;
     margin-left: 5px;
+}
+header .btn:disabled {
+    opacity: 1;
+    text-decoration: line-through;
 }
 
 #codeEditor,
