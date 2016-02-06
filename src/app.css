@@ -17,6 +17,10 @@ html {
     box-sizing: inherit;
 }
 
+html, body, #root {
+    height: 100%;
+}
+
 .b2 {
     border-width: 2px;
 }
