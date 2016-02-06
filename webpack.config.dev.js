@@ -2,6 +2,7 @@
 
 var webpack = require('webpack');
 var path = require('path');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var cssnext = require('postcss-cssnext');
 var postcssImport = require('postcss-import');
 
@@ -16,6 +17,15 @@ module.exports = {
         publicPath: '/'
     },
 
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify('development')
+            }
+        }),
+        new ExtractTextPlugin('app.css')
+    ],
+
     resolve: {
         extensions: ['', '.js', '.jsx', 'json']
     },
@@ -27,18 +37,11 @@ module.exports = {
             loaders: ['babel?presets[]=react,presets[]=es2015,presets[]=stage-0']
         }, {
             test: /\.css$/,
-            loaders: ['style', 'css', 'postcss']
+            loader: ExtractTextPlugin.extract('style-loader', 'css!postcss')
         }]
     },
 
     postcss: function () {
         return [postcssImport, cssnext]
-    },
-
-    devServer: {
-        port: 3993,
-        historyApiFallback: {
-            index: 'index-dev.html',
-        }
     }
 };

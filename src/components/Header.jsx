@@ -5,6 +5,7 @@ class Header extends React.Component {
     static propTypes = {
         height: PropTypes.number,
         activeEditor: PropTypes.string,
+        isBundling: PropTypes.bool,
         onRunClick: PropTypes.func.isRequired,
         onEditorClick: PropTypes.func,
         onShareClick: PropTypes.func,
@@ -40,6 +41,7 @@ class Header extends React.Component {
     }
 
     showDropdown() {
+        if (this.props.isBundling) return;
         this.setState({dropdownVisible: true});
     }
 
@@ -66,7 +68,7 @@ class Header extends React.Component {
     }
 
     render() {
-        const { height, activeEditor, onRunClick } = this.props;
+        const { height, activeEditor, isBundling, onRunClick } = this.props;
         const { dropdownVisible } = this.state;
 
         return (
@@ -111,6 +113,7 @@ class Header extends React.Component {
                         type="button"
                         className="left btn btn-primary btn-small h6 caps regular rounded bg-fuchsia run-btn"
                         onClick={onRunClick}
+                        disabled={isBundling}
                     >
                         &#9654; Execute
                     </button>
@@ -120,6 +123,7 @@ class Header extends React.Component {
                             type="button"
                             className="btn btn-outline black btn-small h6 caps regular"
                             onClick={::this.showDropdown}
+                            disabled={isBundling}
                         >
                             Actions
                         </button>

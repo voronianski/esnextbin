@@ -27,44 +27,36 @@ class Editors extends React.Component {
         headerHeight: 30
     };
 
-    constructor(props) {
-        super();
-
-        this.state = Object.assign({}, this._getDimensions(props.headerHeight));
-    }
-
-    componentDidMount() {
-        window.addEventListener('resize', ::this.handleResize, false);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('resize', ::this.handleResize);
-    }
-
-    handleResize() {
-        this.setState(this._getDimensions(this.props.headerHeight));
-    }
-
     handleChange(handler) {
         const fn = this.props[handler];
         return value => fn && fn(value);
     }
 
+    componentDidUpdate(prevProps) {
+        const { error, active } = this.props;
+        const prevError = prevProps.error;
+        const prevActive = prevProps.active;
+
+        // recize ace editor after error
+        if (error !== prevError || active !== prevActive) {
+            window.dispatchEvent(new Event('resize'));
+        }
+    }
+
     render() {
         const { active, code, html, json, error, tabSize } = this.props;
-        const { width, height } = this.state;
 
         return (
             <div className="editorbox">
-                <div className={cx('edit-code', {hide: active !== 'code'})}>
+                <div className={cx('edit-code', {hide: active !== 'code', 'has-error': !!error})}>
                     <Ace
                         name="codeEditor"
                         mode="jsx"
                         theme="tomorrow"
                         value={code}
                         tabSize={tabSize}
-                        width={width}
-                        height={height}
+                        width="auto"
+                        height="auto"
                         onChange={this.handleChange('onCodeChange')}
                         showPrintMargin={false}
                         editorProps={{$blockScrolling: Infinity}}
@@ -77,8 +69,8 @@ class Editors extends React.Component {
                         theme="tomorrow"
                         value={html}
                         tabSize={tabSize}
-                        width={width}
-                        height={height}
+                        width="auto"
+                        height="auto"
                         onChange={this.handleChange('onHTMLChange')}
                         showPrintMargin={false}
                         editorProps={{$blockScrolling: Infinity}}
@@ -86,14 +78,13 @@ class Editors extends React.Component {
                 </div>
                 <div className={cx('edit-package', {hide: active !== 'package'})}>
                     <Ace
-                        ref="packageEditor"
                         name="packageEditor"
                         mode="json"
                         theme="tomorrow"
                         value={json}
                         tabSize={tabSize}
-                        width={width}
-                        height={height}
+                        width="auto"
+                        height="auto"
                         onChange={this.handleChange('onPackageChange')}
                         showPrintMargin={false}
                         editorProps={{$blockScrolling: Infinity}}
@@ -105,18 +96,6 @@ class Editors extends React.Component {
                 ) : <span />}
             </div>
         );
-    }
-
-    _saveWindowDimensions() {
-        this.windowWidth = window.innerWidth;
-        this.windowHeight = window.innerHeight;
-    }
-
-    _getDimensions(headerHeight) {
-        return {
-            width: `${window.innerWidth / 2}px`,
-            height: `${window.innerHeight - headerHeight}px`
-        };
     }
 }
 

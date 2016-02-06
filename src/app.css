@@ -17,6 +17,10 @@ html {
     box-sizing: inherit;
 }
 
+html, body, #root {
+    height: 100%;
+}
+
 .b2 {
     border-width: 2px;
 }
@@ -24,10 +28,8 @@ html {
     border-left: 0;
 }
 
-.hidden {
-    visibility: hidden;
-    opacity: 0;
-    height: 0;
+.loader-60devs[data-state="running"]::before {
+    display: none;
 }
 
 .ace_editor {
@@ -91,6 +93,20 @@ header .actions-dropdown {
     margin-right: 10px;
     margin-left: 5px;
 }
+header .btn:disabled {
+    opacity: 1;
+    text-decoration: line-through;
+}
+
+#codeEditor,
+#htmlEditor,
+#packageEditor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
 
 .editorbox {
     position: absolute;
@@ -100,12 +116,14 @@ header .actions-dropdown {
     left: 0;
     overflow: hidden;
 }
+.editorbox .has-error #codeEditor {
+    bottom: 120px;
+}
 .code-error {
     position: absolute;
-    z-index: 4;
+    z-index: 1;
     bottom: 0;
-    min-height: 30px;
-    max-height: 30%;
+    height: 120px;
     overflow: auto;
     width: 100%;
     padding: 6px 12px;
