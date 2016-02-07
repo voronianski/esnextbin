@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import cx from 'classnames';
-
 import Ace from 'react-ace';
 
 import 'brace';
@@ -25,7 +24,7 @@ class Editors extends React.Component {
     static defaultProps = {
         tabSize: 2,
         active: 'code',
-        headerHeight: 30
+        headerHeight: 38
     };
 
     handleChange(handler) {
