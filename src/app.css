@@ -95,7 +95,6 @@ header .actions-dropdown {
 }
 header .btn:disabled {
     opacity: 1;
-    text-decoration: line-through;
 }
 
 #codeEditor,
