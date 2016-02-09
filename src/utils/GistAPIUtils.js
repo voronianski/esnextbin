@@ -104,7 +104,7 @@ export function updateGist (id, editorsData, status, callback) {
     makeRequest();
 }
 
-export function getGist (id, callback) {
+export function getGist ({id, sha}, callback) {
     const makeRequest = () => {
         const access_token = cookies.get('oauth_token');
         const onEnd = (err, res) => {
@@ -121,8 +121,10 @@ export function getGist (id, callback) {
             callback(null, editorsData, res);
         };
 
+        let url = `${GITHUB_GISTS_API}/${id}`;
+        if (sha) url += `/${sha}`
         request
-            .get(`${GITHUB_GISTS_API}/${id}`)
+            .get(url)
             .query({ access_token })
             .end(onEnd);
     };

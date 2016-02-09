@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 import cx from 'classnames';
+import Ace from 'react-ace';
 
 import 'brace';
 import 'brace/mode/jsx';
 import 'brace/mode/json';
 import 'brace/mode/html';
 import 'brace/theme/tomorrow';
-import Ace from 'react-ace';
 
 class Editors extends React.Component {
     static propTypes = {
@@ -24,7 +24,7 @@ class Editors extends React.Component {
     static defaultProps = {
         tabSize: 2,
         active: 'code',
-        headerHeight: 30
+        headerHeight: 38
     };
 
     handleChange(handler) {
@@ -37,7 +37,7 @@ class Editors extends React.Component {
         const prevError = prevProps.error;
         const prevActive = prevProps.active;
 
-        // recize ace editor after error
+        // recize ace editor after error or active change
         if (error !== prevError || active !== prevActive) {
             window.dispatchEvent(new Event('resize'));
         }

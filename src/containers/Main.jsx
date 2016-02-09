@@ -35,10 +35,11 @@ class Main extends React.Component {
         this.query = this._parseQuery();
 
         const gistId = this.query.gist;
+        const sha = this.query.rev || this.query.sha;
         if (gistId) {
             StorageUtils.turnOffSession();
             Progress.show();
-            GistAPIUtils.getGist(gistId, (err, gistSession) => {
+            GistAPIUtils.getGist({id: gistId, sha}, (err, gistSession) => {
                 Progress.hide();
                 if (err) {
                     console.log(err); // show special error on page
@@ -48,7 +49,7 @@ class Main extends React.Component {
                 const editorsData = this._updateEditorsData(Object.assign(gistSession, { transpiledCode, error }));
                 this.setState({ editorsData });
 
-                if (this.query.execute) {
+                if (this.query.execute || this.query.exec) {
                     setTimeout(() => this.handleRunClick(), 0);
                 }
             });
