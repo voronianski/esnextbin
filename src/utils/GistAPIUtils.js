@@ -75,7 +75,7 @@ export function createGist (editorsData, status, callback, isFork = false) {
 }
 
 export function updateGist (id, editorsData, status, callback) {
-    const data = getGistDataFormat(editorsData, status);
+    const data = getGistDataFormat(editorsData, status, id);
     const makeRequest = () => {
         const access_token = cookies.get('oauth_token');
         const onEnd = (err, res) => {
@@ -131,7 +131,8 @@ export function getGist ({id, sha}, callback) {
     makeRequest();
 }
 
-export function getGistDataFormat (data = {}, status = 'public') {
+export function getGistDataFormat (data = {}, status = 'public', gistId) {
+    const markdownLink = gistId ? `http://esnextb.in/?gist=${gistId}` : 'http://esnextb.in';
     return {
         'description': 'esnextbin sketch',
         'public': status === 'public',
@@ -149,7 +150,7 @@ export function getGistDataFormat (data = {}, status = 'public') {
                 'content': data.json.trim() || DefaultsUtil.JSON
             },
             'esnextbin.md': {
-                'content': 'made with [esnextbin](http://esnextb.in)'
+                'content': `made with [esnextbin](${markdownLink})`
             }
         }
     }
