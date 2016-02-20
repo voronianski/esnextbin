@@ -15,6 +15,7 @@ class Main extends React.Component {
     constructor() {
         super();
 
+        this.timeout = null;
         this.query = {};
         this.state = {
             bundle: {},
@@ -157,6 +158,14 @@ class Main extends React.Component {
         }
         const editorsData = this._updateEditorsData({code, transpiledCode, error: ''});
         this.setState({ editorsData });
+
+        if (this.timeout) {
+          clearTimeout(this.timeout);
+        }
+
+        this.timeout = setTimeout(() => {
+          this.handleRunClick();
+        }, 1000);
     }
 
     handleHTMLChange(html) {
