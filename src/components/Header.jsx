@@ -10,7 +10,8 @@ class Header extends React.Component {
         onEditorClick: PropTypes.func,
         onShareClick: PropTypes.func,
         onSaveGistClick: PropTypes.func,
-        onResetEditors: PropTypes.func
+        onResetEditors: PropTypes.func,
+        onToggleAutorun: PropTypes.func
     };
 
     static defaultProps = {
@@ -68,7 +69,7 @@ class Header extends React.Component {
     }
 
     render() {
-        const { height, activeEditor, isBundling, onRunClick } = this.props;
+        const { height, activeEditor, isBundling, autorunIsOn, onRunClick } = this.props;
         const { dropdownVisible } = this.state;
 
         return (
@@ -131,6 +132,7 @@ class Header extends React.Component {
                         <div className="absolute right-0 mt1 nowrap white bg-black rounded h6 caps actions-dropdown-items" style={{visibility: dropdownVisible ? 'visible' : 'hidden'}}>
                             <a href="#!" className="btn block" onClick={this.saveGist('public')}>Save Gist</a>
                             <a href="#!" className="btn block" onClick={this.saveGist('private')}>Save Private Gist</a>
+                            <a href="#!" className="btn block" onClick={this.click('onToggleAutorun')}>{autorunIsOn ? 'Disalbe Autorun' : 'Enable Autorun'}</a>
                             {/* TBD: <a href="#!" className="btn block" onClick={this.click('onShareClick')}>Share Sketch</a>*/}
                             <a href="#!" className="btn block" onClick={this.click('onResetEditors')}>Clean Session</a>
                             <a href="https://github.com/voronianski/esnextbin" target="_blank" className="btn block">Star on Github</a>

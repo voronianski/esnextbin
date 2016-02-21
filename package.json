@@ -1,6 +1,6 @@
 {
   "name": "esnextbin",
-  "version": "0.1.0",
+  "version": "1.0.0-alpha.0",
   "description": "Prototype JavaScript programs in the browser with ESNext (a.k.a ES2015) syntax and features, using modules from NPM.",
   "main": "index.js",
   "dependencies": {
@@ -37,7 +37,7 @@
     "css-loader": "^0.23.1",
     "express": "^4.13.4",
     "extract-text-webpack-plugin": "^1.0.1",
-    "nodemon": "^1.8.1",
+    "nodemon": "^1.9.0",
     "postcss-cssnext": "^2.4.0",
     "postcss-import": "^7.1.3",
     "postcss-loader": "^0.8.0",
@@ -49,7 +49,8 @@
   "scripts": {
     "build": "NODE_ENV=production webpack --config webpack.config --progress --colors",
     "watch": "webpack --config webpack.config.dev --colors --watch",
-    "start": "node server.js & npm run watch",
+    "start": "node server.js",
+    "start-dev": "npm run watch & nodemon server.js",
     "prepublish": "npm run build"
   },
   "repository": {
