@@ -15,13 +15,13 @@ class Main extends React.Component {
     constructor() {
         super();
 
-        this.timeout = null;
         this.query = {};
         this.state = {
             bundle: {},
             bundling: false,
             activeEditor: 'code',
             shareModal: false,
+            autorunIsOn: false,
             editorsData: {
                 code: Defaults.CODE,
                 transpiledCode: this._transpileCode(Defaults.CODE),
@@ -62,9 +62,14 @@ class Main extends React.Component {
     checkPreviousSession() {
         const session = StorageUtils.getSession();
         if (session) {
+            const newState = {};
+            const { autorun, ...editorsDataSession } = session;
+            if (autorun) {
+                newState.autorunIsOn = autorun;
+            }
             const { transpiledCode, error } = this._transpileCodeAndCatch(session.code);
-            const editorsData = this._updateEditorsData(Object.assign(session, { transpiledCode, error }));
-            this.setState({ editorsData });
+            newState.editorsData = this._updateEditorsData(Object.assign(editorsDataSession, { transpiledCode, error }));
+            this.setState(newState);
         }
     }
 
@@ -145,6 +150,22 @@ class Main extends React.Component {
         window.location.reload();
     }
 
+    toggleAutorun() {
+        const autorunIsOn = !this.state.autorunIsOn;
+        StorageUtils.saveToSession('autorun', autorunIsOn);
+        this.setState({ autorunIsOn });
+    }
+
+    autorunOnChange() {
+        if (this.autorunDelay) {
+            clearTimeout(this.autorunDelay);
+        }
+
+        this.autorunDelay = setTimeout(() => {
+            this.handleRunClick();
+        }, 1000);
+    }
+
     handleCodeChange(code) {
         StorageUtils.saveToSession('code', code);
 
@@ -159,13 +180,10 @@ class Main extends React.Component {
         const editorsData = this._updateEditorsData({code, transpiledCode, error: ''});
         this.setState({ editorsData });
 
-        if (this.timeout) {
-            clearTimeout(this.timeout);
+        if (this.state.autorunIsOn) {
+            this.autorunOnChange();
         }
 
-        this.timeout = setTimeout(() => {
-            this.handleRunClick();
-        }, 1000);
     }
 
     handleHTMLChange(html) {
@@ -197,7 +215,7 @@ class Main extends React.Component {
     }
 
     render() {
-        const { bundle, editorsData, activeEditor, bundling } = this.state;
+        const { bundle, editorsData, activeEditor, autorunIsOn, bundling } = this.state;
 
         return (
             <div className="main">
@@ -207,11 +225,13 @@ class Main extends React.Component {
                     height={Defaults.HEADER_HEIGHT}
                     activeEditor={activeEditor}
                     isBundling={bundling}
+                    autorunIsOn={autorunIsOn}
                     onShareClick={::this.openShareModal}
                     onRunClick={::this.handleRunClick}
                     onEditorClick={::this.handleChangeEditor}
                     onSaveGistClick={::this.handleSaveGist}
                     onResetEditors={::this.handleReset}
+                    onToggleAutorun={::this.toggleAutorun}
                 />
 
                 <div className="content">

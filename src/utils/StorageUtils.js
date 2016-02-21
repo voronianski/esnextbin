@@ -7,6 +7,27 @@ if (typeof window.localStorage !== 'undefined') {
 
 let disabled = false;
 
+function _coerce (value) {
+    if (value.trim && value.trim() === '') {
+        return value;
+    }
+
+    var num = Number(value);
+    if (!isNaN(value)) {
+        return num;
+    }
+
+    var _value = value.toLowerCase();
+    if (_value === 'true') {
+        return true;
+    }
+    if (_value === 'false') {
+        return false;
+    }
+
+    return value;
+}
+
 export function getSession () {
     if (!storage) return;
     let session = {};
@@ -22,6 +43,10 @@ export function getSession () {
     const json = storage.getItem('json');
     if (json) {
         session.json = json;
+    }
+    const autorun = storage.getItem('autorun');
+    if (autorun) {
+        session.autorun = _coerce(autorun);
     }
 
     // session is empty :(
