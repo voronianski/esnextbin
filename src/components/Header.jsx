@@ -132,7 +132,7 @@ class Header extends React.Component {
                         <div className="absolute right-0 mt1 nowrap white bg-black rounded h6 caps actions-dropdown-items" style={{visibility: dropdownVisible ? 'visible' : 'hidden'}}>
                             <a href="#!" className="btn block" onClick={this.saveGist('public')}>Save Gist</a>
                             <a href="#!" className="btn block" onClick={this.saveGist('private')}>Save Private Gist</a>
-                            <a href="#!" className="btn block" onClick={this.click('onToggleAutorun')}>{autorunIsOn ? 'Disalbe Autorun' : 'Enable Autorun'}</a>
+                            <a href="#!" className="btn block" onClick={this.click('onToggleAutorun')}>{autorunIsOn ? 'Disable Autorun' : 'Enable Autorun'}</a>
                             {/* TBD: <a href="#!" className="btn block" onClick={this.click('onShareClick')}>Share Sketch</a>*/}
                             <a href="#!" className="btn block" onClick={this.click('onResetEditors')}>Clean Session</a>
                             <a href="https://github.com/voronianski/esnextbin" target="_blank" className="btn block">Star on Github</a>
