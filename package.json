@@ -50,7 +50,7 @@
     "build": "NODE_ENV=production webpack --config webpack.config --progress --colors",
     "watch": "webpack --config webpack.config.dev --colors --watch",
     "start": "node server.js",
-    "start:local": "npm run watch & nodemon server.js",
+    "start-dev": "npm run watch & nodemon server.js",
     "prepublish": "npm run build"
   },
   "repository": {

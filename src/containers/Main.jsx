@@ -160,11 +160,11 @@ class Main extends React.Component {
         this.setState({ editorsData });
 
         if (this.timeout) {
-          clearTimeout(this.timeout);
+            clearTimeout(this.timeout);
         }
 
         this.timeout = setTimeout(() => {
-          this.handleRunClick();
+            this.handleRunClick();
         }, 1000);
     }
 
