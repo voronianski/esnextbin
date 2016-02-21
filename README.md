@@ -25,6 +25,7 @@ Explore latest JavaScript features with the help of several useful npm modules a
 5. But all logging, errors and warnings that appear in runtime could be seen ONLY in your browser's console (maybe it's necessary to add "Console" tab?)
 6. `Actions` menu provides:
     - saving your code as public and private [gists](https://gist.github.com/) which can be easily shared by copy/pasting link that contains gist id as query param, e.g. `http://esnextb.in?gist=<ID>` (please notice that these actions require GitHub account authorization)
+    - _"Enable/Disable Autorun"_ toggles autorunning feature (when it's enabled, the code will be executed after 1s every time when you stop typing without pressing `▶ Execute` button)
     - _"Clean session"_ resets all editors and unauthorizes your GitHub account (if it was connected)
 7. _"Editor"_ section uses [default Ace shortcuts](https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts)
 
