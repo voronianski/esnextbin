@@ -1,4 +1,5 @@
 import React from 'react';
+import { HotKeys } from 'react-hotkeys';
 import Progress from 'react-progress-2';
 import * as Babel from 'babel-standalone';
 import querystring from 'querystring';
@@ -10,6 +11,14 @@ import Sandbox from '../components/Sandbox'
 import * as Defaults from '../utils/DefaultsUtil';
 import * as StorageUtils from '../utils/StorageUtils';
 import * as GistAPIUtils from '../utils/GistAPIUtils';
+
+const hotKeyMap = {
+    'run': ['command+shift+k']
+};
+
+const hotKeyHandlers = {
+    'run': () => {console.log('run');}
+};
 
 class Main extends React.Component {
     constructor() {
