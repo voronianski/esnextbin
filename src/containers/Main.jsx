@@ -1,5 +1,6 @@
 import React from 'react';
-import { HotKeys } from 'react-hotkeys';
+import ReactDOM from 'react-dom';
+import Mousetrap from 'mousetrap';
 import Progress from 'react-progress-2';
 import * as Babel from 'babel-standalone';
 import querystring from 'querystring';
@@ -11,14 +12,6 @@ import Sandbox from '../components/Sandbox'
 import * as Defaults from '../utils/DefaultsUtil';
 import * as StorageUtils from '../utils/StorageUtils';
 import * as GistAPIUtils from '../utils/GistAPIUtils';
-
-const hotKeyMap = {
-    'run': ['command+shift+k']
-};
-
-const hotKeyHandlers = {
-    'run': () => {console.log('run');}
-};
 
 class Main extends React.Component {
     constructor() {
@@ -66,6 +59,8 @@ class Main extends React.Component {
         } else {
             this.checkPreviousSession();
         }
+
+        this.bindKeyShortcuts()
     }
 
     checkPreviousSession() {
@@ -80,6 +75,20 @@ class Main extends React.Component {
             newState.editorsData = this._updateEditorsData(Object.assign(editorsDataSession, { transpiledCode, error }));
             this.setState(newState);
         }
+    }
+
+    bindKeyShortcuts() {
+        const mousetrap = Mousetrap(ReactDOM.findDOMNode(this));
+
+        mousetrap.bind(['command+e', 'ctrl+e'], (e) => {
+            e.preventDefault();
+            this.handleRunClick();
+        });
+
+        mousetrap.bind(['command+s', 'ctrl+s'], (e) => {
+            e.preventDefault();
+            this.handleSaveGist('public');
+        });
     }
 
     handleRunClick() {
@@ -133,7 +142,7 @@ class Main extends React.Component {
     }
 
     finishHandleEndBundle() {
-        Progress.hide();
+        Progress.hideAll();
         this.setState({bundling: false});
     }
 
@@ -243,7 +252,7 @@ class Main extends React.Component {
                     onToggleAutorun={::this.toggleAutorun}
                 />
 
-                <div className="content">
+                <div className="content" tabIndex="-1">
                     <Editors
                         active={activeEditor}
                         code={editorsData.code}

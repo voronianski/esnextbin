@@ -16,14 +16,14 @@
     "browser-module-sandbox": "voronianski/browser-module-sandbox",
     "classnames": "^2.2.3",
     "cookies-js": "^1.2.2",
+    "mousetrap": "^1.5.3",
     "normalize.css": "^3.0.3",
     "react": "^0.14.6",
     "react-ace": "^3.1.0",
     "react-addons-update": "^0.14.6",
     "react-dom": "^0.14.6",
-    "react-hotkeys": "^0.7.1",
     "react-modal": "^0.6.1",
-    "react-progress-2": "^4.1.1",
+    "react-progress-2": "^4.2.1",
     "superagent": "^1.7.1"
   },
   "devDependencies": {
