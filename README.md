@@ -1,5 +1,8 @@
 # ESNextbin
 
+[![npm version](http://badge.fury.io/js/esnextbin.svg)](http://badge.fury.io/js/esnextbin)
+[![Dependency Status](http://david-dm.org/voronianski/esnextbin.svg)](http://david-dm.org/voronianski/esnextbin)
+
 > Create browser programs with [ES2015](https://babeljs.io/docs/learn-es2015/)'s latest features and use modules from [NPM](https://www.npmjs.com/) directly in your browser.
 
 [<img src="https://dl.dropboxusercontent.com/u/100463011/esnextbin-beta-demo.gif" width="650" />](http://esnextb.in)
@@ -28,6 +31,9 @@ Explore latest JavaScript features with the help of several useful npm modules a
     - _"Enable/Disable Autorun"_ toggles autorunning feature (when it's enabled, the code will be executed after 1s every time when you stop typing without pressing `▶ Execute` button)
     - _"Clean session"_ resets all editors and unauthorizes your GitHub account (if it was connected)
 7. _"Editor"_ section uses [default Ace shortcuts](https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts)
+8. There are additional shorcuts as well:
+    - `Cmd/Ctrl + S` - hotkeys for save your code as public gist action
+    - `Cmd/Ctrl + E` - hotkeys for `▶ Execute`  button
 
 ### Demos
 
