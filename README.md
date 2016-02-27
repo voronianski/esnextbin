@@ -45,6 +45,7 @@ There are several examples for you to play with:
 - [Preact FRP](http://esnextb.in/?gist=ba28702c94e22d26e3bc&execute=true)
 - [Async/await Functions](http://esnextb.in/?gist=f7a6a4cf4c6bf4099fdc&execute=true)
 - [React + Redux](http://esnextb.in/?gist=d6daac6224af08d799bc&execute=true)
+- [Generators](http://esnextb.in/?gist=0f174a29ca6623afe456&execute=true)
 
 <!-- 
 - [Custom CSS]()
