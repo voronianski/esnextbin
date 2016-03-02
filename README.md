@@ -46,6 +46,7 @@ There are several examples for you to play with:
 - [Async/await Functions](http://esnextb.in/?gist=f7a6a4cf4c6bf4099fdc&execute=true)
 - [React + Redux](http://esnextb.in/?gist=d6daac6224af08d799bc&execute=true)
 - [Generators](http://esnextb.in/?gist=0f174a29ca6623afe456&execute=true)
+- [D3](http://esnextb.in/?gist=9eac7e72521c21e98817&execute=true)
 
 <!-- 
 - [Custom CSS]()
