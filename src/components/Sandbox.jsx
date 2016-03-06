@@ -29,7 +29,8 @@ class Sandbox extends React.Component {
             name: 'sandbox',
             cdn: config.BROWSERIFY_CDN,
             container: this.refs.sandbox,
-            iframeStyle: 'body, html { height: 100%; width: 100%; overflow: auto }'
+            iframeStyle: 'body, html { height: 100%; width: 100%; overflow: auto }',
+            iframeSandbox: ['allow-forms', 'allow-popups', 'allow-scripts', 'allow-same-origin', 'allow-modals']
         });
 
         this.sandbox.on('modules', modules => {
