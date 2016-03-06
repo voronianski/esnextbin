@@ -117,7 +117,7 @@ class Main extends React.Component {
             const gistId = this.query.gist;
             const { editorsData } = this.state;
             const fn = (err, res, isFork) => {
-                Progress.hide();
+                Progress.hideAll();
                 if (err) {
                     console.log(err); // show special error on page
                     return;
@@ -232,6 +232,11 @@ class Main extends React.Component {
         this.setState({ editorsData });
     }
 
+    handleErrorBundle(err) {
+        console.log(err); // maybe show some popup or notification here?
+        this.finishHandleEndBundle();
+    }
+
     render() {
         const { bundle, editorsData, activeEditor, autorunIsOn, bundling } = this.state;
 
@@ -269,6 +274,7 @@ class Main extends React.Component {
                         bundle={bundle}
                         onModules={::this.handleDependencies}
                         onStartBundle={::this.handleStartBundle}
+                        onErrorBundle={::this.handleErrorBundle}
                         onEndBundle={::this.handleEndBundle}
                     />
                 </div>

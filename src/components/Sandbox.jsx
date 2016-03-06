@@ -45,8 +45,8 @@ class Sandbox extends React.Component {
         this.sandbox.on('bundleEnd', html => {
             onEndBundle && onEndBundle(html);
         });
-        this.sandbox.on('bundleError', () => {
-            onErrorBundle && onErrorBundle();
+        this.sandbox.on('bundleError', err => {
+            onErrorBundle && onErrorBundle(err);
         });
 
     }
