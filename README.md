@@ -1,5 +1,6 @@
 # ESNextbin
 
+[![build status](http://img.shields.io/travis/voronianski/esnextbin.svg?style=flat)](https://travis-ci.org/voronianski/esnextbin)
 <!-- [![npm version](http://badge.fury.io/js/esnextbin.svg)](http://badge.fury.io/js/esnextbin)
 [![Dependency Status](http://david-dm.org/voronianski/esnextbin.svg)](http://david-dm.org/voronianski/esnextbin) -->
 
