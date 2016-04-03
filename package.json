@@ -4,7 +4,7 @@
   "description": "Prototype JavaScript programs in the browser with ESNext (a.k.a ES2015) syntax and features, using modules from NPM.",
   "main": "index.js",
   "dependencies": {
-    "babel-standalone": "^6.4.4",
+    "babel-standalone": "^6.7.4",
     "basscss": "^7.1.0",
     "basscss-background-images": "0.0.9",
     "basscss-btn-outline": "^1.0.0",
@@ -27,14 +27,20 @@
     "superagent": "^1.7.1"
   },
   "devDependencies": {
+    "ava": "^0.13.0",
     "babel-cli": "^6.4.5",
     "babel-core": "^6.4.5",
+    "babel-eslint": "^6.0.2",
     "babel-loader": "^6.2.1",
     "babel-plugin-transform-object-assign": "^6.3.13",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
     "css-loader": "^0.23.1",
+    "enzyme": "^2.2.0",
+    "eslint": "^2.6.0",
+    "eslint-config-airbnb": "^6.2.0",
+    "eslint-plugin-react": "^4.2.3",
     "express": "^4.13.4",
     "extract-text-webpack-plugin": "^1.0.1",
     "nodemon": "^1.9.0",
@@ -51,7 +57,8 @@
     "watch": "webpack --config webpack.config.dev --colors --watch",
     "start": "node server.js",
     "start-dev": "npm run watch & nodemon server.js",
-    "prepublish": "npm run build"
+    "lint": "eslint --ext .js --ext .jsx ./src ",
+    "lint-dev": "eslint --ext .js --ext .jsx --fix ./src"
   },
   "repository": {
     "type": "git",

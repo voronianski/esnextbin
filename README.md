@@ -1,7 +1,7 @@
 # ESNextbin
 
-[![npm version](http://badge.fury.io/js/esnextbin.svg)](http://badge.fury.io/js/esnextbin)
-[![Dependency Status](http://david-dm.org/voronianski/esnextbin.svg)](http://david-dm.org/voronianski/esnextbin)
+<!-- [![npm version](http://badge.fury.io/js/esnextbin.svg)](http://badge.fury.io/js/esnextbin)
+[![Dependency Status](http://david-dm.org/voronianski/esnextbin.svg)](http://david-dm.org/voronianski/esnextbin) -->
 
 > Create browser programs with [ES2015](https://babeljs.io/docs/learn-es2015/)'s latest features and use modules from [NPM](https://www.npmjs.com/) directly in your browser.
 

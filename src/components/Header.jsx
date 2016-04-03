@@ -65,7 +65,7 @@ class Header extends React.Component {
             e.preventDefault();
             this.hideDropdown();
             fn && fn();
-        }
+        };
     }
 
     render() {

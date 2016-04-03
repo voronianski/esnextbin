@@ -7,7 +7,7 @@ import querystring from 'querystring';
 
 import Header from '../components/Header';
 import Editors from '../components/Editors';
-import Sandbox from '../components/Sandbox'
+import Sandbox from '../components/Sandbox';
 
 import * as Defaults from '../utils/DefaultsUtil';
 import * as StorageUtils from '../utils/StorageUtils';
@@ -60,7 +60,7 @@ class Main extends React.Component {
             this.checkPreviousSession();
         }
 
-        this.bindKeyShortcuts()
+        this.bindKeyShortcuts();
     }
 
     checkPreviousSession() {
@@ -201,7 +201,6 @@ class Main extends React.Component {
         if (this.state.autorunIsOn) {
             this.autorunOnChange();
         }
-
     }
 
     handleHTMLChange(html) {
@@ -291,13 +290,13 @@ class Main extends React.Component {
     }
 
     _getBundle() {
-        const { editorsData } = this.state;
+        let { editorsData } = this.state;
 
         let json;
         try {
             json = JSON.parse(editorsData.json);
         } catch (error) {
-            const editorsData = this._updateEditorsData({ error });
+            editorsData = this._updateEditorsData({ error });
             this.setState({ editorsData });
             return;
         }
@@ -311,11 +310,13 @@ class Main extends React.Component {
     }
 
     _transpileCode(code) {
-        return Babel.transform(code, Defaults.BABEL_OPTIONS).code
+        return Babel.transform(code, Defaults.BABEL_OPTIONS).code;
     }
 
     _transpileCodeAndCatch(code) {
-        let transpiledCode, error
+        let transpiledCode;
+        let error;
+
         if (code) {
             try {
                 transpiledCode = this._transpileCode(code);

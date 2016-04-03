@@ -33,8 +33,7 @@ module.exports = {
     module: {
         loaders: [{
             test: /\.jsx?$/,
-            exclude: /node_modules/,
-            loaders: ['babel?presets[]=react,presets[]=es2015,presets[]=stage-0']
+            exclude: /node_modules/
         }, {
             test: /\.css$/,
             loader: ExtractTextPlugin.extract('style-loader', 'css!postcss')

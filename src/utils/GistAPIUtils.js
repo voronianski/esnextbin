@@ -6,7 +6,7 @@ import * as DefaultsUtil from './DefaultsUtil';
 
 const GITHUB_AUTH_URL = 'https://github.com/login/oauth/authorize';
 const GITHUB_GISTS_API = 'https://api.github.com/gists';
-const COOKIE_TTL = 60 * 60 * 24 * 30 * 6 // 6 months
+const COOKIE_TTL = 60 * 60 * 24 * 30 * 6; // 6 months
 
 let actionState = {};
 
@@ -40,7 +40,7 @@ export function getAccessToken (code, callback) {
             const token = res.text;
             cookies.set('oauth_token', token, {expires: COOKIE_TTL});
             callback(null, token);
-        })
+        });
 }
 
 export function isAuthorized () {
@@ -122,7 +122,7 @@ export function getGist ({id, sha}, callback) {
         };
 
         let url = `${GITHUB_GISTS_API}/${id}`;
-        if (sha) url += `/${sha}`
+        if (sha) url += `/${sha}`;
         request
             .get(url)
             .query({ access_token })
@@ -134,26 +134,26 @@ export function getGist ({id, sha}, callback) {
 export function getGistDataFormat (data = {}, status = 'public', gistId) {
     const markdownLink = gistId ? `http://esnextb.in/?gist=${gistId}` : 'http://esnextb.in';
     return {
-        'description': 'esnextbin sketch',
-        'public': status === 'public',
-        'files': {
-            'index.js':  {
-                'content': data.code.trim() || DefaultsUtil.CODE
+        description: 'esnextbin sketch',
+        public: status === 'public',
+        files: {
+            'index.js': {
+                content: data.code.trim() || DefaultsUtil.CODE
             },
             'transpiled.js': {
-                'content': data.transpiledCode.trim() || DefaultsUtil.CODE
+                content: data.transpiledCode.trim() || DefaultsUtil.CODE
             },
             'index.html': {
-                'content': data.html.trim() || DefaultsUtil.HTML
+                content: data.html.trim() || DefaultsUtil.HTML
             },
             'package.json': {
-                'content': data.json.trim() || DefaultsUtil.JSON
+                content: data.json.trim() || DefaultsUtil.JSON
             },
             'esnextbin.md': {
-                'content': `made with [esnextbin](${markdownLink})`
+                content: `made with [esnextbin](${markdownLink})`
             }
         }
-    }
+    };
 }
 
 export function getEditorsDataFromGist (files) {

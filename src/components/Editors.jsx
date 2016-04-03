@@ -48,7 +48,10 @@ class Editors extends React.Component {
 
         return (
             <div className="editorbox">
-                <div className={cx('edit-code', {hide: active !== 'code', 'has-error': !!error})}>
+                <div className={cx('edit-code', {
+                    'hide': active !== 'code',
+                    'has-error': !!error
+                })}>
                     <Ace
                         name="codeEditor"
                         mode="jsx"

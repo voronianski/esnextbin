@@ -9,6 +9,6 @@ const envs = {
         GATEKEEPER: 'http://labs.voronianski.com/gatekeeper-dev_/token.php',
         BROWSERIFY_CDN: 'https://wzrd.in'
     }
-}
+};
 
 export default envs.dev;
