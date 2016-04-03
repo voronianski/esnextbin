@@ -58,7 +58,8 @@
     "start": "node server.js",
     "start-dev": "npm run watch & nodemon server.js",
     "lint": "eslint --ext .js --ext .jsx ./src ",
-    "lint-dev": "eslint --ext .js --ext .jsx --fix ./src"
+    "lint-dev": "eslint --ext .js --ext .jsx --fix ./src",
+    "test": "echo \"Comming soon ;)\" && exit 0"
   },
   "repository": {
     "type": "git",
