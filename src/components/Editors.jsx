@@ -45,7 +45,7 @@ class Editors extends React.Component {
     }
 
     render() {
-        const { active, code, html, json, error, tabSize} = this.props;
+        const { active, code, html, json, error, tabSize } = this.props;
 
         return (
             <div className="editorbox">
