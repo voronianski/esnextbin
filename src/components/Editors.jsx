@@ -7,6 +7,7 @@ import 'brace/mode/jsx';
 import 'brace/mode/json';
 import 'brace/mode/html';
 import 'brace/theme/tomorrow';
+import 'brace/ext/emmet';
 
 class Editors extends React.Component {
     static propTypes = {
@@ -44,7 +45,7 @@ class Editors extends React.Component {
     }
 
     render() {
-        const { active, code, html, json, error, tabSize } = this.props;
+        const { active, code, html, json, error, tabSize} = this.props;
 
         return (
             <div className="editorbox">
@@ -76,7 +77,8 @@ class Editors extends React.Component {
                         height="auto"
                         onChange={this.handleChange('onHTMLChange')}
                         showPrintMargin={false}
-                        editorProps={{$blockScrolling: Infinity}}
+                        editorProps={{$blockScrolling: Infinity, enableEmmet: true}}
+                        setOptions={{enableEmmet: true}}
                     />
                 </div>
                 <div className={cx('edit-package', {hide: active !== 'package'})}>
