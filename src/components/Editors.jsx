@@ -38,7 +38,7 @@ class Editors extends React.Component {
         const prevError = prevProps.error;
         const prevActive = prevProps.active;
 
-        // recize ace editor after error or active change
+        // resize ace editor after error or active change
         if (error !== prevError || active !== prevActive) {
             window.dispatchEvent(new Event('resize'));
         }
@@ -77,7 +77,7 @@ class Editors extends React.Component {
                         height="auto"
                         onChange={this.handleChange('onHTMLChange')}
                         showPrintMargin={false}
-                        editorProps={{$blockScrolling: Infinity, enableEmmet: true}}
+                        editorProps={{$blockScrolling: Infinity}}
                         setOptions={{enableEmmet: true}}
                     />
                 </div>
