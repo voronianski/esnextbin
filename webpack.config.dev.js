@@ -33,7 +33,8 @@ module.exports = {
     module: {
         loaders: [{
             test: /\.jsx?$/,
-            exclude: /node_modules/
+            exclude: /node_modules/,
+            loader: 'babel'
         }, {
             test: /\.css$/,
             loader: ExtractTextPlugin.extract('style-loader', 'css!postcss')
@@ -41,6 +42,6 @@ module.exports = {
     },
 
     postcss: function () {
-        return [postcssImport, cssnext]
+        return [postcssImport, cssnext];
     }
 };

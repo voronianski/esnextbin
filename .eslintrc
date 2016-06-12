@@ -14,6 +14,10 @@
         jsx: true
     },
 
+    settings: {
+        "import/resolver": "webpack"
+    },
+
     rules: {
         "strict": 0,
         "quotes": [2, "single"],
