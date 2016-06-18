@@ -49,7 +49,6 @@ class Sandbox extends React.Component {
         this.sandbox.on('bundleError', err => {
             onErrorBundle && onErrorBundle(err);
         });
-
     }
 
     componentWillReceiveProps(nextProps) {

@@ -34,7 +34,7 @@ module.exports = {
         loaders: [{
             test: /\.jsx?$/,
             exclude: /node_modules/,
-            loaders: ['babel?presets[]=react,presets[]=es2015,presets[]=stage-0']
+            loader: 'babel'
         }, {
             test: /\.css$/,
             loader: ExtractTextPlugin.extract('style-loader', 'css!postcss')
@@ -42,6 +42,6 @@ module.exports = {
     },
 
     postcss: function () {
-        return [postcssImport, cssnext]
+        return [postcssImport, cssnext];
     }
 };

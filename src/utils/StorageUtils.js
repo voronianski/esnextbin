@@ -12,12 +12,12 @@ function _coerce (value) {
         return value;
     }
 
-    var num = Number(value);
+    const num = Number(value);
     if (!isNaN(value)) {
         return num;
     }
 
-    var _value = value.toLowerCase();
+    const _value = value.toLowerCase();
     if (_value === 'true') {
         return true;
     }
