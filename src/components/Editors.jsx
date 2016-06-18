@@ -7,6 +7,7 @@ import 'brace/mode/jsx';
 import 'brace/mode/json';
 import 'brace/mode/html';
 import 'brace/theme/tomorrow';
+import 'brace/ext/emmet';
 import 'brace/ext/language_tools';
 
 class Editors extends React.Component {
@@ -38,7 +39,7 @@ class Editors extends React.Component {
         const prevError = prevProps.error;
         const prevActive = prevProps.active;
 
-        // recize ace editor after error or active change
+        // resize ace editor after error or active change
         if (error !== prevError || active !== prevActive) {
             window.dispatchEvent(new Event('resize'));
         }
@@ -80,6 +81,7 @@ class Editors extends React.Component {
                         showPrintMargin={false}
                         editorProps={{$blockScrolling: Infinity}}
                         enableBasicAutocompletion={true}
+                        setOptions={{enableEmmet: true}}
                     />
                 </div>
                 <div className={cx('edit-package', {hide: active !== 'package'})}>

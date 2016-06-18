@@ -1,6 +1,6 @@
 {
   "name": "esnextbin",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "Prototype JavaScript programs in the browser with ESNext (a.k.a ES2015) syntax and features, using modules from NPM.",
   "main": "index.js",
   "dependencies": {
@@ -16,6 +16,7 @@
     "browser-module-sandbox": "voronianski/browser-module-sandbox",
     "classnames": "^2.2.3",
     "cookies-js": "^1.2.2",
+    "emmet": "cloud9ide/emmet-core",
     "mousetrap": "^1.5.3",
     "normalize.css": "^4.1.1",
     "react": "^15.1.0",
