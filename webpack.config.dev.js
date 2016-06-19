@@ -9,11 +9,14 @@ var postcssImport = require('postcss-import');
 module.exports = {
     devtool: 'eval',
 
-    entry: './src/app',
+    entry: {
+        app: './src/app',
+        embed: './src/embed'
+    },
 
     output: {
         path: path.join(__dirname, 'build'),
-        filename: 'app.js',
+        filename: '[name].js',
         publicPath: '/'
     },
 

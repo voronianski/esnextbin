@@ -7,11 +7,14 @@ var cssnext = require('postcss-cssnext');
 var postcssImport = require('postcss-import');
 
 module.exports = {
-    entry: './src/app',
+    entry: {
+        app: './src/app',
+        embed: './src/embed'
+    },
 
     output: {
         path: path.join(__dirname, 'build'),
-        filename: 'app.min.js',
+        filename: '[name].min.js',
         publicPath: '/build'
     },
 
