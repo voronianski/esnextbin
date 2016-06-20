@@ -26,8 +26,7 @@ module.exports = {
                 'NODE_ENV': JSON.stringify('development')
             }
         }),
-        new ExtractTextPlugin('app.css'),
-        new ExtractTextPlugin('embed.css')
+        new ExtractTextPlugin('[name].css')
     ],
 
     resolve: {
