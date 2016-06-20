@@ -7,11 +7,14 @@ var cssnext = require('postcss-cssnext');
 var postcssImport = require('postcss-import');
 
 module.exports = {
-    entry: './src/app',
+    entry: {
+        app: './src/app',
+        embed: './src/embed'
+    },
 
     output: {
         path: path.join(__dirname, 'build'),
-        filename: 'app.min.js',
+        filename: '[name].min.js',
         publicPath: '/build'
     },
 
@@ -26,7 +29,8 @@ module.exports = {
             compress: { warnings: false },
             output: { comments: false }
         }),
-        new ExtractTextPlugin('app.min.css')
+        new ExtractTextPlugin('app.min.css'),
+        new ExtractTextPlugin('embed.min.css')
     ],
 
     resolve: {
