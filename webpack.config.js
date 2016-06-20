@@ -29,8 +29,7 @@ module.exports = {
             compress: { warnings: false },
             output: { comments: false }
         }),
-        new ExtractTextPlugin('app.min.css'),
-        new ExtractTextPlugin('embed.min.css')
+        new ExtractTextPlugin('[name].min.css')
     ],
 
     resolve: {
