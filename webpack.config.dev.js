@@ -30,13 +30,25 @@ module.exports = {
     ],
 
     resolve: {
-        extensions: ['', '.js', '.jsx', 'json']
+        modulesDirectories: [
+            path.resolve(__dirname, 'node_modules'),
+            'node_modules'
+        ],
+        extensions: ['', '.js', '.jsx', 'json'],
+        alias: {
+            'react': 'preact-compat',
+            'react-dom': 'preact-compat',
+            'react-ace': path.join(__dirname, 'node_modules', 'react-ace', 'src', 'ace.jsx')
+        }
     },
 
     module: {
         loaders: [{
             test: /\.jsx?$/,
-            exclude: /node_modules/,
+            include: [
+                path.resolve(__dirname, 'src'),
+                path.resolve(__dirname, 'node_modules/react-ace')
+            ],
             loader: 'babel'
         }, {
             test: /\.css$/,

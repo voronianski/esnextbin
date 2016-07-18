@@ -19,6 +19,8 @@
     "emmet": "cloud9ide/emmet-core",
     "mousetrap": "^1.5.3",
     "normalize.css": "^4.1.1",
+    "preact": "^5.3.1",
+    "preact-compat": "^2.0.0",
     "react": "^15.1.0",
     "react-ace": "^3.1.0",
     "react-dom": "^15.1.0",
