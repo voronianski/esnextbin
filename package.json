@@ -22,7 +22,7 @@
     "preact": "^5.3.1",
     "preact-compat": "^2.0.0",
     "react": "^15.1.0",
-    "react-ace": "^3.1.0",
+    "react-ace": "^3.5.0",
     "react-dom": "^15.1.0",
     "react-hotkeys": "^0.8.0",
     "react-json-tree": "^0.6.5",
