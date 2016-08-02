@@ -137,6 +137,7 @@ class Header extends React.Component {
                             <a href="#!" className="btn block" onClick={this.click('onResetEditors')}>Clean Session</a>
                             <a href="https://github.com/voronianski/esnextbin" target="_blank" className="btn block">Star on Github</a>
                             <a href="https://github.com/voronianski/esnextbin/issues/new" target="_blank" className="btn block">Report Issue</a>
+                            <a href="https://www.paypal.me/voronianski" target="_blank" className="btn block">Support Project</a>
                         </div>
                     </div>
                 </div>
