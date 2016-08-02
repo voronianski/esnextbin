@@ -8,7 +8,10 @@
 
     parser: "babel-eslint",
 
-    plugins: ["react"],
+    plugins: [
+        "react",
+        "import"
+    ],
 
     ecmaFeatures: {
         jsx: true
@@ -39,7 +42,8 @@
         "react/prop-types": 0,
         "react/react-in-jsx-scope": 1,
         "react/self-closing-comp": 1,
-        "react/wrap-multilines": 1,
+        "react/jsx-wrap-multilines": 1,
+        "import/imports-first": 0,
         "new-cap": 0,
         "no-extra-boolean-cast": 0,
         "yoda": 0,
@@ -55,6 +59,7 @@
         "no-param-reassign": 0,
         "consistent-return": 0,
         "no-console": 0,
+        "no-void": 0,
         "func-names": 0,
         "no-nested-ternary": 0,
         "quote-props": [2, "consistent-as-needed", { "keywords": false, "unnecessary": true, "numbers": false }],

@@ -162,7 +162,7 @@ export function getEditorsDataFromGist (files) {
     }
     return {
         code: files['index.js'].content,
-        html: files['index.html'] && files['index.html'].content || DefaultsUtil.HTML,
-        json: files['package.json'] && files['package.json'].content || DefaultsUtil.JSON
+        html: (files['index.html'] && files['index.html'].content) || DefaultsUtil.HTML,
+        json: (files['package.json'] && files['package.json'].content) || DefaultsUtil.JSON
     };
 }
