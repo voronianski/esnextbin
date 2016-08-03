@@ -50,6 +50,7 @@ There are several examples for you to play with:
 - [Generators](http://esnextb.in/?gist=0f174a29ca6623afe456&execute=true)
 - [D3](http://esnextb.in/?gist=9eac7e72521c21e98817&execute=true)
 - [Vue 2.0 + Vuex](http://esnextb.in/?gist=bd1916ac0c96d75785f8433249967eb2&execute=true)
+- [Pixi.js Basic Example](https://esnextb.in/?gist=f6a3a6197346d4168a5fbbc3ef6b0747&exec=true)
 
 <!-- 
 - [Custom CSS]()
