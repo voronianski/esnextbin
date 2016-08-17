@@ -1,9 +1,7 @@
 # ESNextbin
 
-[![build status](http://img.shields.io/travis/voronianski/esnextbin.svg?style=flat)](https://travis-ci.org/voronianski/esnextbin)
-[![donate](https://img.shields.io/badge/donate-paypal-brightgreen.svg)](https://www.paypal.me/voronianski/5)
-<!-- [![npm version](http://badge.fury.io/js/esnextbin.svg)](http://badge.fury.io/js/esnextbin)
-[![Dependency Status](http://david-dm.org/voronianski/esnextbin.svg)](http://david-dm.org/voronianski/esnextbin) -->
+[![build status](http://forthebadge.com/images/badges/built-with-love.svg)](https://travis-ci.org/voronianski/esnextbin)
+[![donate](http://forthebadge.com/images/badges/powered-by-electricity.svg)](https://www.paypal.me/voronianski/5)
 
 > Create browser programs with [ES2015](https://babeljs.io/docs/learn-es2015/)'s latest features and use modules from [NPM](https://www.npmjs.com/) directly in your browser.
 
