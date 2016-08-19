@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react';
 import BrowserSandbox from 'browser-module-sandbox';
 import config from '../config';
 
+const isFirefox = window.navigator.userAgent.toLowerCase().indexOf('firefox') !== -1;
+
 class Sandbox extends React.Component {
     static propTypes = {
         bundle: PropTypes.object,
@@ -29,6 +31,10 @@ class Sandbox extends React.Component {
             name: 'sandbox',
             cdn: config.BROWSERIFY_CDN,
             container: this.refs.sandbox,
+            cacheOpts: {
+                // enable inMemory for FF due to leveljs (via https://github.com/shama/browser-module-cache) issues in v48
+                inMemory: isFirefox
+            },
             iframeStyle: 'body, html { height: 100%; width: 100%; overflow: auto }',
             iframeSandbox: ['allow-forms', 'allow-popups', 'allow-scripts', 'allow-same-origin', 'allow-modals']
         });
