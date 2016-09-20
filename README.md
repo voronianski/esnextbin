@@ -63,6 +63,14 @@ Inspired by awesomeness of [Babel.js REPL](http://babeljs.io/repl/) and [Require
 
 ## Support 
 
+We need your support to finish features that will bring the experience of prototyping Javascript apps to the next level:
+
+- [ ] our own browserify server in order to replace https://wzrd.in (fixes [#5](https://github.com/voronianski/esnextbin/issues/5))
+- [ ] add console preview
+- [ ] add support for embedding sketches (medium blogs, third-party websites etc.)
+
+And whatever you can imagine! Just create an [issue](https://github.com/voronianski/esnextbin/issues) with your suggestions.
+
 ### Backers
 Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/esnextbin#backer)]
 
