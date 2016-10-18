@@ -18,7 +18,7 @@
     "cookies-js": "^1.2.2",
     "emmet": "cloud9ide/emmet-core",
     "mousetrap": "^1.5.3",
-    "normalize.css": "^4.1.1",
+    "normalize.css": "^5.0.0",
     "react": "^15.1.0",
     "react-ace": "^3.1.0",
     "react-dom": "^15.1.0",
