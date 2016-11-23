@@ -46,7 +46,8 @@ There are several examples for you to play with:
 - [D3](http://esnextb.in/?gist=9eac7e72521c21e98817&execute=true)
 - [Vue 2.0 + Vuex](http://esnextb.in/?gist=bd1916ac0c96d75785f8433249967eb2&execute=true)
 - [Pixi.js Basic Example](https://esnextb.in/?gist=f6a3a6197346d4168a5fbbc3ef6b0747&exec=true)
-- [JSX to document.createElement](https://esnextb.in/?gist=f81cbfcb65f3bfbc0d1c5ccc3c748ca5)
+- [JSX to document.createElement](https://esnextb.in/?gist=f81cbfcb65f3bfbc0d1c5ccc3c748ca5&exec=true)
+- [Reactive view with Proxies and virtual-dom](https://esnextb.in/?gist=8e8b74861f299a672075ae155a86f444&exec=true)
 
 ## Contributing
 
