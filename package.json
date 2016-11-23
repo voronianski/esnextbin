@@ -25,7 +25,7 @@
     "react-hotkeys": "^0.9.0",
     "react-json-tree": "^0.10.0",
     "react-progress-2": "^4.2.1",
-    "superagent": "^2.0.0"
+    "superagent": "^3.0.0"
   },
   "devDependencies": {
     "ava": "^0.17.0",
