@@ -1,9 +1,3 @@
-[![build status](http://forthebadge.com/images/badges/built-with-love.svg)](https://travis-ci.org/voronianski/esnextbin)
-[![donate](http://forthebadge.com/images/badges/powered-by-electricity.svg)](https://www.paypal.me/voronianski/5)
-
-[![OpenCollective](https://opencollective.com/esnextbin/backers/badge.svg)](#backers) 
-[![OpenCollective](https://opencollective.com/esnextbin/sponsors/badge.svg)](#sponsors)
-
 # ESNextbin
 
 > Create browser programs with [ES2015](https://babeljs.io/docs/learn-es2015/)'s latest features and use modules from [NPM](https://www.npmjs.com/) directly in your browser.
@@ -140,6 +134,9 @@ Become a sponsor and get your logo on our README on Github with a link to your s
 <a href="https://opencollective.com/esnextbin/sponsor/27/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/27/avatar.svg"></a>
 <a href="https://opencollective.com/esnextbin/sponsor/28/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/28/avatar.svg"></a>
 <a href="https://opencollective.com/esnextbin/sponsor/29/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/29/avatar.svg"></a>
+
+[![build status](http://forthebadge.com/images/badges/built-with-love.svg)](https://travis-ci.org/voronianski/esnextbin)
+[![donate](http://forthebadge.com/images/badges/powered-by-electricity.svg)](https://www.paypal.me/voronianski/5)
 
 ## License
 
