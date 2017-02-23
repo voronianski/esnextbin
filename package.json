@@ -12,7 +12,7 @@
     "basscss-button-transparent": "1.1.x",
     "basscss-defaults": "2.1.x",
     "basscss-utility-headings": "0.0.x",
-    "brace": "^0.8.0",
+    "brace": "^0.10.0",
     "browser-module-sandbox": "voronianski/browser-module-sandbox",
     "classnames": "^2.2.3",
     "cookies-js": "^1.2.2",
