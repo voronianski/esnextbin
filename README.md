@@ -54,6 +54,16 @@ There are several examples for you to play with:
 
 Please suggest what can be improved, report a bug or ask for a missed features while raising an [issue](https://github.com/voronianski/esnextbin/issues).
 
+## Development
+
+Clone this repo and run these commands inside it:
+
+```bash
+npm i
+npm run start-dev
+# visit http://localhost:9292/index-dev.html
+```
+
 ## References
 
 Inspired by awesomeness of [Babel.js REPL](http://babeljs.io/repl/) and [Requirebin](http://requirebin.com/).
