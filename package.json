@@ -28,7 +28,7 @@
     "superagent": "^3.0.0"
   },
   "devDependencies": {
-    "ava": "^0.18.0",
+    "ava": "^0.19.0",
     "babel-cli": "^6.4.5",
     "babel-core": "^6.4.5",
     "babel-eslint": "^7.0.0",
