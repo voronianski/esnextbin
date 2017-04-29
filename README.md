@@ -59,6 +59,14 @@ Please suggest what can be improved, report a bug or ask for a missed features w
 Clone this repo and run these commands inside it:
 
 ```bash
+yarn
+yarn start-dev
+# visit http://localhost:9292/index-dev.html
+```
+
+or
+
+```bash
 npm i
 npm run start-dev
 # visit http://localhost:9292/index-dev.html
