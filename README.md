@@ -30,7 +30,8 @@ Explore latest JavaScript features with the help of several useful npm modules a
 7. _"Editor"_ section uses [default Ace shortcuts](https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts)
 8. There are additional shorcuts as well:
     - `Cmd/Ctrl + S` - hotkeys for save your code as public gist action
-    - `Cmd/Ctrl + E` - hotkeys for `▶ Execute`  button
+    - `Cmd/Ctrl + E` - hotkeys for `▶ Execute` button
+    - `Ctrl + Alt + F` - hotkeys for `Run Prettier` button
 
 ### Demos
 
@@ -76,7 +77,7 @@ npm run start-dev
 
 Inspired by awesomeness of [Babel.js REPL](http://babeljs.io/repl/) and [Requirebin](http://requirebin.com/).
 
-## Support 
+## Support
 
 We need your support to finish features that will bring the experience of prototyping Javascript apps to the next level:
 

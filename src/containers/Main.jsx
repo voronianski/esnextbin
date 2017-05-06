@@ -4,6 +4,7 @@ import Mousetrap from 'mousetrap';
 import Progress from 'react-progress-2';
 import * as Babel from 'babel-standalone';
 import querystring from 'querystring';
+import prettier from 'prettier-standalone';
 
 import Header from '../components/Header';
 import Editors from '../components/Editors';
@@ -89,12 +90,23 @@ class Main extends React.Component {
             e.preventDefault();
             this.handleSaveGist('public');
         });
+
+        mousetrap.bind(['ctrl+alt+f'], (e) => {
+            e.preventDefault();
+            this.handlePrettierClick();
+        });
     }
 
     handleRunClick() {
         if (this.state.bundling) return;
         const bundle = this._getBundle();
         bundle && this.setState({ bundle });
+    }
+
+    handlePrettierClick() {
+        const code = prettier.format(this.state.editorsData.code);
+        const editorsData = this._updateEditorsData({code});
+        this.setState({ editorsData });
     }
 
     handleChangeEditor(activeEditor) {
@@ -250,6 +262,7 @@ class Main extends React.Component {
                     autorunIsOn={autorunIsOn}
                     onShareClick={::this.openShareModal}
                     onRunClick={::this.handleRunClick}
+                    onPrettierClick={::this.handlePrettierClick}
                     onEditorClick={::this.handleChangeEditor}
                     onSaveGistClick={::this.handleSaveGist}
                     onResetEditors={::this.handleReset}

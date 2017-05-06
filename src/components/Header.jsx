@@ -7,6 +7,7 @@ class Header extends React.Component {
         activeEditor: PropTypes.string,
         isBundling: PropTypes.bool,
         onRunClick: PropTypes.func.isRequired,
+        onPrettierClick: PropTypes.func.isRequired,
         onEditorClick: PropTypes.func,
         onShareClick: PropTypes.func,
         onSaveGistClick: PropTypes.func,
@@ -130,6 +131,7 @@ class Header extends React.Component {
                         </button>
                         <div className={cx('fixed top-0 right-0 bottom-0 left-0', {hide: !dropdownVisible})} onClick={::this.hideDropdown} />
                         <div className="absolute right-0 mt1 nowrap white bg-black rounded h6 caps actions-dropdown-items" style={{visibility: dropdownVisible ? 'visible' : 'hidden'}}>
+                            <a href="#!" className="btn block" onClick={this.click('onPrettierClick')}>Run Prettier</a>
                             <a href="#!" className="btn block" onClick={this.saveGist('public')}>Save Gist</a>
                             <a href="#!" className="btn block" onClick={this.saveGist('private')}>Save Private Gist</a>
                             <a href="#!" className="btn block" onClick={this.click('onToggleAutorun')}>{autorunIsOn ? 'Disable Autorun' : 'Enable Autorun'}</a>
