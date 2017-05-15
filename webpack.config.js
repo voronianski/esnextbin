@@ -1,10 +1,8 @@
-'use strict';
-
-var webpack = require('webpack');
-var path = require('path');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var cssnext = require('postcss-cssnext');
-var postcssImport = require('postcss-import');
+const webpack = require('webpack');
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const cssnext = require('postcss-cssnext');
+const postcssImport = require('postcss-import');
 
 module.exports = {
   entry: {
@@ -47,8 +45,7 @@ module.exports = {
     }]
   },
 
-  postcss: function () {
-    return [postcssImport, cssnext]
+  postcss() {
+    return [postcssImport, cssnext];
   }
 };
-
