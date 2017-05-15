@@ -21,7 +21,7 @@
     "normalize.css": "^7.0.0",
     "prettier-standalone": "^1.2.2-4",
     "react": "^15.1.0",
-    "react-ace": "^4.0.0",
+    "react-ace": "^4.3.0",
     "react-dom": "^15.1.0",
     "react-hotkeys": "^0.10.0",
     "react-json-tree": "^0.10.0",
