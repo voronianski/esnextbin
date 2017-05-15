@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "babel-standalone": "^6.7.4",
-    "basscss": "7.0.x",
+    "basscss": "8.0.2",
     "basscss-background-images": "0.0.x",
     "basscss-btn-outline": "1.0.x",
     "basscss-btn-sizes": "1.1.x",
