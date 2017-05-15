@@ -24,7 +24,7 @@
     rules: {
         "strict": 0,
         "quotes": [2, "single"],
-        "indent": [2, 4, {SwitchCase: 1}],
+        "indent": [2, 2, {SwitchCase: 1}],
         "semi": [2, "always"],
         "no-underscore-dangle": 0,
         "no-unused-vars": 1,
