@@ -2,7 +2,7 @@
 
 > Create browser programs with [ES2015](https://babeljs.io/docs/learn-es2015/)'s latest features and use modules from [NPM](https://www.npmjs.com/) directly in your browser.
 
-[<img src="https://dl.dropboxusercontent.com/u/100463011/esnextbin-beta-demo.gif" width="650" />](http://esnextb.in)
+[<img src="esnextbin-beta-demo.gif" width="650" />](http://esnextb.in)
 
 ## How it works?
 
