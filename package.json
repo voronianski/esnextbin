@@ -4,7 +4,7 @@
   "description": "Prototype JavaScript programs in the browser with ESNext (a.k.a ES2015) syntax and features, using modules from NPM.",
   "main": "index.js",
   "dependencies": {
-    "babel-standalone": "^6.7.4",
+    "babel-standalone": "^6.24.2",
     "basscss": "7.0.x",
     "basscss-background-images": "0.0.x",
     "basscss-btn-outline": "1.0.x",
