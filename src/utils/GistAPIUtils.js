@@ -15,8 +15,6 @@ window.addEventListener('message', _getAuthCode, false);
 function _getAuthCode(e) {
   const code = e.data;
 
-  debugger;
-
   if (code) {
     getAccessToken(code, actionState.callback);
   }

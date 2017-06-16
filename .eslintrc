@@ -45,6 +45,7 @@
     "react/jsx-wrap-multilines": 1,
     "import/imports-first": 0,
     "import/no-extraneous-dependencies": 0,
+    "import/first": 0,
     "new-cap": 0,
     "no-extra-boolean-cast": 0,
     "yoda": 0,
