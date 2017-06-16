@@ -1,11 +1,8 @@
-[![build status](http://forthebadge.com/images/badges/built-with-love.svg)](https://travis-ci.org/voronianski/esnextbin)
-[![donate](http://forthebadge.com/images/badges/powered-by-electricity.svg)](https://www.paypal.me/voronianski/5)
-
 # ESNextbin
 
 > Create browser programs with [ES2015](https://babeljs.io/docs/learn-es2015/)'s latest features and use modules from [NPM](https://www.npmjs.com/) directly in your browser.
 
-[<img src="https://dl.dropboxusercontent.com/u/100463011/esnextbin-beta-demo.gif" width="650" />](http://esnextb.in)
+[<img src="esnextbin-beta-demo.gif" width="650" />](http://esnextb.in)
 
 ## How it works?
 
@@ -33,7 +30,8 @@ Explore latest JavaScript features with the help of several useful npm modules a
 7. _"Editor"_ section uses [default Ace shortcuts](https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts)
 8. There are additional shorcuts as well:
     - `Cmd/Ctrl + S` - hotkeys for save your code as public gist action
-    - `Cmd/Ctrl + E` - hotkeys for `▶ Execute`  button
+    - `Cmd/Ctrl + E` - hotkeys for `▶ Execute` button
+    - `Ctrl + Alt + F` - hotkeys for `Run Prettier` button
 
 ### Demos
 
@@ -49,14 +47,117 @@ There are several examples for you to play with:
 - [D3](http://esnextb.in/?gist=9eac7e72521c21e98817&execute=true)
 - [Vue 2.0 + Vuex](http://esnextb.in/?gist=bd1916ac0c96d75785f8433249967eb2&execute=true)
 - [Pixi.js Basic Example](https://esnextb.in/?gist=f6a3a6197346d4168a5fbbc3ef6b0747&exec=true)
+- [JSX to document.createElement](https://esnextb.in/?gist=f81cbfcb65f3bfbc0d1c5ccc3c748ca5&exec=true)
+- [Reactive view with Proxies and virtual-dom](https://esnextb.in/?gist=8e8b74861f299a672075ae155a86f444&exec=true)
+- [Unidirectional dataflow with Barracks and virtual-dom](https://esnextb.in/?gist=1fbca0bc6537a402e915c0cee53aa4a7&exec=true)
 
 ## Contributing
 
 Please suggest what can be improved, report a bug or ask for a missed features while raising an [issue](https://github.com/voronianski/esnextbin/issues).
 
+## Development
+
+Clone this repo and run these commands inside it:
+
+```bash
+yarn
+yarn start-dev
+# visit http://localhost:9292/index-dev.html
+```
+
+or
+
+```bash
+npm i
+npm run start-dev
+# visit http://localhost:9292/index-dev.html
+```
+
 ## References
 
 Inspired by awesomeness of [Babel.js REPL](http://babeljs.io/repl/) and [Requirebin](http://requirebin.com/).
+
+## Support
+
+We need your support to finish features that will bring the experience of prototyping Javascript apps to the next level:
+
+- [ ] our own browserify server in order to replace https://wzrd.in (fixes [#5](https://github.com/voronianski/esnextbin/issues/5))
+- [ ] add console preview
+- [ ] add support for embedding sketches (medium blogs, third-party websites etc.)
+
+And whatever you can imagine! Just create an [issue](https://github.com/voronianski/esnextbin/issues) with your suggestions.
+
+### Backers
+Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/esnextbin#backer)]
+
+<a href="https://opencollective.com/esnextbin/backer/0/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/0/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/1/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/1/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/2/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/2/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/3/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/3/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/4/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/4/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/5/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/5/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/6/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/6/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/7/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/7/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/8/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/8/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/9/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/9/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/10/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/10/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/11/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/11/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/12/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/12/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/13/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/13/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/14/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/14/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/15/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/15/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/16/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/16/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/17/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/17/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/18/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/18/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/19/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/19/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/20/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/20/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/21/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/21/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/22/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/22/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/23/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/23/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/24/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/24/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/25/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/25/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/26/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/26/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/27/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/27/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/28/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/28/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/29/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/29/avatar.svg"></a>
+
+### Sponsors
+
+Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://opencollective.com/esnextbin#sponsor)]
+
+<a href="https://opencollective.com/esnextbin/sponsor/0/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/1/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/2/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/3/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/4/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/5/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/6/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/7/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/8/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/9/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/9/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/10/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/10/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/11/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/11/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/12/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/12/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/13/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/13/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/14/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/14/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/15/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/15/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/16/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/16/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/17/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/17/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/18/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/18/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/19/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/19/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/20/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/20/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/21/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/21/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/22/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/22/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/23/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/23/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/24/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/24/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/25/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/25/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/26/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/26/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/27/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/27/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/28/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/28/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/29/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/29/avatar.svg"></a>
+
+[![build status](http://forthebadge.com/images/badges/built-with-love.svg)](https://travis-ci.org/voronianski/esnextbin)
+[![donate](http://forthebadge.com/images/badges/powered-by-electricity.svg)](https://www.paypal.me/voronianski/5)
 
 ## License
 

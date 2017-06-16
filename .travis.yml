@@ -1,6 +1,13 @@
 language: node_js
 node_js:
+  - stable
   - 6
   - 4
+
+cache:
+  yarn: true
+  directories:
+    - node_modules
+
 before_script:
-  - npm run lint
+  - yarn lint
