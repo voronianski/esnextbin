@@ -8,7 +8,7 @@ const GITHUB_AUTH_URL = 'https://github.com/login/oauth/authorize';
 const GITHUB_GISTS_API = 'https://api.github.com/gists';
 const COOKIE_TTL = 60 * 60 * 24 * 30 * 6; // 6 months
 
-let actionState = {};
+let actionState = {callback: () => {}};
 
 window.addEventListener('message', _getAuthCode, false);
 
@@ -21,7 +21,10 @@ function _getAuthCode(e) {
 }
 
 export function authorize(callback) {
-  if (callback) actionState.callback = callback;
+  if (callback) {
+    actionState.callback = callback;
+  }
+
   window.open(`${GITHUB_AUTH_URL}?client_id=${config.GITHUB_CLIENT_ID}&scope=gist`);
 }
 
@@ -32,6 +35,7 @@ export function unauthorize() {
 export function getAccessToken(code, callback) {
   if (!code) {
     const err = new Error('Impossible to get access token, code is not present');
+
     return callback(err);
   }
 

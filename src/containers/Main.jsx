@@ -98,14 +98,19 @@ class Main extends React.Component {
   }
 
   handleRunClick() {
-    if (this.state.bundling) return;
+    if (this.state.bundling) {
+      return;
+    }
+
     const bundle = this._getBundle();
+
     bundle && this.setState({ bundle });
   }
 
   handlePrettierClick() {
     const code = prettier.format(this.state.editorsData.code);
-    const editorsData = this._updateEditorsData({code});
+    const editorsData = this._updateEditorsData({ code });
+
     this.setState({ editorsData });
   }
 
@@ -114,7 +119,10 @@ class Main extends React.Component {
   }
 
   handleStartBundle() {
-    if (this.state.bundling) return;
+    if (this.state.bundling) {
+      return;
+    }
+
     this.progressDelay = setTimeout(() => {
       this.setState({bundling: true});
       Progress.show();
@@ -182,6 +190,7 @@ class Main extends React.Component {
 
   toggleAutorun() {
     const autorunIsOn = !this.state.autorunIsOn;
+
     StorageUtils.saveToSession('autorun', autorunIsOn);
     this.setState({ autorunIsOn });
   }
@@ -240,6 +249,7 @@ class Main extends React.Component {
     const editorsData = this._updateEditorsData({
       json: JSON.stringify(updatedPackage, null, 2)
     });
+
     this.setState({ editorsData });
   }
 
