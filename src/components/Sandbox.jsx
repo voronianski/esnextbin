@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import BrowserSandbox from 'browser-module-sandbox';
 import config from '../config';
 
@@ -32,7 +33,7 @@ class Sandbox extends React.Component {
       cdn: config.BROWSERIFY_CDN,
       container: this.refs.sandbox,
       cacheOpts: {
-                // enable inMemory for FF due to leveljs (via https://github.com/shama/browser-module-cache) issues in v48
+        // enable inMemory for FF due to leveljs (via https://github.com/shama/browser-module-cache) issues in v48
         inMemory: isFirefox
       },
       iframeStyle: 'body, html { height: 100%; width: 100%; overflow: auto }',
@@ -40,7 +41,10 @@ class Sandbox extends React.Component {
     });
 
     this.sandbox.on('modules', modules => {
-      if (!modules.length) return;
+      if (!modules.length) {
+        return;
+      }
+
       onModules && onModules(modules);
     });
     this.sandbox.on('bundleStart', () => {
@@ -69,6 +73,7 @@ class Sandbox extends React.Component {
 
   render() {
     const { bundle } = this.props;
+
     return (
       <div ref="sandbox" className="sandbox border-left">
         {!bundle.html ? (
@@ -79,13 +84,19 @@ class Sandbox extends React.Component {
   }
 
   _getTag(html = '', tag) {
-    if (!html) return;
+    if (!html) {
+      return;
+    }
+
     const start = html.indexOf(`<${tag}>`);
     const end = html.indexOf(`</${tag}>`);
+
     if (start === -1 || end === -1) {
       return '';
     }
+
     const body = html.slice(start + tag.length + 2, end);
+
     return body;
   }
 }

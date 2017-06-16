@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 class Header extends React.Component {
@@ -62,6 +63,7 @@ class Header extends React.Component {
 
   click(handler) {
     const fn = this.props[handler];
+
     return e => {
       e.preventDefault();
       this.hideDropdown();
@@ -105,7 +107,7 @@ class Header extends React.Component {
                 >
                   {b.id}
                 </button>
-                );
+              );
             })}
           </div>
         </div>

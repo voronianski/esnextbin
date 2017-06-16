@@ -1,8 +1,7 @@
-const webpack = require('webpack');
 const path = require('path');
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const cssnext = require('postcss-cssnext');
-const postcssImport = require('postcss-import');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -22,30 +21,30 @@ module.exports = {
         'NODE_ENV': JSON.stringify('production')
       }
     }),
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: { warnings: false },
       output: { comments: false }
     }),
-    new ExtractTextPlugin('[name].min.css')
+    new ExtractTextPlugin('[name].min.css'),
+    new OptimizeCssAssetsPlugin()
   ],
 
   resolve: {
-    extensions: ['', '.js', '.jsx', 'json']
+    extensions: ['.js', '.jsx', 'json']
   },
 
   module: {
-    loaders: [{
+    rules: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
-      loader: 'babel'
+      loader: 'babel-loader'
     }, {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract('style-loader', 'css!postcss')
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: ['css-loader', 'postcss-loader']
+      })
     }]
-  },
-
-  postcss() {
-    return [postcssImport, cssnext];
   }
 };
