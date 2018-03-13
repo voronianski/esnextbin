@@ -51,6 +51,7 @@
     "husky": "^0.13.4",
     "nodemon": "^1.11.0",
     "optimize-css-assets-webpack-plugin": "^2.0.0",
+    "pingster": "^1.0.5",
     "postcss-cssnext": "^2.11.0",
     "postcss-import": "^10.0.0",
     "postcss-loader": "^2.0.6",
@@ -66,7 +67,8 @@
     "lint": "eslint --ext .js --ext .jsx ./src ",
     "lint-dev": "eslint --ext .js --ext .jsx --fix ./src",
     "test": "echo \"Comming soon ;)\" && exit 0",
-    "prepush": "npm run lint-dev"
+    "prepush": "npm run lint-dev",
+    "pingster": "pingster ."
   },
   "repository": {
     "type": "git",

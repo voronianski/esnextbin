@@ -1,0 +1,13 @@
+wzrdin-vue:
+  url: https://wzrd.in/standalone/vue@latest
+  expect:
+    status: 200
+    headers:
+      content-type: text/javascript
+
+wzrdin-react:
+  url: https://wzrd.in/standalone/react@latest
+  expect:
+    status: 200
+    headers:
+      content-type: text/javascript
