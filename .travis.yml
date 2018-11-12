@@ -7,4 +7,4 @@ node_js:
 cache: npm
 
 before_script:
-  - npm lint
+  - npm run lint
