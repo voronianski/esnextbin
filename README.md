@@ -60,14 +60,6 @@ Please suggest what can be improved, report a bug or ask for a missed features w
 Clone this repo and run these commands inside it:
 
 ```bash
-yarn
-yarn start-dev
-# visit http://localhost:9292/index-dev.html
-```
-
-or
-
-```bash
 npm i
 npm run start-dev
 # visit http://localhost:9292/index-dev.html
@@ -88,6 +80,7 @@ We need your support to finish features that will bring the experience of protot
 And whatever you can imagine! Just create an [issue](https://github.com/voronianski/esnextbin/issues) with your suggestions.
 
 ### Backers
+
 Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/esnextbin#backer)]
 
 <a href="https://opencollective.com/esnextbin/backer/0/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/0/avatar.svg"></a>

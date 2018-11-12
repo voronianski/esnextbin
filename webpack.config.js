@@ -1,13 +1,22 @@
+const env = process.env.NODE_ENV || 'development';
+
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const isProduction = (env === 'production');
 
 module.exports = {
+  mode: isProduction ? 'production' : 'development',
+
+  devtool: 'eval',
+
+  target: 'web',
+
   entry: {
-    app: './src/app',
-    embed: './src/embed'
+    app: './src/app'
   },
 
   output: {
@@ -16,19 +25,28 @@ module.exports = {
     publicPath: '/build'
   },
 
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        parallel: true,
+        uglifyOptions: {
+          compress: { warnings: false },
+          output: { comments: false }
+        }
+      }),
+      new OptimizeCssAssetsPlugin({})
+    ]
+  },
+
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('production')
+        NODE_ENV: JSON.stringify(env)
       }
     }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false, screw_ie8: true },
-      output: { comments: false }
+    new MiniCssExtractPlugin({
+      filename: getFilename('css')
     }),
-    new ExtractTextPlugin('[name].min.css'),
-    new OptimizeCssAssetsPlugin(),
     new CompressionPlugin({
       asset: '[path].gz[query]',
       algorithm: 'gzip',
@@ -49,10 +67,15 @@ module.exports = {
       loader: 'babel-loader'
     }, {
       test: /\.css$/,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: ['css-loader', 'postcss-loader']
-      })
+      use: [
+        MiniCssExtractPlugin.loader,
+        'css-loader',
+        'postcss-loader'
+      ]
     }]
   }
 };
+
+function getFilename (ext) {
+  return isProduction ? `app.min.${ext}` : `app.${ext}`;
+}

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Mousetrap from 'mousetrap';
-import Progress from 'react-progress-2';
-import * as Babel from 'babel-standalone';
 import querystring from 'querystring';
+import Progress from 'react-progress-2';
+import * as Babel from '@babel/standalone';
 import prettier from 'prettier-standalone';
 
 import Header from '../components/Header';
@@ -40,17 +40,25 @@ class Main extends React.Component {
 
     const gistId = this.query.gist;
     const sha = this.query.rev || this.query.sha;
+
     if (gistId) {
       StorageUtils.turnOffSession();
       Progress.show();
-      GistAPIUtils.getGist({id: gistId, sha}, (err, gistSession) => {
+      GistAPIUtils.getGist({ id: gistId, sha }, (err, gistSession) => {
         Progress.hide();
+
         if (err) {
           console.log(err); // show special error on page
           return;
         }
-        const { transpiledCode, error } = this._transpileCodeAndCatch(gistSession.code);
-        const editorsData = this._updateEditorsData(Object.assign(gistSession, { transpiledCode, error }));
+
+        const { transpiledCode, error } = this._transpileCodeAndCatch(
+          gistSession.code
+        );
+        const editorsData = this._updateEditorsData(
+          Object.assign(gistSession, { transpiledCode, error })
+        );
+
         this.setState({ editorsData });
 
         if (this.query.execute || this.query.exec) {
@@ -66,14 +74,23 @@ class Main extends React.Component {
 
   checkPreviousSession() {
     const session = StorageUtils.getSession();
+
     if (session) {
       const newState = {};
       const { autorun, ...editorsDataSession } = session;
+
       if (autorun) {
         newState.autorunIsOn = autorun;
       }
-      const { transpiledCode, error } = this._transpileCodeAndCatch(session.code);
-      newState.editorsData = this._updateEditorsData(Object.assign(editorsDataSession, { transpiledCode, error }));
+
+      const { transpiledCode, error } = this._transpileCodeAndCatch(
+        session.code
+      );
+
+      newState.editorsData = this._updateEditorsData(
+        Object.assign(editorsDataSession, { transpiledCode, error })
+      );
+
       this.setState(newState);
     }
   }
@@ -81,17 +98,17 @@ class Main extends React.Component {
   bindKeyShortcuts() {
     const mousetrap = Mousetrap(ReactDOM.findDOMNode(this));
 
-    mousetrap.bind(['command+e', 'ctrl+e'], (e) => {
+    mousetrap.bind(['command+e', 'ctrl+e'], e => {
       e.preventDefault();
       this.handleRunClick();
     });
 
-    mousetrap.bind(['command+s', 'ctrl+s'], (e) => {
+    mousetrap.bind(['command+s', 'ctrl+s'], e => {
       e.preventDefault();
       this.handleSaveGist('public');
     });
 
-    mousetrap.bind(['ctrl+alt+f'], (e) => {
+    mousetrap.bind(['ctrl+alt+f'], e => {
       e.preventDefault();
       this.handlePrettierClick();
     });
@@ -124,7 +141,7 @@ class Main extends React.Component {
     }
 
     this.progressDelay = setTimeout(() => {
-      this.setState({bundling: true});
+      this.setState({ bundling: true });
       Progress.show();
     }, 100);
   }
@@ -138,6 +155,7 @@ class Main extends React.Component {
       const { editorsData } = this.state;
       const fn = (err, res, isFork) => {
         Progress.hideAll();
+
         if (err) {
           console.log(err); // show special error on page
           return;
@@ -146,6 +164,7 @@ class Main extends React.Component {
         if (!gistId || isFork) {
           window.location.search = `gist=${res.body.id}`;
         }
+
         this.finishHandleEndBundle();
       };
 
@@ -163,23 +182,23 @@ class Main extends React.Component {
 
   finishHandleEndBundle() {
     Progress.hideAll();
-    this.setState({bundling: false});
+    this.setState({ bundling: false });
   }
 
   handleSaveGist(status) {
     Progress.show();
 
-        // talk with gist API on endBundle event of sandbox
+    // talk with gist API on endBundle event of sandbox
     this.triggerGist = status;
     this.handleRunClick();
   }
 
   openShareModal() {
-    this.setState({shareModal: true});
+    this.setState({ shareModal: true });
   }
 
   closeShareModal() {
-    this.setState({shareModal: false});
+    this.setState({ shareModal: false });
   }
 
   handleReset() {
@@ -210,13 +229,21 @@ class Main extends React.Component {
 
     clearTimeout(this.errorDelay);
     const { transpiledCode, error } = this._transpileCodeAndCatch(code);
+
     if (error) {
       this.errorDelay = setTimeout(() => {
-        const editorsData = this._updateEditorsData({error});
+        const editorsData = this._updateEditorsData({ error });
+
         this.setState({ editorsData });
       }, 1000);
     }
-    const editorsData = this._updateEditorsData({code, transpiledCode, error: ''});
+
+    const editorsData = this._updateEditorsData({
+      code,
+      transpiledCode,
+      error: ''
+    });
+
     this.setState({ editorsData });
 
     if (this.state.autorunIsOn) {
@@ -227,14 +254,16 @@ class Main extends React.Component {
   handleHTMLChange(html) {
     StorageUtils.saveToSession('html', html);
 
-    const editorsData = this._updateEditorsData({html, error: ''});
+    const editorsData = this._updateEditorsData({ html, error: '' });
+
     this.setState({ editorsData });
   }
 
   handlePackageChange(json) {
     StorageUtils.saveToSession('json', json);
 
-    const editorsData = this._updateEditorsData({json, error: ''});
+    const editorsData = this._updateEditorsData({ json, error: '' });
+
     this.setState({ editorsData });
   }
 
@@ -259,7 +288,13 @@ class Main extends React.Component {
   }
 
   render() {
-    const { bundle, editorsData, activeEditor, autorunIsOn, bundling } = this.state;
+    const {
+      bundle,
+      editorsData,
+      activeEditor,
+      autorunIsOn,
+      bundling
+    } = this.state;
 
     return (
       <div className="main">
@@ -280,25 +315,25 @@ class Main extends React.Component {
         />
 
         <div className="content" tabIndex="-1">
-            <Editors
-              active={activeEditor}
-              code={editorsData.code}
-              html={editorsData.html}
-              json={editorsData.json}
-              error={editorsData.error}
-              headerHeight={Defaults.HEADER_HEIGHT}
-              onCodeChange={::this.handleCodeChange}
-              onHTMLChange={::this.handleHTMLChange}
-              onPackageChange={::this.handlePackageChange}
-            />
+          <Editors
+            active={activeEditor}
+            code={editorsData.code}
+            html={editorsData.html}
+            json={editorsData.json}
+            error={editorsData.error}
+            headerHeight={Defaults.HEADER_HEIGHT}
+            onCodeChange={::this.handleCodeChange}
+            onHTMLChange={::this.handleHTMLChange}
+            onPackageChange={::this.handlePackageChange}
+          />
 
-            <Sandbox
-              bundle={bundle}
-              onModules={::this.handleDependencies}
-              onStartBundle={::this.handleStartBundle}
-              onErrorBundle={::this.handleErrorBundle}
-              onEndBundle={::this.handleEndBundle}
-            />
+          <Sandbox
+            bundle={bundle}
+            onModules={::this.handleDependencies}
+            onStartBundle={::this.handleStartBundle}
+            onErrorBundle={::this.handleErrorBundle}
+            onEndBundle={::this.handleEndBundle}
+          />
         </div>
       </div>
     );
