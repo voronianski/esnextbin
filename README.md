@@ -6,7 +6,7 @@
 
 ## How it works?
 
-- The code gets transpiled by [Babel.js](http://babeljs.io/) v6 with `stage-0`, `es2015` and `react` presets enabled
+- The code gets transpiled by latest standalone version of [Babel.js](http://babeljs.io/) with `stage-0`, `es2015` and `react` presets enabled
 - [Browserify-CDN](https://wzrd.in/) is responsible for importing npm modules and browserifying them on the fly
 - [Github Gists](https://gist.github.com/) are used for saving and sharing code sketches
 
@@ -61,7 +61,7 @@ Clone this repo and run these commands inside it:
 
 ```bash
 npm i
-npm run start-dev
+npm run dev
 # visit http://localhost:9292/index-dev.html
 ```
 
@@ -70,14 +70,6 @@ npm run start-dev
 Inspired by awesomeness of [Babel.js REPL](http://babeljs.io/repl/) and [Requirebin](http://requirebin.com/).
 
 ## Support
-
-We need your support to finish features that will bring the experience of prototyping Javascript apps to the next level:
-
-- [ ] our own browserify server in order to replace https://wzrd.in (fixes [#5](https://github.com/voronianski/esnextbin/issues/5))
-- [ ] add console preview
-- [ ] add support for embedding sketches (medium blogs, third-party websites etc.)
-
-And whatever you can imagine! Just create an [issue](https://github.com/voronianski/esnextbin/issues) with your suggestions.
 
 ### Backers
 
@@ -152,6 +144,6 @@ Become a sponsor and get your logo on our README on Github with a link to your s
 [![build status](http://forthebadge.com/images/badges/built-with-love.svg)](https://travis-ci.org/voronianski/esnextbin)
 [![donate](http://forthebadge.com/images/badges/powered-by-electricity.svg)](https://www.paypal.me/voronianski/5)
 
-## License
+---
 
-BSD-2-Clause
+**MIT Licensed**
