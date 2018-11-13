@@ -81,7 +81,6 @@ class Header extends React.Component {
           <a href="/" className="caps regular btn py1 m0 logo">
             <img src="assets/js.svg" width="20" className="inline-block left" />
             <span className="inline-block align-middle left text">ESNextBin</span>
-            <sup>beta</sup>
           </a>
         </div>
 
@@ -133,14 +132,16 @@ class Header extends React.Component {
             </button>
             <div className={cx('fixed top-0 right-0 bottom-0 left-0', {hide: !dropdownVisible})} onClick={::this.hideDropdown} />
             <div className="absolute right-0 mt1 nowrap white bg-black rounded h6 caps actions-dropdown-items" style={{visibility: dropdownVisible ? 'visible' : 'hidden'}}>
-              <a href="#!" className="btn block" onClick={this.click('onPrettierClick')}>Run Prettier</a>
+              <a href="#!" className="btn block" onClick={this.click('onPrettierClick')}>
+                <span>Run Prettier</span>
+                <sup>beta</sup>
+              </a>
               <a href="#!" className="btn block" onClick={this.saveGist('public')}>Save Gist</a>
               <a href="#!" className="btn block" onClick={this.saveGist('private')}>Save Private Gist</a>
               <a href="#!" className="btn block" onClick={this.click('onToggleAutorun')}>{autorunIsOn ? 'Disable Autorun' : 'Enable Autorun'}</a>
               {/* TBD: <a href="#!" className="btn block" onClick={this.click('onShareClick')}>Share Sketch</a>*/}
               <a href="#!" className="btn block" onClick={this.click('onResetEditors')}>Clean Session</a>
               <a href="https://github.com/voronianski/esnextbin" target="_blank" className="btn block">Star on Github</a>
-              <a href="https://github.com/voronianski/esnextbin/issues/new" target="_blank" className="btn block">Report Issue</a>
               <a href="https://www.paypal.me/voronianski" target="_blank" className="btn block">Support Project</a>
             </div>
           </div>

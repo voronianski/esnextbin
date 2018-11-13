@@ -21,7 +21,7 @@ module.exports = {
 
   output: {
     path: path.join(__dirname, 'build'),
-    filename: '[name].min.js',
+    filename: getFilename('js'),
     publicPath: '/build'
   },
 
@@ -48,8 +48,6 @@ module.exports = {
       filename: getFilename('css')
     }),
     new CompressionPlugin({
-      asset: '[path].gz[query]',
-      algorithm: 'gzip',
       test: /\.js$/,
       threshold: 10240,
       minRatio: 0

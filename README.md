@@ -1,6 +1,6 @@
-# ESNextbin
+# esnextb.in
 
-> Create browser programs with [ES2015](https://babeljs.io/docs/learn-es2015/)'s latest features and use modules from [NPM](https://www.npmjs.com/) directly in your browser.
+> Prototype JavaScript apps in the browser with [ES2015](https://babeljs.io/docs/learn-es2015/)'s latest features and importing modules directly from [NPM](https://www.npmjs.com/).
 
 [<img src="esnextbin-beta-demo.gif" width="650" />](http://esnextb.in)
 
@@ -73,10 +73,10 @@ Inspired by awesomeness of [Babel.js REPL](http://babeljs.io/repl/) and [Require
 
 ### Backers
 
-Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/esnextbin#backer)]
+Support project with a monthly donation and help to continue activities. [Become a backer](https://opencollective.com/esnextbin#backer)
 
-<!-- <a href="https://opencollective.com/esnextbin/backer/0/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/0/avatar.svg"></a>
-<a href="https://opencollective.com/esnextbin/backer/1/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/1/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/backer/0/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/0/avatar.svg"></a>
+<!-- <a href="https://opencollective.com/esnextbin/backer/1/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/1/avatar.svg"></a>
 <a href="https://opencollective.com/esnextbin/backer/2/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/2/avatar.svg"></a>
 <a href="https://opencollective.com/esnextbin/backer/3/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/3/avatar.svg"></a>
 <a href="https://opencollective.com/esnextbin/backer/4/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/4/avatar.svg"></a>
@@ -108,10 +108,11 @@ Support us with a monthly donation and help us continue our activities. [[Become
  -->
 ### Sponsors
 
-Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://opencollective.com/esnextbin#sponsor)]
+Become a sponsor and get your logo on this README with a link to your site. [Become a sponsor](https://opencollective.com/esnextbin#sponsor)
 
-<!-- <a href="https://opencollective.com/esnextbin/sponsor/0/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/0/avatar.svg"></a>
-<a href="https://opencollective.com/esnextbin/sponsor/1/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/esnextbin/sponsor/0/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/0/avatar.svg"></a>
+
+<!-- <a href="https://opencollective.com/esnextbin/sponsor/1/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/1/avatar.svg"></a>
 <a href="https://opencollective.com/esnextbin/sponsor/2/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/2/avatar.svg"></a>
 <a href="https://opencollective.com/esnextbin/sponsor/3/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/3/avatar.svg"></a>
 <a href="https://opencollective.com/esnextbin/sponsor/4/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/4/avatar.svg"></a>

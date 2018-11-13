@@ -6,7 +6,7 @@ export const BABEL_OPTIONS = {
   presets: [
     'es2015',
     'react',
-    'stage-0'
+    ['stage-0', {decoratorsBeforeExport: true}]
   ],
   plugins: [
     'transform-object-assign',

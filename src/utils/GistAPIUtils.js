@@ -159,7 +159,7 @@ export function getGistDataFormat(data = {}, status = 'public', gistId) {
         content: data.html.trim() || DefaultsUtil.HTML
       },
       'package.json': {
-        content: data.json.trim() || DefaultsUtil.JSON
+        content: data.json.trim() || DefaultsUtil.PACKAGE_JSON
       },
       'esnextbin.md': {
         content: `made with [esnextbin](${markdownLink})`
@@ -176,7 +176,7 @@ export function getEditorsDataFromGist(files) {
   return {
     code: files['index.js'].content,
     html: (files['index.html'] && files['index.html'].content) || DefaultsUtil.HTML,
-    json: (files['package.json'] && files['package.json'].content) || DefaultsUtil.JSON
+    json: (files['package.json'] && files['package.json'].content) || DefaultsUtil.PACKAGE_JSON
   };
 }
 
