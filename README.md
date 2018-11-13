@@ -73,7 +73,7 @@ Inspired by awesomeness of [Babel.js REPL](http://babeljs.io/repl/) and [Require
 
 ### Backers
 
-Support project with a monthly donation and help to continue activities. [Become a backer](https://opencollective.com/esnextbin#backer)
+Support project with a monthly donation and help to continue its' development. [Become a backer](https://opencollective.com/esnextbin#backer)
 
 <a href="https://opencollective.com/esnextbin/backer/0/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/0/avatar.svg"></a>
 <!-- <a href="https://opencollective.com/esnextbin/backer/1/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/1/avatar.svg"></a>
