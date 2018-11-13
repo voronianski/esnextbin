@@ -56,9 +56,9 @@
   },
   "scripts": {
     "build": "NODE_ENV=production webpack --config webpack.config --progress --colors",
-    "watch": "webpack --config webpack.config.dev --colors --watch",
-    "start": "node ./devServer.js",
-    "dev": "npm run watch & nodemon ./devServer.js",
+    "watch": "webpack --config webpack.config --colors --watch",
+    "server": "nodemon ./devServer.js",
+    "dev": "npm run watch & npm run server",
     "lint": "eslint --ext .js --ext .jsx --fix ./src",
     "test": "echo \"Comming soon ;)\" && exit 0",
     "pre-commit": "pretty-quick --staged",
@@ -95,7 +95,7 @@
     "not op_mini all"
   ],
   "author": "Dmitri Voronianski <dmitri.voronianski@gmail.com>",
-  "license": "BSD-2-Clause",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/voronianski/esnextbin/issues"
   },
