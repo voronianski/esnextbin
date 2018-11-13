@@ -75,7 +75,7 @@ Inspired by awesomeness of [Babel.js REPL](http://babeljs.io/repl/) and [Require
 
 Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/esnextbin#backer)]
 
-<a href="https://opencollective.com/esnextbin/backer/0/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/0/avatar.svg"></a>
+<!-- <a href="https://opencollective.com/esnextbin/backer/0/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/0/avatar.svg"></a>
 <a href="https://opencollective.com/esnextbin/backer/1/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/1/avatar.svg"></a>
 <a href="https://opencollective.com/esnextbin/backer/2/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/2/avatar.svg"></a>
 <a href="https://opencollective.com/esnextbin/backer/3/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/3/avatar.svg"></a>
@@ -105,12 +105,12 @@ Support us with a monthly donation and help us continue our activities. [[Become
 <a href="https://opencollective.com/esnextbin/backer/27/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/27/avatar.svg"></a>
 <a href="https://opencollective.com/esnextbin/backer/28/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/28/avatar.svg"></a>
 <a href="https://opencollective.com/esnextbin/backer/29/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/29/avatar.svg"></a>
-
+ -->
 ### Sponsors
 
 Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://opencollective.com/esnextbin#sponsor)]
 
-<a href="https://opencollective.com/esnextbin/sponsor/0/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/0/avatar.svg"></a>
+<!-- <a href="https://opencollective.com/esnextbin/sponsor/0/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/0/avatar.svg"></a>
 <a href="https://opencollective.com/esnextbin/sponsor/1/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/1/avatar.svg"></a>
 <a href="https://opencollective.com/esnextbin/sponsor/2/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/2/avatar.svg"></a>
 <a href="https://opencollective.com/esnextbin/sponsor/3/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/3/avatar.svg"></a>
@@ -140,7 +140,7 @@ Become a sponsor and get your logo on our README on Github with a link to your s
 <a href="https://opencollective.com/esnextbin/sponsor/27/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/27/avatar.svg"></a>
 <a href="https://opencollective.com/esnextbin/sponsor/28/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/28/avatar.svg"></a>
 <a href="https://opencollective.com/esnextbin/sponsor/29/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/29/avatar.svg"></a>
-
+ -->
 [![build status](http://forthebadge.com/images/badges/built-with-love.svg)](https://travis-ci.org/voronianski/esnextbin)
 [![donate](http://forthebadge.com/images/badges/powered-by-electricity.svg)](https://www.paypal.me/voronianski/5)
 
