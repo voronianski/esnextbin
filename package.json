@@ -103,7 +103,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged"
+      "pre-commit": "pretty-quick --staged --ignore-path ./public"
     }
   },
   "browserslist": [
