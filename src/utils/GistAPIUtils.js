@@ -8,7 +8,7 @@ const GITHUB_AUTH_URL = 'https://github.com/login/oauth/authorize';
 const GITHUB_GISTS_API = 'https://api.github.com/gists';
 const COOKIE_TTL = 60 * 60 * 24 * 30 * 6; // 6 months
 
-let actionState; = {callback: () => {}};
+let actionState = { callback: () => {} };
 
 window.addEventListener('message', _getAuthCode, false);
 
@@ -25,7 +25,9 @@ export function authorize(callback) {
     actionState.callback = callback;
   }
 
-  window.open(`${GITHUB_AUTH_URL}?client_id=${config.GITHUB_CLIENT_ID}&scope=gist`);
+  window.open(
+    `${GITHUB_AUTH_URL}?client_id=${config.GITHUB_CLIENT_ID}&scope=gist`
+  );
 }
 
 export function unauthorize() {
@@ -34,7 +36,9 @@ export function unauthorize() {
 
 export function getAccessToken(code, callback) {
   if (!code) {
-    const err = new Error('Impossible to get access token, code is not present');
+    const err = new Error(
+      'Impossible to get access token, code is not present'
+    );
 
     return callback(err);
   }
@@ -157,9 +161,9 @@ export function getGist({ id, sha }, callback) {
 }
 
 export function getGistDataFormat(data = {}, status = 'public', gistId) {
-  const markdownLink = gistId ?
-    `http://esnextb.in/?gist=${gistId}` :
-    'http://esnextb.in';
+  const markdownLink = gistId
+    ? `http://esnextb.in/?gist=${gistId}`
+    : 'http://esnextb.in';
 
   return {
     description: 'esnextbin sketch',
@@ -191,7 +195,10 @@ export function getEditorsDataFromGist(files) {
 
   return {
     code: files['index.js'].content,
-    html: (files['index.html'] && files['index.html'].content) || DefaultsUtil.HTML,
-    json: (files['package.json'] && files['package.json'].content) || DefaultsUtil.PACKAGE_JSON
+    html:
+      (files['index.html'] && files['index.html'].content) || DefaultsUtil.HTML,
+    json:
+      (files['package.json'] && files['package.json'].content) ||
+      DefaultsUtil.PACKAGE_JSON
   };
 }
