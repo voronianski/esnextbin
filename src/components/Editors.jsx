@@ -51,10 +51,12 @@ class Editors extends React.Component {
 
     return (
       <div className="editorbox">
-        <div className={cx('edit-code', {
-          'hide': active !== 'code',
-          'has-error': !!error
-        })}>
+        <div
+          className={cx('edit-code', {
+            'hide': active !== 'code',
+            'has-error': !!error
+          })}
+        >
           <Ace
             name="codeEditor"
             mode="jsx"
@@ -65,12 +67,12 @@ class Editors extends React.Component {
             height="auto"
             onChange={this.handleChange('onCodeChange')}
             showPrintMargin={false}
-            editorProps={{$blockScrolling: Infinity}}
+            editorProps={{ $blockScrolling: Infinity }}
             enableBasicAutocompletion={true}
           />
         </div>
 
-        <div className={cx('edit-html', {hide: active !== 'html'})}>
+        <div className={cx('edit-html', { hide: active !== 'html' })}>
           <Ace
             name="htmlEditor"
             mode="html"
@@ -81,13 +83,13 @@ class Editors extends React.Component {
             height="auto"
             onChange={this.handleChange('onHTMLChange')}
             showPrintMargin={false}
-            editorProps={{$blockScrolling: Infinity}}
+            editorProps={{ $blockScrolling: Infinity }}
             enableBasicAutocompletion={true}
-            setOptions={{enableEmmet: true}}
+            setOptions={{ enableEmmet: true }}
           />
         </div>
 
-        <div className={cx('edit-package', {hide: active !== 'package'})}>
+        <div className={cx('edit-package', { hide: active !== 'package' })}>
           <Ace
             name="packageEditor"
             mode="json"
@@ -98,13 +100,11 @@ class Editors extends React.Component {
             height="auto"
             onChange={this.handleChange('onPackageChange')}
             showPrintMargin={false}
-            editorProps={{$blockScrolling: Infinity}}
+            editorProps={{ $blockScrolling: Infinity }}
           />
         </div>
 
-        {error ? (
-          <div className="code-error">{error.message}</div>
-        ) : <span />}
+        {error ? <div className="code-error">{error.message}</div> : <span />}
       </div>
     );
   }

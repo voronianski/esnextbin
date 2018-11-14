@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import BrowserSandbox from 'browser-module-sandbox';
 import config from '../config';
 
-const isFirefox = window.navigator.userAgent.toLowerCase().indexOf('firefox') !== -1;
+const isFirefox =
+  window.navigator.userAgent.toLowerCase().indexOf('firefox') !== -1;
 
 class Sandbox extends React.Component {
   static propTypes = {
@@ -37,7 +38,13 @@ class Sandbox extends React.Component {
         inMemory: isFirefox
       },
       iframeStyle: 'body, html { height: 100%; width: 100%; overflow: auto }',
-      iframeSandbox: ['allow-forms', 'allow-popups', 'allow-scripts', 'allow-same-origin', 'allow-modals']
+      iframeSandbox: [
+        'allow-forms',
+        'allow-popups',
+        'allow-scripts',
+        'allow-same-origin',
+        'allow-modals'
+      ]
     });
 
     this.sandbox.on('modules', modules => {
@@ -77,8 +84,12 @@ class Sandbox extends React.Component {
     return (
       <div ref="sandbox" className="sandbox border-left">
         {!bundle.html ? (
-          <div className="center mt2 silver caps regular html-preview">HTML Preview</div>
-        ) : <span />}
+          <div className="center mt2 silver caps regular html-preview">
+            HTML Preview
+          </div>
+        ) : (
+          <span />
+        )}
       </div>
     );
   }

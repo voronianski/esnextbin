@@ -153,7 +153,7 @@ class Main extends React.Component {
       const status = this.triggerGist;
       const gistId = this.query.gist;
       const { editorsData } = this.state;
-      const fn = (err, res, isFork) => {
+      const onEnd = (err, res, isFork) => {
         Progress.hideAll();
 
         if (err) {
@@ -171,9 +171,9 @@ class Main extends React.Component {
       this.triggerGist = false;
 
       if (gistId) {
-        GistAPIUtils.updateGist(gistId, editorsData, status, fn);
+        GistAPIUtils.updateGist(gistId, editorsData, status, onEnd);
       } else {
-        GistAPIUtils.createGist(editorsData, status, fn);
+        GistAPIUtils.createGist(editorsData, status, onEnd);
       }
     } else {
       this.finishHandleEndBundle();

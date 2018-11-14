@@ -8,7 +8,7 @@ const GITHUB_AUTH_URL = 'https://github.com/login/oauth/authorize';
 const GITHUB_GISTS_API = 'https://api.github.com/gists';
 const COOKIE_TTL = 60 * 60 * 24 * 30 * 6; // 6 months
 
-let actionState = {callback: () => {}};
+let actionState; = {callback: () => {}};
 
 window.addEventListener('message', _getAuthCode, false);
 
@@ -46,7 +46,9 @@ export function getAccessToken(code, callback) {
       if (err) {
         callback(err);
       }
+
       const token = res.text;
+
       cookies.set('oauth_token', token, { expires: COOKIE_TTL });
       callback(null, token);
     });
@@ -65,8 +67,10 @@ export function createGist(editorsData, status, callback, isFork = false) {
         if (err.status === 401) {
           return authorize(makeRequest);
         }
+
         return callback(err);
       }
+
       callback(err, res, isFork);
     };
 
@@ -92,11 +96,14 @@ export function updateGist(id, editorsData, status, callback) {
         if (err.status === 401) {
           return authorize(makeRequest);
         }
+
         if (err.status === 404) {
           return createGist(editorsData, status, callback, 'fork');
         }
+
         return callback(err);
       }
+
       callback(err, res);
     };
 
@@ -110,6 +117,7 @@ export function updateGist(id, editorsData, status, callback) {
       .send(data)
       .end(onEnd);
   };
+
   makeRequest();
 }
 
@@ -121,17 +129,23 @@ export function getGist({ id, sha }, callback) {
         if (err.status === 401) {
           return authorize(makeRequest);
         }
+
         return callback(err);
       }
+
       const editorsData = getEditorsDataFromGist(res.body.files);
+
       if (!editorsData) {
         return callback(new Error('No index.js in the gist'));
       }
+
       callback(null, editorsData, res);
     };
 
     let url = `${GITHUB_GISTS_API}/${id}`;
-    if (sha) url += `/${sha}`;
+    if (sha) {
+      url += `/${sha}`;
+    }
 
     request
       .get(url)
@@ -143,7 +157,9 @@ export function getGist({ id, sha }, callback) {
 }
 
 export function getGistDataFormat(data = {}, status = 'public', gistId) {
-  const markdownLink = gistId ? `http://esnextb.in/?gist=${gistId}` : 'http://esnextb.in';
+  const markdownLink = gistId ?
+    `http://esnextb.in/?gist=${gistId}` :
+    'http://esnextb.in';
 
   return {
     description: 'esnextbin sketch',
@@ -179,4 +195,3 @@ export function getEditorsDataFromGist(files) {
     json: (files['package.json'] && files['package.json'].content) || DefaultsUtil.PACKAGE_JSON
   };
 }
-
