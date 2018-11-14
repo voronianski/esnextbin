@@ -23,7 +23,6 @@ class Main extends React.Component {
       bundle: {},
       bundling: false,
       activeEditor: 'code',
-      shareModal: false,
       autorunIsOn: false,
       editorsData: {
         code: Defaults.CODE,
@@ -197,14 +196,6 @@ class Main extends React.Component {
     this.handleRunClick();
   }
 
-  openShareModal() {
-    this.setState({ shareModal: true });
-  }
-
-  closeShareModal() {
-    this.setState({ shareModal: false });
-  }
-
   handleReset() {
     GistAPIUtils.unauthorize();
     StorageUtils.cleanSession();
@@ -313,7 +304,6 @@ class Main extends React.Component {
           activeEditor={activeEditor}
           isBundling={bundling}
           autorunIsOn={autorunIsOn}
-          onShareClick={::this.openShareModal}
           onRunClick={::this.handleRunClick}
           onPrettierClick={::this.handlePrettierClick}
           onEditorClick={::this.handleChangeEditor}

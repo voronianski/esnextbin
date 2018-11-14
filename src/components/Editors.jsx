@@ -17,6 +17,7 @@ class Editors extends React.Component {
     code: PropTypes.string.isRequired,
     html: PropTypes.string.isRequired,
     json: PropTypes.string.isRequired,
+    error: PropTypes.string,
     tabSize: PropTypes.number,
     headerHeight: PropTypes.number,
     onCodeChange: PropTypes.func,
