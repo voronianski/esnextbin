@@ -3,4 +3,5 @@ node_modules
 *.log
 *.map
 
-build/**/*
+public/build/*.css
+public/build/*.js

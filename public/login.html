@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+  <body>
+    <script>
+      var code = window.location.toString().replace(/.+code=/, '');
+      window.opener.postMessage(code, window.location);
+      window.close();
+    </script>
+  </body>
+</html>

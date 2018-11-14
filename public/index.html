@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+
+    <script type="text/javascript">
+      var host = 'esnextb.in';
+      if (
+        window.location.host === host &&
+        window.location.protocol !== 'https:'
+      ) {
+        window.location.protocol = 'https';
+      }
+    </script>
+
+    <link rel="canonical" href="https://esnextb.in" />
+    <link rel="icon" href="assets/favicon-1.png" />
+    <link rel="apple-touch-icon" href="assets/favicon-1.png" />
+    <title>ESNextbin</title>
+    <style>
+      #preloader {
+        background-image: url('./assets/pacman.gif');
+        width: 30px;
+        height: 30px;
+        background-size: 30px;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        transform: translateY(-50%);
+        z-index: 100;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,600,700,300|Roboto+Mono:400,500,700&subset=latin,cyrillic"
+    />
+    <link rel="stylesheet" type="text/css" href="build/app.min.css" />
+  </head>
+  <body>
+    <div id="preloader"></div>
+    <div id="root"></div>
+    <script src="assets/vendor/emmet.min.js"></script>
+    <script src="build/app.min.js" async defer></script>
+  </body>
+</html>

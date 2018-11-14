@@ -6,7 +6,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
-const isProduction = (env === 'production');
+const isProduction = env === 'production';
 
 module.exports = {
   mode: isProduction ? 'production' : 'development',
@@ -20,9 +20,9 @@ module.exports = {
   },
 
   output: {
-    path: path.join(__dirname, 'build'),
+    path: path.join(__dirname, './public/build'),
     filename: getFilename('js'),
-    publicPath: '/build'
+    publicPath: '/public/build'
   },
 
   optimization: {
@@ -59,21 +59,20 @@ module.exports = {
   },
 
   module: {
-    rules: [{
-      test: /\.jsx?$/,
-      exclude: /node_modules/,
-      loader: 'babel-loader'
-    }, {
-      test: /\.css$/,
-      use: [
-        MiniCssExtractPlugin.loader,
-        'css-loader',
-        'postcss-loader'
-      ]
-    }]
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
+      }
+    ]
   }
 };
 
-function getFilename (ext) {
+function getFilename(ext) {
   return isProduction ? `app.min.${ext}` : `app.${ext}`;
 }
