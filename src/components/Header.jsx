@@ -126,7 +126,7 @@ class Header extends React.Component {
             onClick={onRunClick}
             disabled={isBundling}
           >
-            &#9654; Execute
+            &#9654; Run Code
           </button>
 
           <div className="relative inline-block actions-dropdown">
@@ -154,14 +154,13 @@ class Header extends React.Component {
                 onClick={this.click('onPrettierClick')}
               >
                 <span>Run Prettier</span>
-                <sup>beta</sup>
               </a>
               <a
                 href="#!"
                 className="btn block"
                 onClick={this.saveGist('public')}
               >
-                Save Gist
+                Save Public Gist
               </a>
               <a
                 href="#!"

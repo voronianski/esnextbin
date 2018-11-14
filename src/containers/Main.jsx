@@ -112,6 +112,10 @@ class Main extends React.Component {
       e.preventDefault();
       this.handlePrettierClick();
     });
+
+    mousetrap.bind(['command+[', 'command+]'], e => {
+      e.preventDefault();
+    });
   }
 
   handleRunClick() {
@@ -379,14 +383,17 @@ class Main extends React.Component {
       try {
         transpiledCode = this._transpileCode(code);
       } catch (err) {
-        if (err._babel) {
-          transpiledCode = `/*
-${err.message || 'Error while transpilation'}
+        error = err;
+        error.message = err.message
+          ? err.message.replace('\n', '')
+          : 'Error while transpilation';
+
+        transpiledCode = `/*
+${error.messsage}
 */`;
-          error = err;
-        }
       }
     }
+
     return { transpiledCode, error };
   }
 }

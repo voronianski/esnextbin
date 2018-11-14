@@ -164,9 +164,23 @@ export function getGistDataFormat(data = {}, status = 'public', gistId) {
   const markdownLink = gistId
     ? `http://esnextb.in/?gist=${gistId}`
     : 'http://esnextb.in';
+  const gistMeta = {
+    description: 'esnextbin sketch',
+    markdown: `made with [esnextbin](${markdownLink})`
+  };
+
+  try {
+    const jsonData = JSON.parse(data.json);
+
+    if (jsonData.description) {
+      gistMeta.description = jsonData.description;
+    }
+  } catch (err) {
+    // fail silently
+  }
 
   return {
-    description: 'esnextbin sketch',
+    description: gistMeta.description,
     public: status === 'public',
     files: {
       'index.js': {
@@ -182,7 +196,7 @@ export function getGistDataFormat(data = {}, status = 'public', gistId) {
         content: data.json.trim() || DefaultsUtil.PACKAGE_JSON
       },
       'esnextbin.md': {
-        content: `made with [esnextbin](${markdownLink})`
+        content: gistMeta.markdown
       }
     }
   };

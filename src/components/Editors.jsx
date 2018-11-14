@@ -53,7 +53,7 @@ class Editors extends React.Component {
       <div className="editorbox">
         <div
           className={cx('edit-code', {
-            'hide': active !== 'code',
+            hide: active !== 'code',
             'has-error': !!error
           })}
         >
@@ -68,7 +68,7 @@ class Editors extends React.Component {
             onChange={this.handleChange('onCodeChange')}
             showPrintMargin={false}
             editorProps={{ $blockScrolling: Infinity }}
-            enableBasicAutocompletion={true}
+            enableLiveAutocompletion={true}
           />
         </div>
 
