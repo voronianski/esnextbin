@@ -51,7 +51,7 @@ export function getAccessToken(code, callback) {
         callback(err);
       }
 
-      const token = res.text;
+      const token = res.body.token;
 
       cookies.set('oauth_token', token, { expires: COOKIE_TTL });
       callback(null, token);
