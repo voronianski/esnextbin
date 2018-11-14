@@ -288,6 +288,10 @@ class Main extends React.Component {
 
   handleErrorBundle(err) {
     console.log(err); // maybe show some popup or notification here?
+
+    this._updateEditorsData({
+      error: { message: err }
+    });
     this.finishHandleEndBundle();
   }
 

@@ -59,7 +59,7 @@
     "no-void": 0,
     "func-names": 0,
     "no-nested-ternary": 0,
-    "quote-props": [2, "consistent-as-needed", { "keywords": false, "unnecessary": true, "numbers": false }],
+    "quote-props": 0,
     "space-infix-ops": 0,
     "prefer-const": 0,
     "prefer-template": 0,
