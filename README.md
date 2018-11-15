@@ -20,17 +20,17 @@ Explore latest JavaScript features with the help of several useful npm modules a
 
 1. ESNextbin interface consists of 2 main sections - _"Editor"_ on the left side and _"HTML Preview"_ on the right side
 2. There are 3 editor tabs - _"Code"_ (for Javascript), _"HTML"_ (for html layout) and _"Package"_ (`package.json` that gets updated automatically when you're executing the code which imports library from npm). Switch editors to manage specific part of your program
-3. Write program in _"Code"_ tab and after you are ready hit `▶ Execute` button to see the result
+3. Write program in _"Code"_ tab and after you are ready hit `▶ Run Code` button to see the result
 4. If you have HTML layout or you're manipulating the DOM in your code you'll see the result in _"HTML Preview"_.
 5. But all logging, errors and warnings that appear in runtime could be seen ONLY in your browser's console (maybe it's necessary to add "Console" tab?)
 6. `Actions` menu provides:
    - saving your code as public and private [gists](https://gist.github.com/) which can be easily shared by copy/pasting link that contains gist id as query param, e.g. `https://esnextb.in?gist=<ID>` (please notice that these actions require GitHub account authorization)
-   - _"Enable/Disable Autorun"_ toggles autorunning feature (when it's enabled, the code will be executed after 1s every time when you stop typing without pressing `▶ Execute` button)
+   - _"Enable/Disable Autorun"_ toggles autorunning feature (when it's enabled, the code will be executed after 1s every time when you stop typing without pressing `▶ Run Code` button)
    - _"Clean session"_ resets all editors and unauthorizes your GitHub account (if it was connected)
 7. _"Editor"_ section uses [default Ace shortcuts](https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts)
 8. There are additional shorcuts as well:
    - `Cmd/Ctrl + S` - hotkeys for save your code as public gist action
-   - `Cmd/Ctrl + E` - hotkeys for `▶ Execute` button
+   - `Cmd/Ctrl + E` - hotkeys for `▶ Run Code` button
    - `Ctrl + Alt + F` - hotkeys for `Run Prettier` button
 
 ### Demos
