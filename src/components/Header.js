@@ -10,7 +10,6 @@ class Header extends React.Component {
     onRunClick: PropTypes.func.isRequired,
     onPrettierClick: PropTypes.func.isRequired,
     onEditorClick: PropTypes.func,
-    onShareClick: PropTypes.func,
     onSaveGistClick: PropTypes.func,
     onResetEditors: PropTypes.func,
     onToggleAutorun: PropTypes.func
@@ -176,7 +175,6 @@ class Header extends React.Component {
               >
                 {autorunIsOn ? 'Disable Autorun' : 'Enable Autorun'}
               </a>
-              {/* TBD: <a href="#!" className="btn block" onClick={this.click('onShareClick')}>Share Sketch</a>*/}
               <a
                 href="#!"
                 className="btn block"

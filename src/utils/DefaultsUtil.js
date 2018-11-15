@@ -3,8 +3,13 @@ export const HEADER_HEIGHT = 38;
 
 // transpiling
 export const BABEL_OPTIONS = {
-  presets: ['es2015', 'react', ['stage-0', { decoratorsBeforeExport: true }]],
-  plugins: ['transform-object-assign', 'transform-runtime']
+  // presets: ['es2015', 'react', ['stage-0', { decoratorsBeforeExport: true }]],
+  presets: ['es2015', 'react', 'stage-0'],
+  plugins: [
+    'transform-object-assign',
+    'transform-decorators-legacy',
+    'transform-runtime'
+  ]
 };
 
 // editors
