@@ -223,6 +223,19 @@ class App extends React.Component {
       })
       .catch(err => {
         Progress.hide();
+
+        if (err.status === 404) {
+          return this.setState({
+            editorsData: this.updateEditorsData({ error: 'Gist was not found' })
+          });
+        }
+
+        if (err.message === 'No index.js in the gist') {
+          return this.setState({
+            editorsData: this.updateEditorsData({ error: err.message })
+          });
+        }
+
         console.log(err);
       });
   }
