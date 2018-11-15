@@ -4,11 +4,14 @@ const envs = {
     GATEKEEPER: 'https://esnextbin-gatekeeper.herokuapp.com/token',
     BROWSERIFY_CDN: 'https://wzrd.now.sh'
   },
-  dev: {
+  development: {
     GITHUB_CLIENT_ID: 'b861ee8ae510190dd2e8',
     GATEKEEPER: 'http://localhost:9393/token',
     BROWSERIFY_CDN: 'https://wzrd.now.sh'
   }
 };
 
-export default envs.dev;
+const env = process.env.NODE_ENV || 'development';
+const config = envs[env];
+
+export default config;
