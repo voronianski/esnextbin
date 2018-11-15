@@ -2,7 +2,7 @@
 
 > Prototype JavaScript apps in the browser with [ES2015](https://babeljs.io/docs/learn-es2015/)'s latest features and importing modules directly from [NPM](https://www.npmjs.com/).
 
-[<img src="esnextbin-beta-demo.gif" width="650" />](http://esnextb.in)
+[<img src="esnextbin-beta-demo.gif" width="650" />](https://esnextb.in)
 
 ## How it works?
 
@@ -24,32 +24,32 @@ Explore latest JavaScript features with the help of several useful npm modules a
 4. If you have HTML layout or you're manipulating the DOM in your code you'll see the result in _"HTML Preview"_.
 5. But all logging, errors and warnings that appear in runtime could be seen ONLY in your browser's console (maybe it's necessary to add "Console" tab?)
 6. `Actions` menu provides:
-    - saving your code as public and private [gists](https://gist.github.com/) which can be easily shared by copy/pasting link that contains gist id as query param, e.g. `http://esnextb.in?gist=<ID>` (please notice that these actions require GitHub account authorization)
-    - _"Enable/Disable Autorun"_ toggles autorunning feature (when it's enabled, the code will be executed after 1s every time when you stop typing without pressing `▶ Execute` button)
-    - _"Clean session"_ resets all editors and unauthorizes your GitHub account (if it was connected)
+   - saving your code as public and private [gists](https://gist.github.com/) which can be easily shared by copy/pasting link that contains gist id as query param, e.g. `https://esnextb.in?gist=<ID>` (please notice that these actions require GitHub account authorization)
+   - _"Enable/Disable Autorun"_ toggles autorunning feature (when it's enabled, the code will be executed after 1s every time when you stop typing without pressing `▶ Execute` button)
+   - _"Clean session"_ resets all editors and unauthorizes your GitHub account (if it was connected)
 7. _"Editor"_ section uses [default Ace shortcuts](https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts)
 8. There are additional shorcuts as well:
-    - `Cmd/Ctrl + S` - hotkeys for save your code as public gist action
-    - `Cmd/Ctrl + E` - hotkeys for `▶ Execute` button
-    - `Ctrl + Alt + F` - hotkeys for `Run Prettier` button
+   - `Cmd/Ctrl + S` - hotkeys for save your code as public gist action
+   - `Cmd/Ctrl + E` - hotkeys for `▶ Execute` button
+   - `Ctrl + Alt + F` - hotkeys for `Run Prettier` button
 
 ### Demos
 
 There are several examples for you to play with:
 
-- [React Starter App](http://esnextb.in/?gist=b7e541a42c7c1218cad6&execute=true)
-- [Random Star Wars Names](http://esnextb.in/?gist=27fd38f51a4a9303e9c7&execute=true)
-- [React Soundcloud Player](http://esnextb.in/?gist=a649fc804a722e49fc71&execute=true)
-- [Preact FRP](http://esnextb.in/?gist=ba28702c94e22d26e3bc&execute=true)
-- [Async/await Functions](http://esnextb.in/?gist=f7a6a4cf4c6bf4099fdc&execute=true)
-- [React + Redux](http://esnextb.in/?gist=d6daac6224af08d799bc&execute=true)
-- [Generators](http://esnextb.in/?gist=0f174a29ca6623afe456&execute=true)
-- [D3](http://esnextb.in/?gist=9eac7e72521c21e98817&execute=true)
-- [Vue 2.0 + Vuex](http://esnextb.in/?gist=bd1916ac0c96d75785f8433249967eb2&execute=true)
-- [Pixi.js Basic Example](https://esnextb.in/?gist=f6a3a6197346d4168a5fbbc3ef6b0747&exec=true)
-- [JSX to document.createElement](https://esnextb.in/?gist=f81cbfcb65f3bfbc0d1c5ccc3c748ca5&exec=true)
-- [Reactive view with Proxies and virtual-dom](https://esnextb.in/?gist=8e8b74861f299a672075ae155a86f444&exec=true)
-- [Unidirectional dataflow with Barracks and virtual-dom](https://esnextb.in/?gist=1fbca0bc6537a402e915c0cee53aa4a7&exec=true)
+- [React Starter App](https://esnextb.in/?gist=b7e541a42c7c1218cad6)
+- [Random Star Wars Names](https://esnextb.in/?gist=27fd38f51a4a9303e9c7)
+- [React Soundcloud Player](https://esnextb.in/?gist=a649fc804a722e49fc71)
+- [Preact FRP](https://esnextb.in/?gist=ba28702c94e22d26e3bc)
+- [Async/await Functions](https://esnextb.in/?gist=f7a6a4cf4c6bf4099fdc)
+- [React + Redux](https://esnextb.in/?gist=d6daac6224af08d799bc)
+- [Generators](https://esnextb.in/?gist=0f174a29ca6623afe456)
+- [D3](https://esnextb.in/?gist=9eac7e72521c21e98817)
+- [Vue 2.0 + Vuex](https://esnextb.in/?gist=bd1916ac0c96d75785f8433249967eb2)
+- [Pixi.js Basic Example](https://esnextb.in/?gist=f6a3a6197346d4168a5fbbc3ef6b0747)
+- [JSX to document.createElement](https://esnextb.in/?gist=f81cbfcb65f3bfbc0d1c5ccc3c748ca5)
+- [Reactive view with Proxies and virtual-dom](https://esnextb.in/?gist=8e8b74861f299a672075ae155a86f444)
+- [Unidirectional dataflow with Barracks and virtual-dom](https://esnextb.in/?gist=1fbca0bc6537a402e915c0cee53aa4a7)
 
 ## Contributing
 
@@ -76,6 +76,7 @@ Inspired by awesomeness of [Babel.js REPL](http://babeljs.io/repl/) and [Require
 Support project with a monthly donation and help to continue its' development. [Become a backer](https://opencollective.com/esnextbin#backer)
 
 <a href="https://opencollective.com/esnextbin/backer/0/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/0/avatar.svg"></a>
+
 <!-- <a href="https://opencollective.com/esnextbin/backer/1/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/1/avatar.svg"></a>
 <a href="https://opencollective.com/esnextbin/backer/2/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/2/avatar.svg"></a>
 <a href="https://opencollective.com/esnextbin/backer/3/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/3/avatar.svg"></a>
@@ -106,6 +107,7 @@ Support project with a monthly donation and help to continue its' development. [
 <a href="https://opencollective.com/esnextbin/backer/28/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/28/avatar.svg"></a>
 <a href="https://opencollective.com/esnextbin/backer/29/website" target="_blank"><img src="https://opencollective.com/esnextbin/backer/29/avatar.svg"></a>
  -->
+
 ### Sponsors
 
 Become a sponsor and get your logo on this README with a link to your site. [Become a sponsor](https://opencollective.com/esnextbin#sponsor)
@@ -142,6 +144,7 @@ Become a sponsor and get your logo on this README with a link to your site. [Bec
 <a href="https://opencollective.com/esnextbin/sponsor/28/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/28/avatar.svg"></a>
 <a href="https://opencollective.com/esnextbin/sponsor/29/website" target="_blank"><img src="https://opencollective.com/esnextbin/sponsor/29/avatar.svg"></a>
  -->
+
 [![build status](http://forthebadge.com/images/badges/built-with-love.svg)](https://travis-ci.org/voronianski/esnextbin)
 [![donate](http://forthebadge.com/images/badges/powered-by-electricity.svg)](https://www.paypal.me/voronianski/5)
 
