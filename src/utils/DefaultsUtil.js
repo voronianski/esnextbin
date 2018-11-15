@@ -5,7 +5,11 @@ export const HEADER_HEIGHT = 38;
 export const BABEL_OPTIONS = {
   // presets: ['es2015', 'react', ['stage-0', { decoratorsBeforeExport: true }]],
   presets: ['es2015', 'react', 'stage-0'],
-  plugins: ['transform-object-assign', 'transform-runtime']
+  plugins: [
+    'transform-object-assign',
+    'transform-decorators-legacy',
+    'transform-runtime'
+  ]
 };
 
 // editors
