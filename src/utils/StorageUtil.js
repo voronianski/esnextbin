@@ -29,34 +29,45 @@ function _coerce(value) {
 }
 
 export function getSession() {
-  if (!storage) return;
+  if (!storage) {
+    return;
+  }
+
   let session = {};
 
   const code = storage.getItem('code');
   if (code) {
     session.code = code;
   }
+
   const html = storage.getItem('html');
   if (html) {
     session.html = html;
   }
+
   const json = storage.getItem('json');
   if (json) {
     session.json = json;
   }
+
   const autorun = storage.getItem('autorun');
   if (autorun) {
     session.autorun = _coerce(autorun);
   }
 
   // session is empty :(
-  if (!Object.keys(session).length) return;
+  if (!Object.keys(session).length) {
+    return;
+  }
 
   return session;
 }
 
 export function saveToSession(key, value) {
-  if (!storage || disabled) return;
+  if (!storage || disabled) {
+    return;
+  }
+
   storage.setItem(key, value);
 }
 
@@ -69,9 +80,11 @@ export function turnOffSession() {
 }
 
 export function cleanSession() {
-  if (!storage) return;
+  if (!storage) {
+    return;
+  }
+
   storage.removeItem('code');
   storage.removeItem('html');
   storage.removeItem('json');
 }
-

@@ -28,12 +28,12 @@ body,
   border-left: 0;
 }
 
-.loader-60devs[data-state="running"]::before {
+.loader-60devs[data-state='running']::before {
   display: none;
 }
 
 .ace_editor {
-  font: .84em/normal var(--font-code) !important;
+  font: 0.84em/normal var(--font-code) !important;
 }
 
 .ace_editor .ace_tooltip {
@@ -87,7 +87,7 @@ header .run-btn {
 
 header .logo sup {
   text-transform: lowercase;
-  letter-spacing: .1em;
+  letter-spacing: 0.1em;
 }
 
 header .logo img {
@@ -144,7 +144,7 @@ header .btn:disabled {
   background: #f1f1f1;
   white-space: pre;
   border-radius: 0;
-  font-size: .84em;
+  font-size: 0.84em;
   font-family: var(--font-code);
   color: #c7254e;
 }
@@ -167,9 +167,10 @@ header .btn:disabled {
 }
 
 :root {
-  --font-family: 'Roboto', 'Akkurat', 'Avenir Next', Avenir, 'Helvetica Neue', Helvetica, sans-serif;
-  --font-code: 'Roboto Mono', 'menlo', 'Consolas', 'Monaco', 'source-code-pro', monospace;
+  --font-family: 'Roboto', 'Akkurat', 'Avenir Next', Avenir, 'Helvetica Neue',
+    Helvetica, sans-serif;
+  --font-code: 'Roboto Mono', 'menlo', 'Consolas', 'Monaco', 'source-code-pro',
+    monospace;
   --container-width: 960px;
   --body-color: #333;
 }
-

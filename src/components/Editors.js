@@ -105,7 +105,7 @@ class Editors extends React.Component {
           />
         </div>
 
-        {error ? <div className="code-error">{error.message}</div> : <span />}
+        {error ? <div className="code-error">{error}</div> : <span />}
       </div>
     );
   }

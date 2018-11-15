@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BrowserSandbox from 'browser-module-sandbox';
+
 import config from '../config';
 
 const isFirefox =
@@ -74,6 +75,7 @@ class Sandbox extends React.Component {
     if (this.props.bundle !== bundle) {
       this.sandbox.iframeHead = this._getTag(bundle.html, 'head') || '';
       this.sandbox.iframeBody = this._getTag(bundle.html, 'body') || '';
+
       this.sandbox.bundle(bundle.code, bundle.package.dependencies || {});
     }
   }
