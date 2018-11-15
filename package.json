@@ -1,6 +1,6 @@
 {
   "name": "esnextbin",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Prototype JavaScript apps in the browser with ESNext features and NPM modules.",
   "main": "./src/index.js",
   "dependencies": {
