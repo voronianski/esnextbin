@@ -8,21 +8,32 @@ const GITHUB_AUTH_URL = 'https://github.com/login/oauth/authorize';
 const GITHUB_GISTS_API = 'https://api.github.com/gists';
 const COOKIE_TTL = 60 * 60 * 24 * 30 * 6; // 6 months
 
-const actionState = { callback: () => {} };
+const actionState = {
+  authTries: 0,
+  authCallback: () => {}
+};
 
-window.addEventListener('message', getAuthCode, false);
+window.addEventListener(
+  'message',
+  e => {
+    const code = e.data;
 
-function getAuthCode(e) {
-  const code = e.data;
+    if (code) {
+      getAccessToken(code).then(() => actionState.authCallback());
+    }
+  },
+  false
+);
 
-  if (code) {
-    getAccessToken(code, actionState.callback);
+function authorize(authCallback) {
+  if (authCallback) {
+    actionState.authCallback = authCallback;
   }
-}
 
-function authorize(callback) {
-  if (callback) {
-    actionState.callback = callback;
+  actionState.authTries++;
+
+  if (actionState.authTries >= 3) {
+    return;
   }
 
   window.open(
@@ -30,28 +41,28 @@ function authorize(callback) {
   );
 }
 
-function getAccessToken(code, callback) {
-  if (!code) {
-    const err = new Error(
-      'Impossible to get access token, code is not present'
-    );
+function getAccessToken(code) {
+  return new Promise((resolve, reject) => {
+    if (!code) {
+      return reject(
+        new Error('Impossible to get access token, code is not present')
+      );
+    }
 
-    return callback(err);
-  }
+    request
+      .get(config.GATEKEEPER)
+      .query({ code })
+      .end((err, res) => {
+        if (err) {
+          return reject(err);
+        }
 
-  request
-    .get(config.GATEKEEPER)
-    .query({ code })
-    .end((err, res) => {
-      if (err) {
-        callback(err);
-      }
+        const token = res.body.token;
 
-      const token = res.body.token;
-
-      cookies.set('oauth_token', token, { expires: COOKIE_TTL });
-      callback(null, token);
-    });
+        cookies.set('oauth_token', token, { expires: COOKIE_TTL });
+        resolve(token);
+      });
+  });
 }
 
 function requestGistApi(method = 'GET', data = {}) {
@@ -77,14 +88,14 @@ function requestGistApi(method = 'GET', data = {}) {
         .query({ access_token })
         .send(data.body)
         .then(res => {
-          resolve(res.body || {});
+          return resolve(res.body || {});
         })
         .catch(err => {
           if (err.status === 401) {
             return authorize(makeRequest);
           }
 
-          reject(err);
+          return reject(err);
         });
     });
   };
