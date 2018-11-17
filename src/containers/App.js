@@ -205,7 +205,6 @@ class App extends React.Component {
 
     GistAPI.getGist({ id: gistId, sha })
       .then(gistData => {
-        debugger;
         Progress.hide();
 
         const { transpiledCode, error } = this.transpileCode(gistData.code);
@@ -223,7 +222,6 @@ class App extends React.Component {
         }
       })
       .catch(err => {
-        debugger;
         Progress.hide();
 
         if (err.status === 404) {

@@ -4,41 +4,43 @@ import cookies from 'cookies-js';
 import config from '../config';
 import * as Defaults from './DefaultsUtil';
 
-const GITHUB_AUTH_URL = 'https://github.com/login/oauth/authorize';
+const GITHUB_AUTH_URL = `https://github.com/login/oauth/authorize?client_id=${
+  config.GITHUB_CLIENT_ID
+}&scope=gist`;
 const GITHUB_GISTS_API = 'https://api.github.com/gists';
 const COOKIE_TTL = 60 * 60 * 24 * 30 * 6; // 6 months
 
-const actionState = {
-  authTries: 0,
-  authCallback: () => {}
+const authState = {
+  tries: 0,
+  successFn: () => {},
+  errorFn: () => {}
 };
 
-window.addEventListener(
-  'message',
-  e => {
-    const code = e.data;
+window.addEventListener('message', onLoginMessage, false);
 
-    if (code) {
-      getAccessToken(code).then(() => actionState.authCallback());
+function onLoginMessage(e) {
+  const code = e.data;
+
+  if (code) {
+    getAccessToken(code)
+      .then(() => authState.successFn())
+      .catch(err => authState.errorFn(err));
+  }
+}
+
+function authorize() {
+  return new Promise((resolve, reject) => {
+    authState.tries++;
+
+    if (authState.tries >= 3) {
+      return reject(new Error(`Too many tries to open ${GITHUB_AUTH_URL}`));
     }
-  },
-  false
-);
 
-function authorize(authCallback) {
-  if (authCallback) {
-    actionState.authCallback = authCallback;
-  }
+    authState.successFn = resolve;
+    authState.errorFn = reject;
 
-  actionState.authTries++;
-
-  if (actionState.authTries >= 3) {
-    return;
-  }
-
-  window.open(
-    `${GITHUB_AUTH_URL}?client_id=${config.GITHUB_CLIENT_ID}&scope=gist`
-  );
+    window.open(GITHUB_AUTH_URL);
+  });
 }
 
 function getAccessToken(code) {
@@ -79,12 +81,21 @@ function requestGistApi(method = 'GET', data = {}) {
   const makeRequest = () => {
     return new Promise((resolve, reject) => {
       const access_token = cookies.get('oauth_token');
+      const loginBefore = () => {
+        authorize()
+          .then(() =>
+            makeRequest()
+              .then(resolve)
+              .catch(reject)
+          )
+          .catch(reject);
+      };
 
       if (!access_token) {
-        return authorize(makeRequest);
+        return loginBefore();
       }
 
-      request(method, url)
+      return request(method, url)
         .query({ access_token })
         .send(data.body)
         .then(res => {
@@ -92,7 +103,7 @@ function requestGistApi(method = 'GET', data = {}) {
         })
         .catch(err => {
           if (err.status === 401) {
-            return authorize(makeRequest);
+            return loginBefore();
           }
 
           return reject(err);
