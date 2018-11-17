@@ -19,6 +19,7 @@ const authState = {
 window.addEventListener('message', onLoginMessage, false);
 
 function onLoginMessage(e) {
+  console.log('on message', e, e.data);
   const code = e.data;
 
   if (code) {
