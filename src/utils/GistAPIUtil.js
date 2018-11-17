@@ -86,7 +86,7 @@ function requestGistApi(method = 'GET', data = {}) {
   const makeRequest = () => {
     return new Promise((resolve, reject) => {
       const access_token = cookies.get('oauth_token');
-      const loginBefore = () => {
+      const loginAndRetry = () => {
         authorize()
           .then(() =>
             makeRequest()
@@ -97,7 +97,7 @@ function requestGistApi(method = 'GET', data = {}) {
       };
 
       if (!access_token) {
-        return loginBefore();
+        return loginAndRetry();
       }
 
       return request(method, url)
@@ -108,7 +108,7 @@ function requestGistApi(method = 'GET', data = {}) {
         })
         .catch(err => {
           if (err.status === 401) {
-            return loginBefore();
+            return loginAndRetry();
           }
 
           return reject(err);
