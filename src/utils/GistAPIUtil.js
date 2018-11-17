@@ -4,54 +4,67 @@ import cookies from 'cookies-js';
 import config from '../config';
 import * as Defaults from './DefaultsUtil';
 
-const GITHUB_AUTH_URL = 'https://github.com/login/oauth/authorize';
+const GITHUB_AUTH_URL = `https://github.com/login/oauth/authorize?client_id=${
+  config.GITHUB_CLIENT_ID
+}&scope=gist`;
 const GITHUB_GISTS_API = 'https://api.github.com/gists';
 const COOKIE_TTL = 60 * 60 * 24 * 30 * 6; // 6 months
 
-const actionState = { callback: () => {} };
+const authState = {
+  tries: 0,
+  successFn: () => {},
+  errorFn: () => {}
+};
 
-window.addEventListener('message', getAuthCode, false);
+window.addEventListener('message', onLoginMessage, false);
 
-function getAuthCode(e) {
+function onLoginMessage(e) {
   const code = e.data;
 
   if (code) {
-    getAccessToken(code, actionState.callback);
+    getAccessToken(code)
+      .then(() => authState.successFn())
+      .catch(err => authState.errorFn(err));
   }
 }
 
-function authorize(callback) {
-  if (callback) {
-    actionState.callback = callback;
-  }
+function authorize() {
+  return new Promise((resolve, reject) => {
+    authState.tries++;
 
-  window.open(
-    `${GITHUB_AUTH_URL}?client_id=${config.GITHUB_CLIENT_ID}&scope=gist`
-  );
+    if (authState.tries >= 3) {
+      return reject(new Error(`Too many tries to open ${GITHUB_AUTH_URL}`));
+    }
+
+    authState.successFn = resolve;
+    authState.errorFn = reject;
+
+    window.open(GITHUB_AUTH_URL);
+  });
 }
 
-function getAccessToken(code, callback) {
-  if (!code) {
-    const err = new Error(
-      'Impossible to get access token, code is not present'
-    );
+function getAccessToken(code) {
+  return new Promise((resolve, reject) => {
+    if (!code) {
+      return reject(
+        new Error('Impossible to get access token, code is not present')
+      );
+    }
 
-    return callback(err);
-  }
+    request
+      .get(config.GATEKEEPER)
+      .query({ code })
+      .end((err, res) => {
+        if (err) {
+          return reject(err);
+        }
 
-  request
-    .get(config.GATEKEEPER)
-    .query({ code })
-    .end((err, res) => {
-      if (err) {
-        callback(err);
-      }
+        const token = res.body.token;
 
-      const token = res.body.token;
-
-      cookies.set('oauth_token', token, { expires: COOKIE_TTL });
-      callback(null, token);
-    });
+        cookies.set('oauth_token', token, { expires: COOKIE_TTL });
+        resolve(token);
+      });
+  });
 }
 
 function requestGistApi(method = 'GET', data = {}) {
@@ -68,23 +81,32 @@ function requestGistApi(method = 'GET', data = {}) {
   const makeRequest = () => {
     return new Promise((resolve, reject) => {
       const access_token = cookies.get('oauth_token');
+      const loginBefore = () => {
+        authorize()
+          .then(() =>
+            makeRequest()
+              .then(resolve)
+              .catch(reject)
+          )
+          .catch(reject);
+      };
 
       if (!access_token) {
-        return authorize(makeRequest);
+        return loginBefore();
       }
 
-      request(method, url)
+      return request(method, url)
         .query({ access_token })
         .send(data.body)
         .then(res => {
-          resolve(res.body || {});
+          return resolve(res.body || {});
         })
         .catch(err => {
           if (err.status === 401) {
-            return authorize(makeRequest);
+            return loginBefore();
           }
 
-          reject(err);
+          return reject(err);
         });
     });
   };
