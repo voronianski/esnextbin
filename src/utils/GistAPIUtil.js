@@ -16,14 +16,18 @@ const authState = {
   errorFn: () => {}
 };
 
-window.addEventListener('message', onLoginMessage, false);
+// message with github oauth code comes from ./public/login.html
+window.addEventListener('message', onLoginHTMLMessage, false);
 
-function onLoginMessage(e) {
-  console.log('on message', e, e.data);
-  const code = e.data;
+function onLoginHTMLMessage(e) {
+  if (e.origin !== window.location.origin) {
+    return;
+  }
 
-  if (code) {
-    getAccessToken(code)
+  const { githubAuthCode } = e.data;
+
+  if (githubAuthCode) {
+    getAccessToken(githubAuthCode)
       .then(() => authState.successFn())
       .catch(err => authState.errorFn(err));
   }

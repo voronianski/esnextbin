@@ -7,7 +7,7 @@
   <body>
     <script>
       var code = window.location.toString().replace(/.+code=/, '');
-      window.opener.postMessage(code, window.location);
+      window.opener.postMessage({githubAuthCode: code}, window.location);
       window.close();
     </script>
   </body>
