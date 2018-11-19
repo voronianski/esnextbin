@@ -125,7 +125,8 @@ class Header extends React.Component {
             onClick={onRunClick}
             disabled={isBundling}
           >
-            &#9654; Run Code
+            <span className="desktop-text">&#9654; Run Code</span>
+            <span className="mobile-text">&#9654; Run</span>
           </button>
 
           <div className="relative inline-block actions-dropdown">
@@ -135,7 +136,8 @@ class Header extends React.Component {
               onClick={::this.showDropdown}
               disabled={isBundling}
             >
-              Actions
+              <span className="desktop-text">Actions</span>
+              <span className="mobile-text">More</span>
             </button>
             <div
               className={cx('fixed top-0 right-0 bottom-0 left-0', {

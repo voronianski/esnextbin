@@ -33,7 +33,7 @@ body,
 }
 
 .ace_editor {
-  font: 0.84em/normal var(--font-code) !important;
+  font: 0.84em / normal var(--font-code) !important;
 }
 
 .ace_editor .ace_tooltip {
@@ -164,6 +164,67 @@ header .btn:disabled {
   -moz-user-select: none;
   user-select: none;
   cursor: default;
+}
+
+.mobile-text {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .mobile-text {
+    display: block;
+  }
+
+  .desktop-text,
+  header .logo span {
+    display: none;
+  }
+
+  header .editor-buttons-group {
+    left: 55px;
+    text-align: left;
+  }
+
+  header .run-btn {
+    margin-right: 0;
+  }
+
+  .editorbox {
+    width: 100%;
+    bottom: 50%;
+  }
+
+  .sandbox {
+    border-left: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+    width: 100%;
+    top: 50%;
+    left: 0;
+  }
+}
+
+@media (max-width: 410px) {
+  header .logo {
+    display: none;
+  }
+
+  header .editor-buttons-group {
+    left: 5px;
+  }
+
+  header .actions-dropdown {
+    margin-right: 5px;
+  }
+}
+
+@media (max-width: 350px) {
+  header .actions-dropdown {
+    display: none;
+  }
+
+  header .run-btn {
+    margin-right: 5px;
+  }
 }
 
 :root {
