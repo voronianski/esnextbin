@@ -65,9 +65,7 @@ class App extends React.Component {
   }
 
   handleChangeEditor(editorId) {
-    this.setState({
-      activeEditor: editorId
-    });
+    this.setState({ activeEditor: editorId });
   }
 
   handleSaveGist(status) {
@@ -163,9 +161,7 @@ class App extends React.Component {
     }, {});
     const json = JSON.stringify({ ...bundle.package, dependencies }, null, 2);
 
-    this.setState({
-      editorsData: this.updateEditorsData({ json })
-    });
+    this.setState({ editorsData: this.updateEditorsData({ json }) });
   }
 
   handleStartBundle() {
@@ -181,16 +177,13 @@ class App extends React.Component {
 
   handleEndBundle() {
     clearTimeout(this.progressDelay);
-
     this.finishBundling();
   }
 
   handleErrorBundle(error) {
     console.log(error);
 
-    this.setState({
-      editorsData: this.updateEditorsData({ error })
-    });
+    this.setState({ editorsData: this.updateEditorsData({ error }) });
     this.finishBundling();
   }
 
